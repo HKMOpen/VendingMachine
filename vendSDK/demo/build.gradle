@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+repositories {
+    maven { url 'http://dl.bintray.com/madcyph3r/maven/' }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+    maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
+    maven { url 'http://dl.bintray.com/jjhesk/maven/' }
+}
+
+android {
+    compileSdkVersion targetSdk
+    buildToolsVersion buildTools
+
+    defaultConfig {
+        applicationId "com.hkmvend.apiclitest"
+        minSdkVersion 17
+        targetSdkVersion targetSdk
+        versionCode publish_build_number
+        versionName publich_version_name
+        multiDexEnabled = false
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'LICENSE.txt'
+    }
+}
+
+dependencies {
+    compile supportDependencies.annotation
+    compile supportDependencies.appCompat
+    compile supportDependencies.recycler
+    compile supportDependencies.vdoTestUI
+    compile supportDependencies.uiframwork
+
+    testCompile 'junit:junit:4.12'
+  //  compile 'com.google.gdata:core:1.47.1'
+    compile 'com.android.support:design:23.1.1'
+    compile 'com.google.android.gms:play-services-drive:8.4.0'
+   // compile 'com.google.gdata:core:1.47.1'
+    compile project(':vendingmachinesdk')
+}
