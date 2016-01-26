@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/apiSDK.iml" filepath="$PROJECT_DIR$/apiSDK.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/driveapisample/driveapisample.iml" filepath="$PROJECT_DIR$/driveapisample/driveapisample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/staffvend/staffvend.iml" filepath="$PROJECT_DIR$/staffvend/staffvend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vendSDK.iml" filepath="$PROJECT_DIR$/vendSDK.iml" />
       <module fileurl="file://$PROJECT_DIR$/vendingmachinesdk/vendingmachinesdk.iml" filepath="$PROJECT_DIR$/vendingmachinesdk/vendingmachinesdk.iml" />
     </modules>
   </component>

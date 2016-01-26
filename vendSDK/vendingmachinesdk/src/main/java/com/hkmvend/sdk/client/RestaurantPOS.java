@@ -101,6 +101,10 @@ public class RestaurantPOS extends retrofitClientBasic {
         return this;
     }
 
+    public EntryContainer getContainer() {
+        return container;
+    }
+
     public RestaurantPOS setDatabaseId(String restaurant_menu_db_id) {
         this.restaurant_menu_db_id = restaurant_menu_db_id;
         container.saveRestaurantMenuId(restaurant_menu_db_id);
@@ -119,14 +123,6 @@ public class RestaurantPOS extends retrofitClientBasic {
     private String restaurant_menu_db_id;
     private DataConfigCB call_back;
     private EntryContainer container;
-  /*  private static final int
-            ENTRY_ID = 0,
-            NAME_CN = 1,
-            NAME_EN = 2,
-            CATE = 3,
-            TIME = 4,
-            PRICE = 5;
-*/
 
     private class boot_load_sync extends AsyncTask<String, Void, Void> {
         private ApiWrapGTable stored_object;
@@ -188,13 +184,13 @@ public class RestaurantPOS extends retrofitClientBasic {
         while (ri.hasNext()) {
             apiEntryRow H = ri.next();
 
-            boolean success = container. addNewRecord(
+            boolean success = container.addNewRecord(
                     MenuEntry.valueOf(H.cate),
                     H.entryId,
                     H.chinese,
                     H.english,
                     H.price
-                    );
+            );
 
         }
     }

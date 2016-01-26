@@ -1,0 +1,18 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hkmvend.apiclitest.vendFragment"
+    tools:showIn="@layout/activity_vend">
+
+    <com.hkm.staffvend.mosaic.MosaicLayout
+        android:id="@id/vend_mosaic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ProgressBar
+        android:id="@id/lylib_ui_loading_circle"
+        android:layout_width="@dimen/loading_size"
+        android:layout_height="@dimen/loading_size"
+        android:layout_centerInParent="true" />
+</RelativeLayout>

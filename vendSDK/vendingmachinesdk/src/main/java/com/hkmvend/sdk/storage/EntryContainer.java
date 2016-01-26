@@ -3,6 +3,7 @@ package com.hkmvend.sdk.storage;
 import android.app.Application;
 import android.content.Context;
 import android.support.annotation.IntDef;
+import android.view.Menu;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -120,13 +121,21 @@ public class EntryContainer extends ApplicationBase {
         Realm realm = Realm.getInstance(conf);
         RealmResults<MenuEntry> copies = realm.where(MenuEntry.class).findAll();
         copies.sort("date", Sort.DESCENDING);
-        Iterator<MenuEntry> is = copies.iterator();
-        List<MenuEntry> list = new ArrayList<>();
-        while (is.hasNext()) {
-            MenuEntry cap = is.next();
-            list.add(cap);
-        }
-        return list;
+
+        return convertToEntryOut(copies);
+    }
+
+
+    public List<MenuEntry> getFromCateId(int cateId) {
+        Realm realm = Realm.getInstance(conf);
+
+        RealmQuery<MenuEntry> query = realm.where(MenuEntry.class);
+
+        RealmResults<MenuEntry> copies = query.equalTo("category", cateId).findAll();
+
+        copies.sort("entry_id", Sort.ASCENDING);
+
+        return convertToEntryOut(copies);
     }
 
 
@@ -154,6 +163,17 @@ public class EntryContainer extends ApplicationBase {
             e.fillInStackTrace();
             return 0;
         }
+    }
+
+    private List<MenuEntry> convertToEntryOut(RealmResults<MenuEntry> copies) {
+
+        Iterator<MenuEntry> is = copies.iterator();
+        List<MenuEntry> list = new ArrayList<>();
+        while (is.hasNext()) {
+            MenuEntry cap = is.next();
+            list.add(cap);
+        }
+        return list;
     }
 
     /**

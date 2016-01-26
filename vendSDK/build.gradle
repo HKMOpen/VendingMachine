@@ -18,15 +18,22 @@ allprojects {
     }
 }
 
+project(":staffvend") {
+    repositories {
+        maven { url 'http://dl.bintray.com/madcyph3r/maven/' }
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+        maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
+        maven { url 'http://dl.bintray.com/jjhesk/maven/' }
+    }
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-
-
 ext {
     publish_build_number = 10
-    publich_version_name = '1.1 beta'
+    publich_version_name = '1.2 beta'
 
     //App
     libraryCode = 10
@@ -40,7 +47,7 @@ ext {
     videoNetworkSDK = '0.1.5'
     ftKit = '0.4.1'
     uidebug = '0.1.0'
-    collection_ui = '0.1.5'
+    collection_ui = '0.1.6'
 
 
     precompile_file_name = 'dllocker-publishing_package-release'

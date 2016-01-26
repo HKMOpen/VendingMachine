@@ -14,6 +14,19 @@ import io.realm.annotations.Required;
  */
 public class MenuEntry extends RealmObject {
 
+    @PrimaryKey
+    private int entry_id;
+
+    private String entry_name_chinese;
+    private String entry_name_english;
+    private String entry_short_form;
+    private float price;
+    @EntryTypes
+    private int category;
+    @Required
+    private String date;
+    private boolean healthy;
+    private int media_type;
 
     public static final int
             UNCATE = 0,
@@ -121,19 +134,10 @@ public class MenuEntry extends RealmObject {
             case MIDDLENIGHT_ENTRIES:
                 return "mid-night";
             default:
-                return "";
+                return "other things";
         }
     }
 
-    @PrimaryKey
-    private int entry_id;
-
-    private String entry_name_chinese;
-    private String entry_name_english;
-    private String entry_short_form;
-
-
-    private float price;
 
     public float getPrice() {
         return price;
@@ -142,14 +146,6 @@ public class MenuEntry extends RealmObject {
     public void setPrice(float price) {
         this.price = price;
     }
-
-    @EntryTypes
-    private int category;
-
-    @Required
-    private String date;
-    private boolean healthy;
-    private int media_type;
 
     public int getEntry_id() {
         return entry_id;

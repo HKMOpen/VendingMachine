@@ -1,1 +1,1 @@
-include ':demo', ':vendingmachinesdk', 'driveapisample'
+include ':demo', ':vendingmachinesdk', ':staffvend', 'driveapisample'
