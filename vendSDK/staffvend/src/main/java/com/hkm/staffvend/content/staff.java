@@ -23,6 +23,7 @@ public class staff extends content_base {
     private Button signInStaff, checkTablesPaid, checkTablesUnpaid, newtable;
     private TextView current_table, current_status;
     private BillContainer container;
+    private boolean order_ready;
 
     @Override
     protected void initGDATA() {
@@ -66,11 +67,16 @@ public class staff extends content_base {
             sb.append("\n");
             sb.append(container.getCurrentEngagedTable().getTable_remark());
             current_status.setText(sb.toString());
+            order_ready = true;
         } else {
             current_table.setText("There is no engaging Table");
             current_status.setText("cannot make orders");
+            order_ready = false;
         }
+    }
 
+    public boolean getOrderReady() {
+        return order_ready;
     }
 
     protected void bind(View view) {

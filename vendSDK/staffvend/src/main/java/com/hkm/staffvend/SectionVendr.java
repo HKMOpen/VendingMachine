@@ -30,9 +30,16 @@ public class SectionVendr extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar
-                        .make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                if (current instanceof staff) {
+                    staff s = (staff) current;
+                    if (s.getOrderReady()) {
+                        normal_start(new mainmenu());
+                    } else {
+                        Snackbar
+                                .make(view, "Cannot order yet", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }
+                }
             }
         });
         normal_start(new staff());
@@ -63,9 +70,11 @@ public class SectionVendr extends AppCompatActivity {
 
     private void normal_start(Fragment location) {
         FragmentManager fm = getFragmentManager();
+        current = location;
         fm.beginTransaction().replace(R.id.fragment, location).commit();
     }
 
+    private Fragment current;
 
     public void backHome() {
         normal_start(new mainmenu());
