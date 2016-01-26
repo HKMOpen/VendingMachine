@@ -17,7 +17,7 @@ import com.hkm.staffvend.content.staff;
 import com.hkm.staffvend.event.BS;
 import com.squareup.otto.Subscribe;
 
-public class vend extends AppCompatActivity {
+public class SectionVendr extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

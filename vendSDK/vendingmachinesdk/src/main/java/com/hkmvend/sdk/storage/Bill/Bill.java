@@ -2,9 +2,11 @@ package com.hkmvend.sdk.storage.Bill;
 
 import com.hkmvend.sdk.storage.Menu.MenuEntry;
 
-import java.util.List;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.Required;
 
 /**
  * Created by hesk on 26/1/16.
@@ -12,14 +14,16 @@ import io.realm.RealmObject;
 public class Bill extends RealmObject {
 
     private long bill_number_code;
-    private List<MenuEntry> orders;
+    private RealmList<MenuEntry> orders;
     private String signed_staff;
     private String start_time;
     private String pay_time;
     private String bill_void_sign;
     private String bill_void_time;
+
     private String table_id;
     private String table_remark;
+
     private int headcount;
     private float consolidated_payment;
 
@@ -55,11 +59,11 @@ public class Bill extends RealmObject {
         this.consolidated_payment = consolidated_payment;
     }
 
-    public List<MenuEntry> getOrders() {
+    public RealmList<MenuEntry> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<MenuEntry> orders) {
+    public void setOrders(RealmList<MenuEntry> orders) {
         this.orders = orders;
     }
 

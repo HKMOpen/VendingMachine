@@ -19,7 +19,7 @@ public interface ibillcontainer {
 
     Bill getPaidBills();
 
-    boolean newBill(int headcount, String table_id);
+    Bill newBill(int headcount, String table_id);
 
     Bill findBillById(int code);
 
