@@ -25,6 +25,9 @@
         <activity
             android:name=".SectionNewTable"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SectionBillView"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

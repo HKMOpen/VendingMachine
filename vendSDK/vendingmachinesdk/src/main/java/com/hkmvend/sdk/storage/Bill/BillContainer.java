@@ -5,17 +5,15 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 
 import com.hkmvend.sdk.storage.ApplicationBase;
-import com.hkmvend.sdk.storage.Menu.MenuEntry;
 import com.hkmvend.sdk.storage.RealmPolicy;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmQuery;
 import io.realm.RealmResults;
 import io.realm.exceptions.RealmError;
 import io.realm.exceptions.RealmMigrationNeededException;
@@ -32,7 +30,7 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
             CTABLELONGID = "focusbillid";
 
     private final RealmConfiguration conf;
-
+    private Bill engaged;
     private static BillContainer instance;
     private Context context;
 
@@ -60,11 +58,15 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
         current_bill_id = bill.getBill_number_code();
         saveInfo(CTABLEID, current_engage_table_id);
         saveInfo(CTABLELONGID, current_bill_id);
+        engaged = bill;
     }
 
     protected void init() {
         current_engage_table_id = loadRef(CTABLEID);
         current_bill_id = loadRefL(CTABLELONGID);
+        if (hasTableFocused()) {
+            engaged = findBillByTable(current_engage_table_id);
+        }
     }
 
 
@@ -127,8 +129,8 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
     @Override
     public Bill newBill(int headcount, String table_id, @Nullable String remark) {
         Realm realm = Realm.getInstance(conf);
-        Bill target = realm.createObject(Bill.class);
         realm.beginTransaction();
+        Bill target = realm.createObject(Bill.class);
         target.setHeadcount(headcount);
         target.setTable_id(table_id);
         if (remark != null)
@@ -149,7 +151,15 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
 
     @Override
     public Bill findBillByTable(String table_id) {
-        return null;
+        Realm realm = Realm.getInstance(conf);
+
+        RealmQuery<Bill> query = realm.where(Bill.class);
+
+        Bill copies = query.equalTo("table_id", table_id).findFirst();
+
+
+        return copies;
+
     }
 
     @Override
@@ -164,6 +174,6 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
 
     @Override
     public Bill getCurrentEngagedTable() {
-        return null;
+        return engaged;
     }
 }

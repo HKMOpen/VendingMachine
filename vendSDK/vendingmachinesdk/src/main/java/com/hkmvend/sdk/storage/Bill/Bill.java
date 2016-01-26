@@ -2,11 +2,8 @@ package com.hkmvend.sdk.storage.Bill;
 
 import com.hkmvend.sdk.storage.Menu.MenuEntry;
 
-
 import io.realm.RealmList;
 import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
-import io.realm.annotations.Required;
 
 /**
  * Created by hesk on 26/1/16.
@@ -104,7 +101,9 @@ public class Bill extends RealmObject {
     }
 
     public String getTable_remark() {
-        return table_remark;
+        if (table_remark == null) return "";
+        else
+            return table_remark;
     }
 
     public void setTable_remark(String table_remark) {

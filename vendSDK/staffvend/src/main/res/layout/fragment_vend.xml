@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.hkmvend.apiclitest.vendFragment"
-    tools:showIn="@layout/activity_vend">
+    tools:showIn="@layout/acontent_vend_frame">
 
     <com.hkm.staffvend.mosaic.MosaicLayout
         android:id="@id/vend_mosaic"

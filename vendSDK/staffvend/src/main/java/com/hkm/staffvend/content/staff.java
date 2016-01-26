@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.annotation.LayoutRes;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.hkm.staffvend.R;
@@ -12,7 +11,6 @@ import com.hkm.staffvend.SectionNewTable;
 import com.hkm.staffvend.event.BS;
 import com.hkmvend.sdk.client.RestaurantPOS;
 import com.hkmvend.sdk.storage.Bill.BillContainer;
-import com.hkmvend.sdk.storage.Menu.EntryContainer;
 
 
 /**
@@ -27,7 +25,10 @@ public class staff extends content_base {
 
     @Override
     protected void initGDATA() {
-        container = RestaurantPOS.getInstance(getActivity().getApplication()).getBillContainer();
+
+        container = RestaurantPOS
+                .getInstance(getActivity().getApplication())
+                .getBillContainer();
 
         newtable.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,6 +37,7 @@ public class staff extends content_base {
                 getActivity().startActivityForResult(i, BS.NEW_TABLE);
             }
         });
+
         checkTablesPaid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,21 +60,25 @@ public class staff extends content_base {
 
             }
         });
+
         if (container.hasTableFocused()) {
-            current_table.setText(
-                    container.getCurrentEngagedTable().getTable_id()
-            );
+
             StringBuilder sb = new StringBuilder();
             sb.append("Order ready");
             sb.append("\n");
             sb.append(container.getCurrentEngagedTable().getTable_remark());
             current_status.setText(sb.toString());
+            current_table.setText(container.getCurrentEngagedTable().getTable_id());
             order_ready = true;
+
         } else {
-            current_table.setText("There is no engaging Table");
+
             current_status.setText("cannot make orders");
+            current_table.setText("There is no engaging Table");
             order_ready = false;
+
         }
+
     }
 
     public boolean getOrderReady() {
@@ -90,7 +96,7 @@ public class staff extends content_base {
 
     @LayoutRes
     protected int getLayoutId() {
-        return R.layout.panelstaff;
+        return R.layout.content_main_office;
     }
 
 }

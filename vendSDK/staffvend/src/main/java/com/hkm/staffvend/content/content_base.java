@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 import com.hkm.staffvend.R;
 import com.hkm.staffvend.mosaic.MosaicLayout;
 
-import static com.hkm.staffvend.mosaic.BlockPattern.*;
+import static com.hkm.staffvend.mosaic.BlockPattern.BLOCK_PATTERN;
 
 /**
  * Created by hesk on 26/1/16.
@@ -23,8 +23,7 @@ public abstract class content_base extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(getLayoutId(), container, false);
     }
 
@@ -33,6 +32,10 @@ public abstract class content_base extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         bind(view);
         initGDATA();
+    }
+
+    protected void hideLoad() {
+        mProgress.animate().alpha(0f);
     }
 
     protected void bind(View view) {
@@ -58,7 +61,4 @@ public abstract class content_base extends Fragment {
             BLOCK_PATTERN.BIG, BLOCK_PATTERN.BIG
     };
 
-    protected void hideLoad() {
-        mProgress.animate().alpha(0f);
-    }
 }

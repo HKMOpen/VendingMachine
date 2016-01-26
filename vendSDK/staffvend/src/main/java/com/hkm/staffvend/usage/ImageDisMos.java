@@ -2,6 +2,7 @@ package com.hkm.staffvend.usage;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,11 +19,11 @@ public class ImageDisMos extends MosAdapter<MenuEntry, ImageDisMos.Frame> {
     }
 
     public class Frame {
-        private ImageView image;
+        private ImageButton image;
         private TextView text;
 
         public Frame(View view) {
-            image = (ImageView) view.findViewById(R.id.image);
+            image = (ImageButton) view.findViewById(R.id.image);
             text = (TextView) view.findViewById(R.id.lylib_main_bottom_tab_text);
         }
     }

@@ -18,30 +18,19 @@ import com.hkm.staffvend.event.BS;
 import com.squareup.otto.Subscribe;
 
 public class SectionVendr extends AppCompatActivity {
+    private FloatingActionButton fabbutton;
+    private Fragment current;
+    private boolean backEnabled = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vend);
+        setContentView(R.layout.acontent_vend_frame);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (current instanceof staff) {
-                    staff s = (staff) current;
-                    if (s.getOrderReady()) {
-                        normal_start(new mainmenu());
-                    } else {
-                        Snackbar
-                                .make(view, "Cannot order yet", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
-                    }
-                }
-            }
-        });
+        fabbutton = (FloatingActionButton) findViewById(R.id.fab);
+
         normal_start(new staff());
     }
 
@@ -51,6 +40,58 @@ public class SectionVendr extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_vend, menu);
         return true;
+    }
+
+    private void normal_start(Fragment location) {
+        FragmentManager fm = getFragmentManager();
+        current = location;
+        if (current instanceof staff) {
+            fabbutton.setImageResource(R.drawable.ic_queue_24dp);
+            fabbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    staff s = (staff) current;
+                    if (s.getOrderReady()) {
+                        normal_start(new mainmenu());
+                    } else {
+                        Snackbar
+                                .make(view, "Cannot order yet", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }
+                }
+            });
+            fabbutton.setVisibility(View.VISIBLE);
+        } else if (current instanceof mainmenu) {
+            fabbutton.setImageResource(R.drawable.ic_domain_24dp);
+            fabbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    normal_start(new staff());
+                }
+            });
+            fabbutton.setVisibility(View.VISIBLE);
+        } else {
+            fabbutton.setVisibility(View.GONE);
+        }
+        fm.beginTransaction().replace(R.id.fragment, location).commit();
+    }
+
+    public void backHome() {
+        normal_start(new mainmenu());
+        //   getActionBar().setHomeButtonEnabled(false);
+    }
+
+    @Subscribe
+    public void onEvent(Fragment b) {
+        //   getActionBar().setHomeButtonEnabled(true);
+        normal_start(b);
+        backEnabled = true;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        BS.getInstance().register(this);
     }
 
     @Override
@@ -66,34 +107,6 @@ public class SectionVendr extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private void normal_start(Fragment location) {
-        FragmentManager fm = getFragmentManager();
-        current = location;
-        fm.beginTransaction().replace(R.id.fragment, location).commit();
-    }
-
-    private Fragment current;
-
-    public void backHome() {
-        normal_start(new mainmenu());
-        //   getActionBar().setHomeButtonEnabled(false);
-    }
-
-    boolean backEnabled = false;
-
-    @Subscribe
-    public void onEvent(Fragment b) {
-        //   getActionBar().setHomeButtonEnabled(true);
-        normal_start(b);
-        backEnabled = true;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        BS.getInstance().register(this);
     }
 
     /**
