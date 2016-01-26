@@ -1,5 +1,7 @@
 package com.hkmvend.sdk.storage.Bill;
 
+import android.support.annotation.Nullable;
+
 import java.util.List;
 
 /**
@@ -19,7 +21,7 @@ public interface ibillcontainer {
 
     Bill getPaidBills();
 
-    Bill newBill(int headcount, String table_id);
+    Bill newBill(int headcount, String table_id, @Nullable String remark);
 
     Bill findBillById(int code);
 

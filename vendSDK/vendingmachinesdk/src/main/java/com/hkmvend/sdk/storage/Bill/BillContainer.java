@@ -2,6 +2,7 @@ package com.hkmvend.sdk.storage.Bill;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.annotation.Nullable;
 
 import com.hkmvend.sdk.storage.ApplicationBase;
 import com.hkmvend.sdk.storage.Menu.MenuEntry;
@@ -124,12 +125,14 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
     }
 
     @Override
-    public Bill newBill(int headcount, String table_id) {
+    public Bill newBill(int headcount, String table_id, @Nullable String remark) {
         Realm realm = Realm.getInstance(conf);
         Bill target = realm.createObject(Bill.class);
         realm.beginTransaction();
         target.setHeadcount(headcount);
         target.setTable_id(table_id);
+        if (remark != null)
+            target.setTable_remark(remark);
         Date date = new Date();
         Timestamp now = new Timestamp(date.getTime());
         // begintransaction.setDate(now.toString());
