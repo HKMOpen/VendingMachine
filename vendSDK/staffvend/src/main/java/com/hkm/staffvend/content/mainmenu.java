@@ -1,13 +1,12 @@
-package com.hkm.staffvend;
+package com.hkm.staffvend.content;
 
 import com.hkm.layout.Dialog.ErrorMessage;
 import com.hkm.staffvend.event.BS;
-import com.hkm.staffvend.usage.ImageDisMos;
 import com.hkm.staffvend.usage.MainMenu;
 import com.hkm.staffvend.usage.MainMenuItem;
 import com.hkmvend.sdk.Constant;
 import com.hkmvend.sdk.client.RestaurantPOS;
-import com.hkmvend.sdk.storage.MenuEntry;
+import com.hkmvend.sdk.storage.Menu.MenuEntry;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -71,17 +70,6 @@ public class mainmenu extends content_base {
         mMosaicLayout.addPattern(pattern2);
         mMosaicLayout.chooseRandomPattern(true);
         mMosaicLayout.setAdapter(mAdapater);
-        mProgress.animate().alpha(0f);
-        // List<MainMenuItem> it = new MainMenuItem(allentries);
-    }
-
-    private void continoueAfterSync(List<MenuEntry> list) {
-        ImageDisMos mAdapater = new ImageDisMos(getActivity());
-        mAdapater.setData(list);
-        mMosaicLayout.addPattern(pattern1);
-        mMosaicLayout.addPattern(pattern2);
-        mMosaicLayout.chooseRandomPattern(true);
-        mMosaicLayout.setAdapter(mAdapater);
         hideLoad();
     }
 
@@ -89,9 +77,13 @@ public class mainmenu extends content_base {
     protected void initGDATA() {
         RestaurantPOS c = RestaurantPOS.getInstance(getActivity().getApplication());
         try {
-            c.setCB(callback);
-            c.setDatabaseId(Constant.SHEETSU_DOC_ID);
-            c.runType();
+            if (c.getContainer().getItemsCount() > 0) {
+                startMainMenu(c.getContainer().getAllRecords());
+            } else {
+                c.setCB(callback);
+                c.setDatabaseId(Constant.SHEETSU_DOC_ID);
+                c.runType();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

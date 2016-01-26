@@ -2,14 +2,13 @@ package com.hkmvend.sdk.client;
 
 import android.app.Application;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.hkmvend.sdk.model.gdata.ApiWrapGTable;
-import com.hkmvend.sdk.model.gdata.Row;
 import com.hkmvend.sdk.model.sheetsu.ResponseSheetsu;
 import com.hkmvend.sdk.model.sheetsu.apiEntryRow;
-import com.hkmvend.sdk.storage.EntryContainer;
-import com.hkmvend.sdk.storage.MenuEntry;
+import com.hkmvend.sdk.storage.Bill.BillContainer;
+import com.hkmvend.sdk.storage.Menu.EntryContainer;
+import com.hkmvend.sdk.storage.Menu.MenuEntry;
 import com.squareup.okhttp.Request;
 
 import java.io.IOException;
@@ -20,7 +19,6 @@ import retrofit.Call;
 import retrofit.Response;
 import retrofit.http.GET;
 import retrofit.http.Path;
-import retrofit.http.Query;
 
 /**
  * Created by zJJ on 1/23/2016.
@@ -32,6 +30,7 @@ public class RestaurantPOS extends retrofitClientBasic {
         super(c);
         registerJsonAdapter();
         container = EntryContainer.getInstnce(c);
+        billtainer = BillContainer.getInstnce(c);
     }
 
     @Override
@@ -105,6 +104,10 @@ public class RestaurantPOS extends retrofitClientBasic {
         return container;
     }
 
+    public BillContainer getBillContainer() {
+        return billtainer;
+    }
+
     public RestaurantPOS setDatabaseId(String restaurant_menu_db_id) {
         this.restaurant_menu_db_id = restaurant_menu_db_id;
         container.saveRestaurantMenuId(restaurant_menu_db_id);
@@ -123,6 +126,7 @@ public class RestaurantPOS extends retrofitClientBasic {
     private String restaurant_menu_db_id;
     private DataConfigCB call_back;
     private EntryContainer container;
+    private BillContainer billtainer;
 
     private class boot_load_sync extends AsyncTask<String, Void, Void> {
         private ApiWrapGTable stored_object;

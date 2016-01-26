@@ -1,9 +1,11 @@
-package com.hkmvend.sdk.storage;
+package com.hkmvend.sdk.storage.Menu;
 
 import android.app.Application;
 import android.content.Context;
 import android.support.annotation.IntDef;
-import android.view.Menu;
+
+import com.hkmvend.sdk.storage.ApplicationBase;
+import com.hkmvend.sdk.storage.RealmPolicy;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;

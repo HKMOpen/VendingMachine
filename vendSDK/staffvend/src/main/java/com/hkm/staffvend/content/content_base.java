@@ -1,4 +1,4 @@
-package com.hkm.staffvend;
+package com.hkm.staffvend.content;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.hkm.staffvend.R;
 import com.hkm.staffvend.mosaic.MosaicLayout;
 
 import static com.hkm.staffvend.mosaic.BlockPattern.*;
@@ -30,11 +31,14 @@ public abstract class content_base extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mMosaicLayout = (MosaicLayout) view.findViewById(R.id.vend_mosaic);
-        mProgress = (ProgressBar) view.findViewById(R.id.lylib_ui_loading_circle);
+        bind(view);
         initGDATA();
     }
 
+    protected void bind(View view) {
+        mMosaicLayout = (MosaicLayout) view.findViewById(R.id.vend_mosaic);
+        mProgress = (ProgressBar) view.findViewById(R.id.lylib_ui_loading_circle);
+    }
 
     protected abstract void initGDATA();
 

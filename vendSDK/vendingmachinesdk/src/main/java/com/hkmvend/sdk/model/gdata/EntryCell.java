@@ -1,7 +1,7 @@
 package com.hkmvend.sdk.model.gdata;
 
 import com.google.gson.annotations.SerializedName;
-import com.hkmvend.sdk.storage.MenuEntry;
+import com.hkmvend.sdk.storage.Menu.MenuEntry;
 
 /**
  * Created by zJJ on 1/23/2016.

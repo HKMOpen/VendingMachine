@@ -1,4 +1,4 @@
-package com.hkmvend.sdk.storage;
+package com.hkmvend.sdk.storage.Menu;
 
 import android.support.annotation.IntDef;
 

@@ -1,6 +1,6 @@
 package com.hkm.staffvend.usage;
 
-import com.hkmvend.sdk.storage.MenuEntry;
+import com.hkmvend.sdk.storage.Menu.MenuEntry;
 
 /**
  * Created by hesk on 26/1/16.

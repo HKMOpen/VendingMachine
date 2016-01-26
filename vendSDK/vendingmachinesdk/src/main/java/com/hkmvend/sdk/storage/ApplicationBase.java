@@ -49,9 +49,20 @@ public abstract class ApplicationBase {
             return data;
     }
 
+    protected long loadRefL(final String tag) {
+        long data = sharedPreferences.getLong(tag, 0);
+        return data;
+    }
+
     protected void saveInfo(final String tag, final String data) {
         sharedPreferences.edit()
                 .putString(tag, data)
+                .apply();
+    }
+
+    protected void saveInfo(final String tag, final long data) {
+        sharedPreferences.edit()
+                .putLong(tag, data)
                 .apply();
     }
 

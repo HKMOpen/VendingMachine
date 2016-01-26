@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/leftside"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/newtable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="40dp"
+                android:text="New Table" />
+
+            <Button
+                android:id="@+id/checkTables"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:padding="40dp"
+                android:text="Check Unpaid Tables" />
+
+            <Button
+                android:id="@+id/checkcompletetable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="40dp"
+                android:text="Check Paid Tables" />
+
+            <Button
+                android:id="@+id/signoutin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="40dp"
+                android:text="SignOut/In" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/leftside">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/current_table"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="table engagement"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/current_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="40dp"
+                android:text="current status" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

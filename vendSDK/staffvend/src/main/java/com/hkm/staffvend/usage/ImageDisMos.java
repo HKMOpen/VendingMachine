@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.hkm.staffvend.R;
 import com.hkm.staffvend.mosaic.MosAdapter;
-import com.hkmvend.sdk.storage.MenuEntry;
+import com.hkmvend.sdk.storage.Menu.MenuEntry;
 
 /**
  * Created by zJJ on 1/25/2016.

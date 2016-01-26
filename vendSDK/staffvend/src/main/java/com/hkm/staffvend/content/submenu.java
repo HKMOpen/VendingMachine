@@ -1,12 +1,11 @@
-package com.hkm.staffvend;
+package com.hkm.staffvend.content;
 
-import android.app.Fragment;
 import android.os.Bundle;
 
 import com.hkm.staffvend.usage.ImageDisMos;
 import com.hkmvend.sdk.client.RestaurantPOS;
-import com.hkmvend.sdk.storage.EntryContainer;
-import com.hkmvend.sdk.storage.MenuEntry;
+import com.hkmvend.sdk.storage.Menu.EntryContainer;
+import com.hkmvend.sdk.storage.Menu.MenuEntry;
 
 import java.util.List;
 

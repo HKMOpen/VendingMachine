@@ -12,7 +12,7 @@ import com.hkmvend.apiclitest.mosaic.MosaicLayout;
 import com.hkmvend.apiclitest.usage.ImageDisMos;
 import com.hkmvend.sdk.Constant;
 import com.hkmvend.sdk.client.RestaurantPOS;
-import com.hkmvend.sdk.storage.MenuEntry;
+import com.hkmvend.sdk.storage.Menu.MenuEntry;
 
 import java.util.List;
 

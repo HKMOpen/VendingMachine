@@ -1,7 +1,7 @@
 package com.hkm.staffvend.event;
 
-import com.hkm.staffvend.submenu;
-import com.hkmvend.sdk.storage.MenuEntry;
+import com.hkm.staffvend.content.submenu;
+import com.hkmvend.sdk.storage.Menu.MenuEntry;
 import com.squareup.otto.Bus;
 
 /**
@@ -24,5 +24,10 @@ public class BS {
         getInstance().post(sub);
     }
 
-
+    public static final int
+            NEW_TABLE = 102,
+            NEW_STAFF = 103,
+            NEW_SWITCH_STAFF = 104,
+            VIEW_PAID_TABLES = 105,
+            VIEW_UNPAID_TABLES = 106;
 }
