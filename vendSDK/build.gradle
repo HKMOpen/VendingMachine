@@ -24,6 +24,7 @@ project(":staffvend") {
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
         maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
         maven { url 'http://dl.bintray.com/jjhesk/maven/' }
+        maven { url "http://dl.bintray.com/davideas/maven" }
     }
 }
 

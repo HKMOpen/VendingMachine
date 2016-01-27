@@ -2,4 +2,9 @@
 <resources>
     <item name="vend_mainmenu" type="id" />
     <item name="vend_mosaic" type="id" />
+    <item name="action_delete" type="id" />
+    <item name="action_select_all" type="id" />
+    <item name="action_about" type="id" />
+    <item name="action_search" type="id" />
+
 </resources>

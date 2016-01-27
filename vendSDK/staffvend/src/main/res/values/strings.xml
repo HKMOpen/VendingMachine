@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">VendPocket</string>
     <string name="action_settings">Settings</string>
+    <string name="uls_title">Settings</string>
+    <string name="uls_subtitle">Settings</string>
+    <string name="undo">Undo</string>
+    <string name="action_deleted">deleted</string>
+    <string name="action_selected_one">one</string>
+    <string name="action_selected_many">many</string>
+    <string name="dialog_edit_title">edit</string>
+    <string name="text_edit_title">edit</string>
+    <string name="err_no_edit">no edit</string>
+    <string name="action_search">no edit</string>
+    <string name="no_items">there is no items</string>
+    <string name="CANCEL">CANCEL</string>
+    <string name="OK">OK</string>
 </resources>
