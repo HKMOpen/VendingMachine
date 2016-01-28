@@ -1,4 +1,4 @@
-package com.hkm.staffvend.faster;
+package com.hkm.staffvend.event.faster;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

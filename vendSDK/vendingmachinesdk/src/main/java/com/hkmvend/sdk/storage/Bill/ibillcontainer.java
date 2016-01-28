@@ -17,13 +17,23 @@ public interface ibillcontainer {
 
     float getTotalRevenueSoFar();
 
-    Bill getUnpaidBills();
+    List<Bill> getUnpaidBills();
 
-    Bill getPaidBills();
+    List<Bill> getPaidBills();
+
+    List<Bill> getAll();
 
     Bill newBill(int headcount, String table_id, @Nullable String remark);
 
-    Bill findBillById(int code);
+    /**
+     * by the bill ID
+     *
+     * @param code the code number
+     * @return the bill object
+     */
+    Bill findBillById(long code);
+
+    Bill findBillByHeadCount(int count);
 
     Bill findBillByTable(String table_id);
 

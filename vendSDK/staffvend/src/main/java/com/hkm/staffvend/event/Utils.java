@@ -28,7 +28,7 @@ import java.util.Locale;
  * Created by hesk on 27/1/16.
  */
 public class Utils {
-    public static final String DATE_TIME = "dd MMM yyyy HH:mm:ss z";
+
     private static int colorAccent = -1;
 
     public static Point getScreenDimensions(Context context) {
@@ -59,7 +59,7 @@ public class Utils {
      * @return The date formatted.
      */
     public static String formatDate(Date date) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_TIME, Locale.getDefault());
+        SimpleDateFormat dateFormat = new SimpleDateFormat(ApplicationConstant.DATE_TIME, Locale.getDefault());
         return dateFormat.format(date);
     }
 

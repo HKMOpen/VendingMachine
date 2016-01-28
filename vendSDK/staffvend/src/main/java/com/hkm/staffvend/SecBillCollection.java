@@ -12,19 +12,13 @@ import eu.davidea.flexibleadapter.FlexibleAdapter;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.text.InputType;
 import android.util.Log;
@@ -34,25 +28,28 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import static com.hkm.staffvend.event.ApplicationConstant.*;
 
 import com.hkm.staffvend.event.Utils;
-import com.hkm.staffvend.faster.FastScroller;
-import com.hkm.staffvend.usage.AdapTable;
-import com.hkm.staffvend.usage.EditItemDialog;
-import com.hkm.staffvend.usage.Item;
+import com.hkm.staffvend.usage.TableAdapter;
 import com.hkm.staffvend.usage.SimpleDividerItemDecoration;
+import com.hkmvend.sdk.client.RestaurantPOS;
+import com.hkmvend.sdk.storage.Bill.Bill;
+import com.hkmvend.sdk.storage.Bill.BillContainer;
 import com.marshalchen.ultimaterecyclerview.animators.SlideInRightAnimator;
 
 /**
  * Created by hesk on 27/1/16.
  */
-public class SectionTablesView extends AppCompatActivity implements
+public class SecBillCollection extends AppCompatActivity implements
         ActionMode.Callback,
+        TableAdapter.OnItemClickListener,
         SearchView.OnQueryTextListener,
         FlexibleAdapter.OnDeleteCompleteListener {
 
-    public static final String TAG = SectionTablesView.class.getSimpleName();
+
+    public static final String TAG = SecBillCollection.class.getSimpleName();
 
     /**
      * The serialization (saved instance state) Bundle key representing the
@@ -70,7 +67,7 @@ public class SectionTablesView extends AppCompatActivity implements
      * RecyclerView and related objects
      */
     private RecyclerView mRecyclerView;
-    private AdapTable mAdapter;
+    private TableAdapter mAdapter;
     private ActionMode mActionMode;
     private Snackbar mSnackBar;
     private SwipeRefreshLayout mSwipeRefreshLayout;
@@ -94,22 +91,32 @@ public class SectionTablesView extends AppCompatActivity implements
      * FAB
      */
     private FloatingActionButton mFab;
+    private int intent_function;
+    private BillContainer instance;
+
+    private boolean loadIntentArguements() {
+        Bundle b = getIntent().getExtras();
+        int h = b.getInt(INTENT_TABLE_FUNCTION, -1);
+        if (h == -1) return false;
+        intent_function = h;
+        instance = RestaurantPOS.getInstance(getApplication()).getBillContainer();
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_standar_list);
+        setContentView(R.layout.as_content_bill_list);
         Log.d(TAG, "onCreate");
-
+        if (!loadIntentArguements()) return;
         //Adapter & RecyclerView
-        mAdapter = new AdapTable(this, "example parameter for List1");
+        mAdapter = new TableAdapter(this, instance);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setHasFixedSize(true); //Size of views will not change as the data changes
         mRecyclerView.setItemAnimator(new SlideInRightAnimator());
-        mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(
-                ResourcesCompat.getDrawable(getResources(), R.drawable.divider, null)));
+        mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(ResourcesCompat.getDrawable(getResources(), R.drawable.divider, null)));
 
         //Add FastScroll to the RecyclerView
         // FastScroller fastScroller = (FastScroller) findViewById(R.id.fast_scroller);
@@ -310,23 +317,21 @@ public class SectionTablesView extends AppCompatActivity implements
      * are placed in the Layout is important!
      */
     private void updateEmptyView() {
-       // FastScroller fastScroller = (FastScroller) findViewById(R.id.fast_scroller);
+        // FastScroller fastScroller = (FastScroller) findViewById(R.id.fast_scroller);
         TextView emptyView = (TextView) findViewById(R.id.empty);
         emptyView.setText(getString(R.string.no_items));
         if (!mAdapter.isEmpty()) {
-         //   fastScroller.setVisibility(View.VISIBLE);
+            //   fastScroller.setVisibility(View.VISIBLE);
             emptyView.setVisibility(View.GONE);
         } else {
-          //  fastScroller.setVisibility(View.GONE);
+            //  fastScroller.setVisibility(View.GONE);
             emptyView.setVisibility(View.VISIBLE);
         }
     }
 
     public void setSelection(final int position) {
         Log.v(TAG, "setSelection called!");
-
         setActivatedPosition(position);
-
         mRecyclerView.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -409,10 +414,12 @@ public class SectionTablesView extends AppCompatActivity implements
 
     @Override
     public void onDeleteConfirmed() {
-        for (Item item : mAdapter.getDeletedItems()) {
-            //Remove items from your Database. Example:
-            Log.d(TAG, "Confirm removed " + item.getTitle());
-            //  DatabaseService.getInstance().removeItem(item);
+        for (Bill item : mAdapter.getDeletedItems()) {
+            // Remove items from your Database. Example:
+            // Log.d(TAG, "Confirm removed " + item.getTitle());
+            // DatabaseService.getInstance().removeItem(item);
+
+            instance.removeBill(item);
         }
     }
 
@@ -422,7 +429,7 @@ public class SectionTablesView extends AppCompatActivity implements
         int menuId = R.menu.menu_item_list_context;
         mode.getMenuInflater().inflate(menuId, menu);
         //Activate the ActionMode Multi
-        mAdapter.setMode(AdapTable.MODE_MULTI);
+        mAdapter.setMode(TableAdapter.MODE_MULTI);
         if (Utils.hasMarshmallow()) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorAccentDark_light, this.getTheme()));
         } else {
@@ -437,6 +444,11 @@ public class SectionTablesView extends AppCompatActivity implements
         return false;
     }
 
+
+    private String getBillN(Bill item) {
+        return "#" + item.getBill_number_code() + "";
+    }
+
     @Override
     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
         switch (item.getItemId()) {
@@ -448,7 +460,7 @@ public class SectionTablesView extends AppCompatActivity implements
                 //Build message before delete, for the Snackbar
                 StringBuilder message = new StringBuilder();
                 for (Integer pos : mAdapter.getSelectedItems()) {
-                    message.append(mAdapter.getItem(pos).getTitle());
+                    message.append(getBillN(mAdapter.getItem(pos)));
                     message.append(", ");
                 }
                 message.append(" ").append(getString(R.string.action_deleted));
@@ -480,7 +492,7 @@ public class SectionTablesView extends AppCompatActivity implements
     @Override
     public void onDestroyActionMode(ActionMode mode) {
         Log.v(TAG, "onDestroyActionMode called!");
-        mAdapter.setMode(AdapTable.MODE_SINGLE);
+        mAdapter.setMode(TableAdapter.MODE_SINGLE);
         mAdapter.clearSelection();
         mActionMode = null;
         if (Utils.hasMarshmallow()) {
@@ -512,5 +524,27 @@ public class SectionTablesView extends AppCompatActivity implements
         //Close the App
         //DatabaseService.onDestroy();
         super.onBackPressed();
+    }
+
+    /**
+     * Delegate the click event to the listener and check if selection MULTI enabled.<br/>
+     * If yes, call toggleActivation.
+     *
+     * @param position
+     * @return true if MULTI selection is enabled, false for SINGLE selection
+     */
+    @Override
+    public boolean onListItemClick(int position) {
+        return false;
+    }
+
+    /**
+     * This always calls toggleActivation after listener event is consumed.
+     *
+     * @param position
+     */
+    @Override
+    public void onListItemLongClick(int position) {
+
     }
 }

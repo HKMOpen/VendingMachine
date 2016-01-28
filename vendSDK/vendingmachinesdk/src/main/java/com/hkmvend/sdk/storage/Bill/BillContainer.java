@@ -5,10 +5,13 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 
 import com.hkmvend.sdk.storage.ApplicationBase;
+import com.hkmvend.sdk.storage.Menu.MenuEntry;
 import com.hkmvend.sdk.storage.RealmPolicy;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import io.realm.Realm;
@@ -69,6 +72,11 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
         }
     }
 
+    private RealmQuery<Bill> getQuery() {
+        Realm realm = Realm.getInstance(conf);
+        RealmQuery<Bill> query = realm.where(Bill.class);
+        return query;
+    }
 
     public void removeTableFocus() {
         saveInfo(CTABLEID, "");
@@ -85,6 +93,13 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
 
     }
 
+    public void removeBill(Bill item) {
+        Realm realm = Realm.getInstance(conf);
+        realm.beginTransaction();
+        item.removeFromRealm();
+        realm.commitTransaction();
+    }
+
     @Override
     public void flushEndDayData() {
         Realm realm = Realm.getInstance(conf);
@@ -97,8 +112,7 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
     @Override
     public int getBillCount() {
         try {
-            Realm realm = Realm.getInstance(conf);
-            return realm.where(Bill.class).findAll().size();
+            return getQuery().findAll().size();
         } catch (RealmMigrationNeededException e) {
             e.fillInStackTrace();
             return 0;
@@ -117,13 +131,22 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
     }
 
     @Override
-    public Bill getUnpaidBills() {
-        return null;
+    public List<Bill> getUnpaidBills() {
+        return getQuery().findAll();
     }
 
     @Override
-    public Bill getPaidBills() {
-        return null;
+    public List<Bill> getPaidBills() {
+        return getQuery().findAll();
+    }
+
+    @Override
+    public List<Bill> getAll() {
+        if (getBillCount() == 0) {
+            return new ArrayList<Bill>();
+        } else {
+            return getQuery().findAll();
+        }
     }
 
     @Override
@@ -144,27 +167,34 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
         return target;
     }
 
+
+    /**
+     * by the bill ID
+     *
+     * @param code the code number
+     * @return the bill object
+     */
     @Override
-    public Bill findBillById(int code) {
-        return null;
+    public Bill findBillById(long code) {
+        return getQuery().findFirst();
     }
 
     @Override
+    public Bill findBillByHeadCount(int count) {
+        return getQuery().findFirst();
+    }
+
+
+    @Override
     public Bill findBillByTable(String table_id) {
-        Realm realm = Realm.getInstance(conf);
-
-        RealmQuery<Bill> query = realm.where(Bill.class);
-
-        Bill copies = query.equalTo("table_id", table_id).findFirst();
-
-
+        Bill copies = getQuery().equalTo("table_id", table_id).findFirst();
         return copies;
 
     }
 
     @Override
     public List<Bill> findBillByTimeRange(long timebefore, long timeafter) {
-        return null;
+        return getQuery().findAll();
     }
 
     @Override
@@ -175,5 +205,16 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
     @Override
     public Bill getCurrentEngagedTable() {
         return engaged;
+    }
+
+
+    public static float getProjectedTotal(final Bill bill) {
+        Iterator<MenuEntry> it = bill.getOrders().iterator();
+        float total = 0f;
+        while (it.hasNext()) {
+            MenuEntry entry = it.next();
+            total += entry.getPrice();
+        }
+        return total;
     }
 }

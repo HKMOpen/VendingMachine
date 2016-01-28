@@ -7,4 +7,13 @@
     <item name="action_about" type="id" />
     <item name="action_search" type="id" />
 
+
+    <item name="item_ul_bill_no" type="id" />
+    <item name="item_ul_table" type="id" />
+    <item name="item_ul_tag_container" type="id" />
+    <item name="item_ul_bottom_display" type="id" />
+    <item name="item_ul_dismiss" type="id" />
+
+
+
 </resources>

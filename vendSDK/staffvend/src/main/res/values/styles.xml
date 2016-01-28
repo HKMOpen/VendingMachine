@@ -6,6 +6,13 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+
+        <!-- For selection -->
+        <item name="selectableItemBackground">@drawable/selector_item_light</item>
+       <!-- <item name="primaryTextSelector">@drawable/primary_text_selector_light</item>-->
+
+
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -16,5 +23,18 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="AppTheme.DialogMetrics">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/dialog_padding_horizontal</item>
+        <item name="android:paddingRight">@dimen/dialog_padding_horizontal</item>
+        <item name="android:paddingTop">@dimen/dialog_padding_vertical</item>
+    </style>
+    <style name="animation_slide_from_right">
+        <item name="android:windowEnterAnimation">@anim/fab_slide_in_from_right</item>
+        <item name="android:windowExitAnimation">@anim/fab_slide_out_to_left</item>
+    </style>
 
 </resources>

@@ -2,14 +2,25 @@ package com.hkmvend.sdk.storage.Bill;
 
 import com.hkmvend.sdk.storage.Menu.MenuEntry;
 
+import java.io.Serializable;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
 /**
  * Created by hesk on 26/1/16.
  */
-public class Bill extends RealmObject {
-
+public class Bill extends RealmObject implements Serializable {
+    public static final String
+            Field_start_time = "start_time",
+            Field_signed_staff = "signed_staff",
+            Field_pay_time = "pay_time",
+            Field_bill_void_sign = "bill_void_sign",
+            Field_bill_void_time = "bill_void_time",
+            Field_table_id = "table_id",
+            Field_isBillCompleted = "isBillCompleted",
+            Field_table_remark = "table_remark",
+            Field_bill_number_code_long = "bill_number_code";
     private long bill_number_code;
     private RealmList<MenuEntry> orders;
     private String signed_staff;
@@ -22,7 +33,20 @@ public class Bill extends RealmObject {
     private String table_remark;
 
     private int headcount;
+
+    public boolean isBillCompleted() {
+        return isBillCompleted;
+    }
+
+    public void setIsBillCompleted(boolean isBillCompleted) {
+        this.isBillCompleted = isBillCompleted;
+    }
+
     private float consolidated_payment;
+    private boolean isBillCompleted;
+
+    public Bill() {
+    }
 
     public long getBill_number_code() {
         return bill_number_code;

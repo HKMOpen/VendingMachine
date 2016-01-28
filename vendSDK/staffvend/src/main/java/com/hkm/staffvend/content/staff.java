@@ -1,15 +1,20 @@
 package com.hkm.staffvend.content;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.hkm.staffvend.R;
-import com.hkm.staffvend.SectionNewTable;
-import com.hkm.staffvend.event.BS;
+import com.hkm.staffvend.SecNewTable;
+import com.hkm.staffvend.SecBillCollection;
+
+import static com.hkm.staffvend.event.ApplicationConstant.*;
+
 import com.hkmvend.sdk.client.RestaurantPOS;
+import com.hkmvend.sdk.storage.Bill.Bill;
 import com.hkmvend.sdk.storage.Bill.BillContainer;
 
 
@@ -33,24 +38,32 @@ public class staff extends content_base {
         newtable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), SectionNewTable.class);
-                getActivity().startActivityForResult(i, BS.NEW_TABLE);
+                Intent i = new Intent(getActivity(), SecNewTable.class);
+                getActivity().startActivityForResult(i, NEW_TABLE);
             }
         });
 
         checkTablesPaid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), SectionNewTable.class);
-                getActivity().startActivityForResult(i, BS.VIEW_PAID_TABLES);
+                Intent i = new Intent(getActivity(), SecBillCollection.class);
+                Bundle b = new Bundle();
+                b.putInt(INTENT_TABLE_FUNCTION, FUNC_VIEW_ONLY);
+                b.putStringArray(INTENT_TABLE_FILTER, new String[]{Bill.Field_pay_time, "paid"});
+                i.putExtras(b);
+                getActivity().startActivityForResult(i, VIEW_PAID_TABLES);
             }
         });
 
         checkTablesUnpaid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), SectionNewTable.class);
-                getActivity().startActivityForResult(i, BS.VIEW_UNPAID_TABLES);
+                Bundle b = new Bundle();
+                b.putInt(INTENT_TABLE_FUNCTION, FUNC_VIEW_ONLY);
+                b.putStringArray(INTENT_TABLE_FILTER, new String[]{Bill.Field_pay_time, "paid"});
+                Intent i = new Intent(getActivity(), SecBillCollection.class);
+                i.putExtras(b);
+                getActivity().startActivityForResult(i, VIEW_UNPAID_TABLES);
             }
         });
 

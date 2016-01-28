@@ -24,10 +24,5 @@ public class BS {
         getInstance().post(sub);
     }
 
-    public static final int
-            NEW_TABLE = 102,
-            NEW_STAFF = 103,
-            NEW_SWITCH_STAFF = 104,
-            VIEW_PAID_TABLES = 105,
-            VIEW_UNPAID_TABLES = 106;
+
 }

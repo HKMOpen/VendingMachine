@@ -14,9 +14,9 @@ import com.hkmvend.sdk.storage.Bill.Bill;
 import com.hkmvend.sdk.storage.Bill.BillContainer;
 
 /**
- * Created by zJJ on 1/27/2016.
+ * Created by hesk on 26/1/16.
  */
-public class SectionBillView extends AppCompatActivity {
+public class SecNewTable extends AppCompatActivity {
     private EditText table_id, people_count, table_remark;
     private Button add_button, remove_button;
 
@@ -37,7 +37,7 @@ public class SectionBillView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.acontent_view_bill);
+        setContentView(R.layout.content_new_table);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         table_id = (EditText) findViewById(R.id.table_id);
@@ -99,4 +99,5 @@ public class SectionBillView extends AppCompatActivity {
         setResult(RESULT_CANCELED);
         super.onBackPressed();
     }
+
 }

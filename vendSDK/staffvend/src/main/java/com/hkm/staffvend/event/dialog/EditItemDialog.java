@@ -1,4 +1,4 @@
-package com.hkm.staffvend.usage;
+package com.hkm.staffvend.event.dialog;
 
 import android.annotation.SuppressLint;
 import android.app.DialogFragment;
@@ -17,36 +17,39 @@ import android.widget.EditText;
 
 import com.hkm.staffvend.R;
 import com.hkm.staffvend.event.Utils;
+import com.hkm.staffvend.usage.SimpleTextWatcher;
+import com.hkmvend.sdk.client.RestaurantPOS;
+import com.hkmvend.sdk.storage.Bill.Bill;
 
 /**
  * Created by hesk on 27/1/16.
  */
-public class EditItemDialog  extends DialogFragment {
+public class EditItemDialog extends DialogFragment {
 
     public static final String TAG = EditItemDialog.class.getSimpleName();
     public static final String ARG_ITEM = "item";
     public static final String ARG_ITEM_POSITION = "position";
 
     public interface OnEditItemListener {
-        void onTitleModified(int position, String newTitle);
+        void onTitleModified(long position, String newTitle);
     }
 
-    private Item mItem;
-    private int mPosition;
+    //private Bill mItem;
+    private long mPosition;
+    private boolean itemFound = false;
 
     public EditItemDialog() {
     }
 
-    public static EditItemDialog newInstance(Item item, int position) {
-        return newInstance(item, position, null);
+    public static EditItemDialog newInstance(long position) {
+        return newInstance(position, null);
     }
 
-    public static EditItemDialog newInstance(Item item, int position, Fragment fragment) {
+    public static EditItemDialog newInstance(long position, Fragment fragment) {
         EditItemDialog dialog = new EditItemDialog();
         Bundle args = new Bundle();
-        args.putSerializable(ARG_ITEM, item);
-        args.putInt(ARG_ITEM_POSITION, position);
-        dialog.setArguments(args);
+        // args.putSerializable(ARG_ITEM, item);
+        args.putLong(ARG_ITEM_POSITION, position);
         dialog.setArguments(args);
         dialog.setTargetFragment(fragment, 0);
         return dialog;
@@ -62,14 +65,15 @@ public class EditItemDialog  extends DialogFragment {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable(ARG_ITEM, mItem);
+        //  outState.putSerializable(ARG_ITEM, mItem);
+        outState.putLong(ARG_ITEM_POSITION, mPosition);
         super.onSaveInstanceState(outState);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-       // getDialog().getWindow().setWindowAnimations(R.style.animation_slide_from_right);
+        // getDialog().getWindow().setWindowAnimations(R.style.animation_slide_from_right);
     }
 
     @SuppressLint({"InflateParams", "HandlerLeak"})
@@ -83,9 +87,11 @@ public class EditItemDialog  extends DialogFragment {
             bundle = savedInstanceState;
         }
 
-        mItem = (Item) bundle.getSerializable(ARG_ITEM);
-        mPosition = bundle.getInt(ARG_ITEM_POSITION);
-
+        //mItem = (Bill) bundle.getSerializable(ARG_ITEM);
+        mPosition = bundle.getLong(ARG_ITEM_POSITION);
+        final Bill mItem = RestaurantPOS.getInstance(getActivity().getApplication()).getBillContainer().findBillById(mPosition);
+        itemFound = mItem == null ? false : true;
+        final String info_bill_numer = mItem.getBill_number_code() + "";
         //Inflate custom view
         View dialogView = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_edit_item, null);
 
@@ -121,7 +127,7 @@ public class EditItemDialog  extends DialogFragment {
         });
 
         if (mItem != null) {
-            editText.setText(mItem.getTitle());
+            editText.setText(info_bill_numer);
             editText.selectAll();
         }
         editText.requestFocus();
@@ -162,7 +168,7 @@ public class EditItemDialog  extends DialogFragment {
             buttonOK.setEnabled(false);
             return;
         }
-        if (mItem != null && !mItem.getTitle().equalsIgnoreCase(editText.getText().toString().trim())) {
+        if (itemFound) {
             buttonOK.setEnabled(true);
         } else {
             editText.setError(getActivity().getString(R.string.err_no_edit));

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/item_ul_table"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@id/item_ul_bill_no"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:text="#9399029"
+        android:textSize="15sp" />
+
+
+    <co.lujun.androidtagview.TagContainerLayout
+        android:id="@id/item_ul_tag_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_ul_bill_no"
+        android:layout_margin="5dp"
+        android:padding="10dp"
+        app:container_enable_drag="false"
+        app:horizontal_interval="10dp"
+        app:tag_clickable="true"
+        app:tag_theme="pure_teal"
+        app:vertical_interval="10dp" />
+
+    <TextView
+        android:id="@id/item_ul_bottom_display"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_ul_tag_container"
+        android:singleLine="true"
+        android:text="$Summary"
+        android:textSize="30sp" />
+
+
+    <ImageButton
+        android:id="@id/item_ul_dismiss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="5dp"
+        android:src="@drawable/ic_remove_circle_24dp" />
+</RelativeLayout>

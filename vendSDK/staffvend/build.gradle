@@ -35,7 +35,8 @@ dependencies {
     compile 'com.google.android.gms:play-services-drive:8.4.0'
    // compile 'com.github.kenglxn.QRGen:javase:2.1.0'
     compile 'me.dm7.barcodescanner:zxing:1.8.4'
-    compile 'eu.davidea:flexible-adapter:4.2.0@aar'
+    compile 'eu.davidea:flexible-adapter:4.2.0'
+    compile 'co.lujun:androidtagview:1.0.2'
     // compile 'com.google.gdata:core:1.47.1'
     compile project(':vendingmachinesdk')
 

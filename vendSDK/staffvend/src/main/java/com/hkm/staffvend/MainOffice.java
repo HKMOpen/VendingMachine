@@ -17,7 +17,7 @@ import com.hkm.staffvend.content.staff;
 import com.hkm.staffvend.event.BS;
 import com.squareup.otto.Subscribe;
 
-public class SectionVendr extends AppCompatActivity {
+public class MainOffice extends AppCompatActivity {
     private FloatingActionButton fabbutton;
     private Fragment current;
     private boolean backEnabled = false;
@@ -25,7 +25,7 @@ public class SectionVendr extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.acontent_vend_frame);
+        setContentView(R.layout.as_content_vend_frame);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
