@@ -228,6 +228,8 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
 
     public void setMaunalLastestBillNumber(int id) {
         atomicInteger = new AtomicInteger(id);
+        lastest_bill_id = id;
+        saveInfo(CT_LAST_BILL_SERIAL_NUMBER, lastest_bill_id);
     }
 
     public static float getProjectedTotal(final Bill bill) {

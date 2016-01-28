@@ -99,8 +99,7 @@ public abstract class DialogTextInput extends DialogFragment {
                 .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        getListener().onFieldModified(mPosition,
-                                editText.getText().toString().trim());
+                        getListener().onFieldModified(mPosition, editText.getText().toString().trim());
                         Utils.hideSoftInputFrom(getActivity(), editText);
                         dialog.dismiss();
                     }

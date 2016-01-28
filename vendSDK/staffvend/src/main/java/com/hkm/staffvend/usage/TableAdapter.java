@@ -1,6 +1,5 @@
 package com.hkm.staffvend.usage;
 
-import android.app.Application;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
@@ -19,7 +18,6 @@ import android.widget.TextView;
 import com.hkm.staffvend.R;
 import com.hkm.staffvend.event.Utils;
 import com.hkm.staffvend.event.faster.FastScroller;
-import com.hkmvend.sdk.client.RestaurantPOS;
 import com.hkmvend.sdk.storage.Bill.Bill;
 import com.hkmvend.sdk.storage.Bill.BillContainer;
 
@@ -136,7 +134,7 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
                      this);*/
 
             default:
-                return new ViewHolder(
+                return new SimpleViewHolder(
                         mInflater.inflate(R.layout.item_bill_table, parent, false),
                         this);
         }
@@ -180,9 +178,10 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
 
         //This "if-else" is just an example
         if (isSelected(position)) {
-            holder.mArea.setBackgroundResource(R.drawable.image_round_selected);
+            // holder.mArea.setBackgroundResource(R.drawable.image_round_selected);
         } else {
-            holder.mArea.setBackgroundResource(R.drawable.image_round_normal);
+            //     holder.mArea.setBackgroundResource(R.drawable.image_round_normal);
+            holder.mArea.setBackgroundResource(R.drawable.selector_item_light);
         }
 
         //In case of searchText matches with Title or with an Item's field

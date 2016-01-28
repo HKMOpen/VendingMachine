@@ -3,6 +3,7 @@ package com.hkm.staffvend.content;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -32,11 +33,9 @@ public class staff extends content_base implements DialogTextInput.OnEditItemLis
 
     @Override
     protected void initGDATA() {
-
         container = RestaurantPOS
                 .getInstance(getActivity().getApplication())
                 .getBillContainer();
-
         newtable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,7 +43,6 @@ public class staff extends content_base implements DialogTextInput.OnEditItemLis
                 getActivity().startActivityForResult(i, NEW_TABLE);
             }
         });
-
         checkTablesPaid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,7 +54,6 @@ public class staff extends content_base implements DialogTextInput.OnEditItemLis
                 getActivity().startActivityForResult(i, VIEW_PAID_TABLES);
             }
         });
-
         checkTablesUnpaid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,21 +65,17 @@ public class staff extends content_base implements DialogTextInput.OnEditItemLis
                 getActivity().startActivityForResult(i, VIEW_UNPAID_TABLES);
             }
         });
-
         setButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TicketNumSetDialog.newInstance(staff.this).show(getFragmentManager(), TicketNumSetDialog.TAG);
             }
         });
-
         refreshEngagedTable();
     }
 
     public void refreshEngagedTable() {
-
         if (container.hasTableFocused()) {
-
             StringBuilder sb = new StringBuilder();
             sb.append("Order ready");
             sb.append("\n");
@@ -90,13 +83,10 @@ public class staff extends content_base implements DialogTextInput.OnEditItemLis
             current_status.setText(sb.toString());
             current_table.setText(container.getCurrentEngagedTable().getTable_id());
             order_ready = true;
-
         } else {
-
             current_status.setText("cannot make orders");
             current_table.setText("There is no engaging Table");
             order_ready = false;
-
         }
     }
 
@@ -121,6 +111,7 @@ public class staff extends content_base implements DialogTextInput.OnEditItemLis
 
     @Override
     public void onFieldModified(long position, String newTitle) {
+        Log.d("ca;;", newTitle);
         container.setMaunalLastestBillNumber(Integer.parseInt(newTitle));
     }
 }
