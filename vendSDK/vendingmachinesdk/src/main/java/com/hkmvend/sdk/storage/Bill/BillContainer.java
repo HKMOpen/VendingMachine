@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -27,8 +28,9 @@ import io.realm.exceptions.RealmMigrationNeededException;
 public class BillContainer extends ApplicationBase implements ibillcontainer {
 
     private static String current_engage_table_id;
-    private static long current_bill_id;
+    private static long current_bill_id, lastest_bill_id;
     public static final String
+            CT_LAST_BILL_SERIAL_NUMBER = "lastnumx",
             CTABLEID = "currentengagedtableid",
             CTABLELONGID = "focusbillid";
 
@@ -36,6 +38,8 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
     private Bill engaged;
     private static BillContainer instance;
     private Context context;
+    private AtomicInteger atomicInteger = new AtomicInteger(100000);
+
 
     public static BillContainer getInstnce(Application c) {
         if (instance == null) {
@@ -67,9 +71,23 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
     protected void init() {
         current_engage_table_id = loadRef(CTABLEID);
         current_bill_id = loadRefL(CTABLELONGID);
+        lastest_bill_id = loadRefL(CT_LAST_BILL_SERIAL_NUMBER, -1);
         if (hasTableFocused()) {
             engaged = findBillByTable(current_engage_table_id);
         }
+    }
+
+    public boolean isDefaultLastestBillNumberDefined() {
+        return lastest_bill_id > -1;
+    }
+
+    public long getLastestBillNumber() {
+        return lastest_bill_id;
+    }
+
+    public void destroy() {
+        saveInfo(CT_LAST_BILL_SERIAL_NUMBER, lastest_bill_id);
+        instance = null;
     }
 
     private RealmQuery<Bill> getQuery() {
@@ -155,6 +173,7 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
         realm.beginTransaction();
         Bill target = realm.createObject(Bill.class);
         target.setHeadcount(headcount);
+        target.setBill_number_code(atomicInteger.longValue());
         target.setTable_id(table_id);
         if (remark != null)
             target.setTable_remark(remark);
@@ -207,6 +226,9 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
         return engaged;
     }
 
+    public void setMaunalLastestBillNumber(int id) {
+        atomicInteger = new AtomicInteger(id);
+    }
 
     public static float getProjectedTotal(final Bill bill) {
         Iterator<MenuEntry> it = bill.getOrders().iterator();

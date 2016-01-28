@@ -180,9 +180,9 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
 
         //This "if-else" is just an example
         if (isSelected(position)) {
-            holder.mArea.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.image_round_selected));
+            holder.mArea.setBackgroundResource(R.drawable.image_round_selected);
         } else {
-            holder.mArea.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.image_round_normal));
+            holder.mArea.setBackgroundResource(R.drawable.image_round_normal);
         }
 
         //In case of searchText matches with Title or with an Item's field

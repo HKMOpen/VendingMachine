@@ -13,6 +13,8 @@ import com.hkm.staffvend.SecBillCollection;
 
 import static com.hkm.staffvend.event.ApplicationConstant.*;
 
+import com.hkm.staffvend.event.dialog.DialogTextInput;
+import com.hkm.staffvend.event.dialog.TicketNumSetDialog;
 import com.hkmvend.sdk.client.RestaurantPOS;
 import com.hkmvend.sdk.storage.Bill.Bill;
 import com.hkmvend.sdk.storage.Bill.BillContainer;
@@ -21,9 +23,9 @@ import com.hkmvend.sdk.storage.Bill.BillContainer;
 /**
  * Created by hesk on 26/1/16.
  */
-public class staff extends content_base {
+public class staff extends content_base implements DialogTextInput.OnEditItemListener {
 
-    private Button signInStaff, checkTablesPaid, checkTablesUnpaid, newtable;
+    private Button signInStaff, checkTablesPaid, checkTablesUnpaid, newtable, setButton;
     private TextView current_table, current_status;
     private BillContainer container;
     private boolean order_ready;
@@ -67,12 +69,17 @@ public class staff extends content_base {
             }
         });
 
-        signInStaff.setOnClickListener(new View.OnClickListener() {
+        setButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                TicketNumSetDialog.newInstance(staff.this).show(getFragmentManager(), TicketNumSetDialog.TAG);
             }
         });
+
+        refreshEngagedTable();
+    }
+
+    public void refreshEngagedTable() {
 
         if (container.hasTableFocused()) {
 
@@ -91,7 +98,6 @@ public class staff extends content_base {
             order_ready = false;
 
         }
-
     }
 
     public boolean getOrderReady() {
@@ -103,6 +109,7 @@ public class staff extends content_base {
         checkTablesPaid = (Button) view.findViewById(R.id.checkcompletetable);
         checkTablesUnpaid = (Button) view.findViewById(R.id.checkTables);
         newtable = (Button) view.findViewById(R.id.newtable);
+        setButton = (Button) view.findViewById(R.id.setlastesttioc);
         current_table = (TextView) view.findViewById(R.id.current_table);
         current_status = (TextView) view.findViewById(R.id.current_status);
     }
@@ -112,4 +119,8 @@ public class staff extends content_base {
         return R.layout.content_main_office;
     }
 
+    @Override
+    public void onFieldModified(long position, String newTitle) {
+        container.setMaunalLastestBillNumber(Integer.parseInt(newTitle));
+    }
 }

@@ -164,8 +164,8 @@ public class SecBillCollection extends AppCompatActivity implements
             //Selection
             mAdapter.onRestoreInstanceState(savedInstanceState);
             if (mAdapter.getSelectedItemCount() > 0) {
-                mActionMode = startSupportActionMode(this);
-                setContextTitle(mAdapter.getSelectedItemCount());
+               // mActionMode = startSupportActionMode(this);
+               // setContextTitle(mAdapter.getSelectedItemCount());
             }
             //Previously serialized activated item position
             if (savedInstanceState.containsKey(STATE_ACTIVATED_POSITION))

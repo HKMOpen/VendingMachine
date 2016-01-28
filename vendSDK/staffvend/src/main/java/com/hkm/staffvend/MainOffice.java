@@ -3,6 +3,7 @@ package com.hkm.staffvend;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -92,6 +93,12 @@ public class MainOffice extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         BS.getInstance().register(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        BS.onResultFromPrevious(requestCode, resultCode, data, current);
     }
 
     @Override

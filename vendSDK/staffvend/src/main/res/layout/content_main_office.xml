@@ -36,6 +36,13 @@
                 android:text="Check Paid Tables" />
 
             <Button
+                android:id="@+id/setlastesttioc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="40dp"
+                android:text="Set Bill Key" />
+
+            <Button
                 android:id="@+id/signoutin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -67,7 +74,8 @@
                 android:id="@+id/current_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="40dp"
+                android:padding="5dp"
+                android:singleLine="false"
                 android:text="current status" />
 
         </LinearLayout>
