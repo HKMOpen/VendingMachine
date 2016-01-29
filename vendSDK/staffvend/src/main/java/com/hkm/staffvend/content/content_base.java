@@ -19,7 +19,7 @@ import static com.hkm.staffvend.mosaic.BlockPattern.BLOCK_PATTERN;
 public abstract class content_base extends Fragment {
     @LayoutRes
     protected int getLayoutId() {
-        return R.layout.fragment_vend;
+        return R.layout.content_menu_puzzle;
     }
 
     @Override
@@ -40,6 +40,10 @@ public abstract class content_base extends Fragment {
 
     protected void bind(View view) {
         mMosaicLayout = (MosaicLayout) view.findViewById(R.id.vend_mosaic);
+        bindProgressBar(view);
+    }
+
+    protected void bindProgressBar(View view) {
         mProgress = (ProgressBar) view.findViewById(R.id.lylib_ui_loading_circle);
     }
 

@@ -4,6 +4,7 @@ import com.hkmvend.sdk.storage.Menu.MenuEntry;
 
 import java.io.Serializable;
 
+import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
@@ -137,4 +138,7 @@ public class Bill extends RealmObject implements Serializable {
     public void setStart_time(String start_time) {
         this.start_time = start_time;
     }
+
+
+
 }

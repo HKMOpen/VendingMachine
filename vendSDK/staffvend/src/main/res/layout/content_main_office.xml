@@ -43,10 +43,17 @@
                 android:text="Set Bill Key" />
 
             <Button
+                android:id="@+id/importmenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:text="Import Menu" />
+
+            <Button
                 android:id="@+id/signoutin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="40dp"
+                android:padding="10dp"
                 android:text="SignOut/In" />
 
         </LinearLayout>

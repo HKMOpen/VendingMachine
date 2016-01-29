@@ -25,12 +25,13 @@ public class mainmenu extends content_base {
     RestaurantPOS.DataConfigCB callback = new RestaurantPOS.DataConfigCB() {
         @Override
         public void success(final List<MenuEntry> list) {
-            ErrorMessage.alert("successfully found items " + list.size(), getChildFragmentManager(), new Runnable() {
+           /* ErrorMessage.alert("successfully found items " + list.size(), getChildFragmentManager(), new Runnable() {
                 @Override
                 public void run() {
                     startMainMenu(list);
                 }
-            });
+            });*/
+            startMainMenu(list);
         }
 
         @Override

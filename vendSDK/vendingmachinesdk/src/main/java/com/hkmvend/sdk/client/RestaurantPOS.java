@@ -153,9 +153,9 @@ public class RestaurantPOS extends retrofitClientBasic {
                 // Log.i("TAGService", body);
                 // plain_json = ensureJsonData(body);
                 //  Log.i("TAGService", plain_json);
-                container.saveConfigFile(plain_json);
                 //}
-
+                plain_json = gsonsetup.toJson(body);
+                container.saveConfigFile(plain_json);
                 savePlainFileToRealm(gsonsetup.toJson(body));
             } catch (IOException e) {
                 failure = e.getCause().getMessage();

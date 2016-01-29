@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/display_dish_image"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/display_dish_image"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/dish_name_display"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/new_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/button_padding_vertical"
+            android:paddingTop="@dimen/button_padding_vertical"
+            android:text="@string/action_down_order" />
+
+
+        <Button
+            android:id="@+id/find_other_dish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/button_padding_vertical"
+            android:paddingTop="@dimen/button_padding_vertical"
+            android:text="@string/action_search_similar" />
+
+
+        <Button
+            android:id="@+id/cancelthis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/CANCEL" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@id/lylib_ui_loading_circle"
+        android:layout_width="@dimen/loading_size"
+        android:layout_height="@dimen/loading_size"
+        android:layout_centerInParent="true" />
+</RelativeLayout>

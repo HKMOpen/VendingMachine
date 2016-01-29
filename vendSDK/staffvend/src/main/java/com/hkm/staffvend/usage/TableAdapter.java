@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hkm.staffvend.R;
+import com.hkm.staffvend.event.BS;
 import com.hkm.staffvend.event.Utils;
 import com.hkm.staffvend.event.faster.FastScroller;
 import com.hkmvend.sdk.storage.Bill.Bill;
@@ -94,7 +95,7 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
     public void updateDataSet(String param) {
         //Refresh the original content
         // mItems = container.f()
-        mItems = new ArrayList<>();
+        mItems = instance.getAll();
         addUserLearnedSelection();
         //Fill and Filter mItems with your custom list
         //Note: In case of userLearnSelection mItems is pre-initialized and after filtered.
@@ -148,11 +149,19 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
         String subtotal = BillContainer.getProjectedTotal(item) + "";
         //holder.mImageView.setImageResource(R.drawable.ic_account_circle_white_24dp);
         //NOTE: ViewType Must be checked ALSO here to bind the correct view
-        if (getItemViewType(position) == EXAMPLE_VIEW_TYPE) {
+        if (getItemViewType(position) == ROW_VIEW_TYPE) {
             holder.itemView.setActivated(true);
             holder.mTitle.setSelected(true); //For marquee
             holder.mTitle.setText(Html.fromHtml("#" + bill_number));
             holder.mSubtitle.setText(Html.fromHtml("$" + subtotal));
+            holder.setCurrent(new Runnable() {
+                @Override
+                public void run() {
+                    BS.setCurrentBillEngage(item);
+                }
+            });
+            holder.mMenuContainer.removeAllTags();
+            holder.mMenuContainer.setTags(BillContainer.getOrderedItemsChinese(item));
             //IMPORTANT: Example View finishes here!!
             return;
         }
@@ -251,8 +260,8 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
         //  ImageView mImageView;
         TextView mTitle;
         TextView mSubtitle;
-        ImageButton mDismissIcon;
-        TagContainerLayout mContainer;
+        ImageButton mDismissIcon, mSetCurrent;
+        TagContainerLayout mMenuContainer;
         RelativeLayout mArea;
         TableAdapter mAdapter;
 
@@ -265,13 +274,16 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
             mAdapter = adapter;
             mTitle = (TextView) view.findViewById(R.id.item_ul_bill_no);
             mSubtitle = (TextView) view.findViewById(R.id.item_ul_bottom_display);
-            mContainer = (TagContainerLayout) view.findViewById(R.id.item_ul_tag_container);
+            mMenuContainer = (TagContainerLayout) view.findViewById(R.id.item_ul_tag_container);
             mArea = (RelativeLayout) view.findViewById(R.id.item_ul_table);
-            mDismissIcon = (ImageButton) view.findViewById(R.id.item_ul_dismiss);
-            mDismissIcon.setOnClickListener(new View.OnClickListener() {
+            mSetCurrent = (ImageButton) view.findViewById(R.id.item_ul_set_current);
+        }
+
+        public void setCurrent(final Runnable run) {
+            mSetCurrent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mAdapter.userLearnedSelection();
+                    run.run();
                 }
             });
         }
@@ -280,8 +292,8 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
     private void userLearnedSelection() {
         //TODO: Save the boolean into Settings!
         //   DatabaseService.userLearnedSelection = true;
-        mItems.remove(0);
-        notifyItemRemoved(0);
+        //  mItems.remove(0);
+        // notifyItemRemoved(0);
     }
 
     /**

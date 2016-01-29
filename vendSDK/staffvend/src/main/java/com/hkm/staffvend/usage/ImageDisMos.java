@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hkm.staffvend.R;
+import com.hkm.staffvend.event.BS;
 import com.hkm.staffvend.mosaic.MosAdapter;
 import com.hkmvend.sdk.storage.Menu.MenuEntry;
 
@@ -34,7 +35,7 @@ public class ImageDisMos extends MosAdapter<MenuEntry, ImageDisMos.Frame> {
     }
 
     @Override
-    protected void bindData(MenuEntry menuEntry, int position, ImageDisMos.Frame binder) {
+    protected void bindData(final MenuEntry menuEntry, int position, ImageDisMos.Frame binder) {
         StringBuilder sb = new StringBuilder();
         sb.append(menuEntry.getEntry_name_chinese());
         sb.append("\n");
@@ -51,7 +52,7 @@ public class ImageDisMos extends MosAdapter<MenuEntry, ImageDisMos.Frame> {
         binder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                BS.select_menu_item_from_submenu(menuEntry);
             }
         });
     }

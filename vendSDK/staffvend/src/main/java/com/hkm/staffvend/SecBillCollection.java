@@ -1,5 +1,6 @@
 package com.hkm.staffvend;
 
+import android.app.Activity;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.design.widget.Snackbar;
@@ -27,10 +28,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import static com.hkm.staffvend.event.ApplicationConstant.*;
 
+import com.hkm.staffvend.event.ApplicationConstant;
+import com.hkm.staffvend.event.BS;
 import com.hkm.staffvend.event.Utils;
 import com.hkm.staffvend.usage.TableAdapter;
 import com.hkm.staffvend.usage.SimpleDividerItemDecoration;
@@ -38,6 +43,7 @@ import com.hkmvend.sdk.client.RestaurantPOS;
 import com.hkmvend.sdk.storage.Bill.Bill;
 import com.hkmvend.sdk.storage.Bill.BillContainer;
 import com.marshalchen.ultimaterecyclerview.animators.SlideInRightAnimator;
+import com.squareup.otto.Subscribe;
 
 /**
  * Created by hesk on 27/1/16.
@@ -103,6 +109,8 @@ public class SecBillCollection extends AppCompatActivity implements
         return true;
     }
 
+    ProgressBar mbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,6 +126,7 @@ public class SecBillCollection extends AppCompatActivity implements
         mRecyclerView.setItemAnimator(new SlideInRightAnimator());
         mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(ResourcesCompat.getDrawable(getResources(), R.drawable.divider, null)));
 
+        mbar = (ProgressBar) findViewById(R.id.lylib_ui_loading_circle);
         //Add FastScroll to the RecyclerView
         // FastScroller fastScroller = (FastScroller) findViewById(R.id.fast_scroller);
         //  fastScroller.setRecyclerView(mRecyclerView);
@@ -164,8 +173,8 @@ public class SecBillCollection extends AppCompatActivity implements
             //Selection
             mAdapter.onRestoreInstanceState(savedInstanceState);
             if (mAdapter.getSelectedItemCount() > 0) {
-               // mActionMode = startSupportActionMode(this);
-               // setContextTitle(mAdapter.getSelectedItemCount());
+                // mActionMode = startSupportActionMode(this);
+                // setContextTitle(mAdapter.getSelectedItemCount());
             }
             //Previously serialized activated item position
             if (savedInstanceState.containsKey(STATE_ACTIVATED_POSITION))
@@ -319,13 +328,34 @@ public class SecBillCollection extends AppCompatActivity implements
     private void updateEmptyView() {
         // FastScroller fastScroller = (FastScroller) findViewById(R.id.fast_scroller);
         TextView emptyView = (TextView) findViewById(R.id.empty);
+        RelativeLayout rlemptyview = (RelativeLayout) findViewById(R.id.empty_view_holder);
         emptyView.setText(getString(R.string.no_items));
-        if (!mAdapter.isEmpty()) {
-            //   fastScroller.setVisibility(View.VISIBLE);
-            emptyView.setVisibility(View.GONE);
-        } else {
+        if (mAdapter.isEmpty()) {
             //  fastScroller.setVisibility(View.GONE);
-            emptyView.setVisibility(View.VISIBLE);
+            rlemptyview.setVisibility(View.VISIBLE);
+            //showProgressBar(true);
+        } else {
+            //   fastScroller.setVisibility(View.VISIBLE);
+            rlemptyview.setVisibility(View.GONE);
+            // showProgressBar(false);
+        }
+
+        showProgressBar(false);
+    }
+
+    protected void showProgressBar(boolean b) {
+        if (b) {
+            mbar.setVisibility(View.VISIBLE);
+            mbar.setAlpha(0f);
+            mbar.animate().alpha(1f);
+        } else {
+            mbar.animate().alpha(0f).withEndAction(new Runnable() {
+                @Override
+                public void run() {
+                    mbar.setVisibility(View.GONE);
+                }
+            });
+
         }
     }
 
@@ -546,5 +576,26 @@ public class SecBillCollection extends AppCompatActivity implements
     @Override
     public void onListItemLongClick(int position) {
 
+    }
+
+    @Subscribe
+    public void evt(BS.BillFnc ev) {
+        if (ev.function_bs == ApplicationConstant.BS_SET_CURRENT) {
+            instance.setFocusOnBill(ev.embed);
+            setResult(Activity.RESULT_OK);
+            finish();
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        BS.getInstance().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        BS.getInstance().unregister(this);
     }
 }

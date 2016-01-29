@@ -3,8 +3,11 @@ package com.hkmvend.sdk.storage.Bill;
 import android.app.Application;
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.util.Log;
+import android.view.Menu;
 
 import com.hkmvend.sdk.storage.ApplicationBase;
+import com.hkmvend.sdk.storage.Menu.EntryContainer;
 import com.hkmvend.sdk.storage.Menu.MenuEntry;
 import com.hkmvend.sdk.storage.RealmPolicy;
 
@@ -38,6 +41,7 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
     private Bill engaged;
     private static BillContainer instance;
     private Context context;
+    private Application application_context;
     private AtomicInteger atomicInteger = new AtomicInteger(100000);
 
 
@@ -51,6 +55,7 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
     public BillContainer(Application cc) {
         super(cc);
         context = cc;
+        application_context = cc;
         conf = RealmPolicy.realmCfg(cc);
         init();
     }
@@ -173,7 +178,8 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
         realm.beginTransaction();
         Bill target = realm.createObject(Bill.class);
         target.setHeadcount(headcount);
-        target.setBill_number_code(atomicInteger.longValue());
+        lastest_bill_id = (long) atomicInteger.getAndIncrement();
+        target.setBill_number_code(lastest_bill_id);
         target.setTable_id(table_id);
         if (remark != null)
             target.setTable_remark(remark);
@@ -240,5 +246,54 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
             total += entry.getPrice();
         }
         return total;
+    }
+
+    public boolean makeNewOrderEntry(int entry_id) {
+        try {
+            Realm realm = Realm.getInstance(conf);
+            EntryContainer instance = EntryContainer.getInstnce(application_context);
+            MenuEntry it = instance.getFirstItemById(entry_id);
+            BillContainer.addNewDish(it, realm, getCurrentEngagedTable());
+            return true;
+        } catch (Exception allkind) {
+            Log.d("TAGnow", allkind.getMessage());
+            return false;
+        }
+    }
+
+    public static void addNewDish(MenuEntry item, Realm realm, Bill target) {
+        realm.beginTransaction();
+        target.getOrders().add(item);
+        realm.commitTransaction();
+    }
+
+    public static List<String> getOrderedItemsChinese(Bill target) {
+        Iterator<MenuEntry> it = target.getOrders().iterator();
+        List<String> hh = new ArrayList<>();
+        while (it.hasNext()) {
+            MenuEntry en = it.next();
+            hh.add(en.getEntry_name_chinese());
+        }
+        return hh;
+    }
+
+
+    public static List<String> getOrderedItemsEnglish(Bill target) {
+        Iterator<MenuEntry> it = target.getOrders().iterator();
+        List<String> hh = new ArrayList<>();
+        while (it.hasNext()) {
+            MenuEntry en = it.next();
+            hh.add(en.getEntry_name_english());
+        }
+        return hh;
+    }
+
+
+    public void update(Bill contact, Realm realm) {
+        //do update stuff
+        // Email email = realm.copyToRealm(new Email());
+        //  contact.getEmails().add(email);
+
+
     }
 }

@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.hkm.staffvend.content.dish_panel;
 import com.hkm.staffvend.content.mainmenu;
 import com.hkm.staffvend.content.staff;
 import com.hkm.staffvend.event.BS;
@@ -88,6 +89,14 @@ public class MainOffice extends AppCompatActivity {
         normal_start(b);
         backEnabled = true;
     }
+
+
+    @Subscribe
+    public void ev(BS.EntryFnc fn) {
+        normal_start(dish_panel.newInstance(fn.entry, fn.item.getEntry_name_chinese()));
+        backEnabled = false;
+    }
+
 
     @Override
     public void onStart() {

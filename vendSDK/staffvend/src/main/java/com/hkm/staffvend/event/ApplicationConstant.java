@@ -24,5 +24,7 @@ public class ApplicationConstant {
             FUNC_SELECT_TABLE = 2,
             FUNC_CLOSE_BILL = 3;
 
-
+    public static final int
+            BS_SET_CURRENT = 9,
+            BS_SET_REMOVE = 10;
 }

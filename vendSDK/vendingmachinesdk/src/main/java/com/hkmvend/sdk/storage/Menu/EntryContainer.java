@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.annotation.IntDef;
 
 import com.hkmvend.sdk.storage.ApplicationBase;
+import com.hkmvend.sdk.storage.Bill.Bill;
 import com.hkmvend.sdk.storage.RealmPolicy;
 
 import java.sql.Timestamp;
@@ -75,6 +76,11 @@ public class EntryContainer extends ApplicationBase {
         return worker_status;
     }
 
+    private RealmQuery<MenuEntry> getQuery() {
+        Realm realm = Realm.getInstance(conf);
+        RealmQuery<MenuEntry> query = realm.where(MenuEntry.class);
+        return query;
+    }
 
     public void flushRecords() {
         Realm realm = Realm.getInstance(conf);
@@ -120,8 +126,8 @@ public class EntryContainer extends ApplicationBase {
     }
 
     public List<MenuEntry> getAllRecords() {
-        Realm realm = Realm.getInstance(conf);
-        RealmResults<MenuEntry> copies = realm.where(MenuEntry.class).findAll();
+
+        RealmResults<MenuEntry> copies = getQuery().findAll();
         copies.sort("date", Sort.DESCENDING);
 
         return convertToEntryOut(copies);
@@ -129,21 +135,18 @@ public class EntryContainer extends ApplicationBase {
 
 
     public List<MenuEntry> getFromCateId(int cateId) {
-        Realm realm = Realm.getInstance(conf);
-
-        RealmQuery<MenuEntry> query = realm.where(MenuEntry.class);
-
-        RealmResults<MenuEntry> copies = query.equalTo("category", cateId).findAll();
-
+        RealmResults<MenuEntry> copies = getQuery().equalTo("category", cateId).findAll();
         copies.sort("entry_id", Sort.ASCENDING);
-
         return convertToEntryOut(copies);
     }
 
+    public MenuEntry getFirstItemById(int Id) {
+        MenuEntry first = getQuery().equalTo("entry_id", Id).findFirst();
+        return first;
+    }
 
-    public boolean check_duplicated(Realm realm, int entry_id) {
-        RealmQuery<MenuEntry> query = realm.where(MenuEntry.class);
-        return query.equalTo("entry_id", entry_id).findFirst() != null;
+    public boolean check_duplicated(int entry_id) {
+        return getQuery().equalTo("entry_id", entry_id).findFirst() != null;
     }
 
 
@@ -153,8 +156,7 @@ public class EntryContainer extends ApplicationBase {
 
     public final int getItemsCount() {
         try {
-            Realm realm = Realm.getInstance(conf);
-            return realm.where(MenuEntry.class).findAll().size();
+            return getQuery().findAll().size();
         } catch (RealmMigrationNeededException e) {
             e.fillInStackTrace();
             return 0;
@@ -220,7 +222,7 @@ public class EntryContainer extends ApplicationBase {
 
     ) {
         Realm realm = Realm.getInstance(conf);
-        if (check_duplicated(realm, entryId)) return false;
+        if (check_duplicated(entryId)) return false;
         realm.beginTransaction();
         addToEntryContainer(realm.createObject(MenuEntry.class),
                 type,
