@@ -40,7 +40,7 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
          * Delegate the click event to the listener and check if selection MULTI enabled.<br/>
          * If yes, call toggleActivation.
          *
-         * @param position
+         * @param position  n+ position
          * @return true if MULTI selection is enabled, false for SINGLE selection
          */
         boolean onListItemClick(int position);
@@ -48,7 +48,7 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
         /**
          * This always calls toggleActivation after listener event is consumed.
          *
-         * @param position
+         * @param position long click position
          */
         void onListItemLongClick(int position);
     }
