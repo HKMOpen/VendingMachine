@@ -4,7 +4,6 @@ import com.hkmvend.sdk.storage.Menu.MenuEntry;
 
 import java.io.Serializable;
 
-import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
@@ -12,7 +11,9 @@ import io.realm.RealmObject;
  * Created by hesk on 26/1/16.
  */
 public class Bill extends RealmObject implements Serializable {
+
     public static final String
+
             Field_start_time = "start_time",
             Field_signed_staff = "signed_staff",
             Field_pay_time = "pay_time",
@@ -21,7 +22,8 @@ public class Bill extends RealmObject implements Serializable {
             Field_table_id = "table_id",
             Field_isBillCompleted = "isBillCompleted",
             Field_table_remark = "table_remark",
-            Field_bill_number_code_long = "bill_number_code";
+            Field_bill_number_code_long = "bill_number_code",
+            Field_payment_made = "payment_collected";
     private long bill_number_code;
     private RealmList<MenuEntry> orders;
     private String signed_staff;
@@ -29,11 +31,18 @@ public class Bill extends RealmObject implements Serializable {
     private String pay_time;
     private String bill_void_sign;
     private String bill_void_time;
-
     private String table_id;
     private String table_remark;
-
+    private boolean payment_collected;
     private int headcount;
+    
+    public boolean isPayment_collected() {
+        return payment_collected;
+    }
+
+    public void setPayment_collected(boolean payment_collected) {
+        this.payment_collected = payment_collected;
+    }
 
     public boolean isBillCompleted() {
         return isBillCompleted;
@@ -138,7 +147,6 @@ public class Bill extends RealmObject implements Serializable {
     public void setStart_time(String start_time) {
         this.start_time = start_time;
     }
-
 
 
 }

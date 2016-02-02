@@ -1,25 +1,22 @@
 package com.hkm.staffvend;
 
 import android.app.Activity;
-import android.os.Handler;
-import android.os.Looper;
-import android.support.design.widget.Snackbar;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
-
-import eu.davidea.flexibleadapter.FlexibleAdapter;
-
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.text.InputType;
 import android.util.Log;
@@ -32,18 +29,20 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import static com.hkm.staffvend.event.ApplicationConstant.*;
-
 import com.hkm.staffvend.event.ApplicationConstant;
 import com.hkm.staffvend.event.BS;
 import com.hkm.staffvend.event.Utils;
-import com.hkm.staffvend.usage.TableAdapter;
 import com.hkm.staffvend.usage.SimpleDividerItemDecoration;
+import com.hkm.staffvend.usage.TableAdapter;
 import com.hkmvend.sdk.client.RestaurantPOS;
 import com.hkmvend.sdk.storage.Bill.Bill;
 import com.hkmvend.sdk.storage.Bill.BillContainer;
 import com.marshalchen.ultimaterecyclerview.animators.SlideInRightAnimator;
 import com.squareup.otto.Subscribe;
+
+import eu.davidea.flexibleadapter.FlexibleAdapter;
+
+import static com.hkm.staffvend.event.ApplicationConstant.INTENT_TABLE_FUNCTION;
 
 /**
  * Created by hesk on 27/1/16.
@@ -109,7 +108,7 @@ public class SecBillCollection extends AppCompatActivity implements
         return true;
     }
 
-    ProgressBar mbar;
+    private ProgressBar mbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +117,7 @@ public class SecBillCollection extends AppCompatActivity implements
         Log.d(TAG, "onCreate");
         if (!loadIntentArguements()) return;
         //Adapter & RecyclerView
-        mAdapter = new TableAdapter(this, instance);
+        mAdapter = new TableAdapter(this, instance, getIntent().getExtras());
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setAdapter(mAdapter);
@@ -204,9 +203,7 @@ public class SecBillCollection extends AppCompatActivity implements
     @Override
     public void onSaveInstanceState(Bundle outState) {
         Log.v(TAG, "onSaveInstanceState start!");
-
         mAdapter.onSaveInstanceState(outState);
-
         if (mActivatedPosition != AdapterView.INVALID_POSITION) {
             //Serialize and persist the activated item position.
             outState.putInt(STATE_ACTIVATED_POSITION, mActivatedPosition);

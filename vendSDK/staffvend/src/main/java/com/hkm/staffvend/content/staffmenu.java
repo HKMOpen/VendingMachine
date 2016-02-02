@@ -60,7 +60,7 @@ public class staffmenu extends content_base implements DialogTextInput.OnEditIte
             public void onClick(View v) {
                 Bundle b = new Bundle();
                 b.putInt(INTENT_TABLE_FUNCTION, FUNC_VIEW_ONLY);
-                b.putStringArray(INTENT_TABLE_FILTER, new String[]{Bill.Field_pay_time, "paid"});
+                b.putStringArray(INTENT_TABLE_FILTER, new String[]{Bill.Field_pay_time, "unpaid"});
                 Intent i = new Intent(getActivity(), SecBillCollection.class);
                 i.putExtras(b);
                 getActivity().startActivityForResult(i, VIEW_UNPAID_TABLES);

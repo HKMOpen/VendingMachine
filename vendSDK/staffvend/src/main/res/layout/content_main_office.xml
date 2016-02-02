@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryText_light">
 
     <ScrollView
         android:id="@+id/leftside"
@@ -69,21 +70,47 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:src="@drawable/receiptee"
+                android:tint="@color/list_choice_normal_bg_light" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="table number"
+                android:textColor="@color/list_choice_normal_bg_light"
+                android:textSize="10dp" />
+
             <TextView
                 android:id="@+id/current_table"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:paddingLeft="10dp"
                 android:text="table engagement"
+                android:textColor="@color/list_choice_normal_bg_light"
                 android:textSize="25dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="Status"
+                android:textColor="@color/list_choice_normal_bg_light"
+                android:textSize="10dp" />
 
             <TextView
                 android:id="@+id/current_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:paddingLeft="10dp"
                 android:singleLine="false"
-                android:text="current status" />
+                android:text="current status"
+                android:textColor="@color/list_choice_normal_bg_light" />
 
         </LinearLayout>
     </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.hkmvend.sdk.storage.Bill;
 
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public interface ibillcontainer {
     List<Bill> getPaidBills();
 
     List<Bill> getAll();
+    List<Bill> getByBundle(@Nullable Bundle extras);
 
     Bill newBill(int headcount, String table_id, @Nullable String remark);
 

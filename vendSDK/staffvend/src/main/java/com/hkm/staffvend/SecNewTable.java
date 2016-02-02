@@ -38,8 +38,13 @@ public class SecNewTable extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_new_table);
+        RestaurantPOS pos = RestaurantPOS.getInstance(getApplication());
+        final BillContainer bc = pos.getBillContainer();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setTitle("#" + bc.getLastestBillNumber() + "");
+
         table_id = (EditText) findViewById(R.id.table_id);
         people_count = (EditText) findViewById(R.id.people_count);
         table_remark = (EditText) findViewById(R.id.table_remark);
@@ -76,8 +81,7 @@ public class SecNewTable extends AppCompatActivity {
                             .make(view, sb.toString(), Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
-                    RestaurantPOS pos = RestaurantPOS.getInstance(getApplication());
-                    BillContainer bc = pos.getBillContainer();
+
                     Bill sucess = bc.newBill(
                             Integer.parseInt(people_count.getText().toString()),
                             table_id.getText().toString(),

@@ -2,9 +2,9 @@ package com.hkmvend.sdk.storage.Bill;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.Menu;
 
 import com.hkmvend.sdk.storage.ApplicationBase;
 import com.hkmvend.sdk.storage.Menu.EntryContainer;
@@ -35,8 +35,8 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
     public static final String
             CT_LAST_BILL_SERIAL_NUMBER = "lastnumx",
             CTABLEID = "currentengagedtableid",
-            CTABLELONGID = "focusbillid";
-
+            CTABLELONGID = "focusbillid",
+            INTENT_TABLE_FILTER = "extrefilter";
     private final RealmConfiguration conf;
     private Bill engaged;
     private static BillContainer instance;
@@ -155,12 +155,12 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
 
     @Override
     public List<Bill> getUnpaidBills() {
-        return getQuery().findAll();
+        return getQuery().equalTo(Bill.Field_payment_made, false).findAll();
     }
 
     @Override
     public List<Bill> getPaidBills() {
-        return getQuery().findAll();
+        return getQuery().equalTo(Bill.Field_payment_made, true).findAll();
     }
 
     @Override
@@ -173,6 +173,22 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
     }
 
     @Override
+    public List<Bill> getByBundle(@Nullable Bundle extras) {
+        if (extras != null) {
+            String[] config = extras.getStringArray(INTENT_TABLE_FILTER);
+            if (config[1].equalsIgnoreCase("paid")) {
+                return getPaidBills();
+            } else if (config[1].equalsIgnoreCase("unpaid")) {
+                return getUnpaidBills();
+            } else {
+                return getAll();
+            }
+        } else {
+            return getAll();
+        }
+    }
+
+    @Override
     public Bill newBill(int headcount, String table_id, @Nullable String remark) {
         Realm realm = Realm.getInstance(conf);
         realm.beginTransaction();
@@ -181,6 +197,7 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
         lastest_bill_id = (long) atomicInteger.getAndIncrement();
         target.setBill_number_code(lastest_bill_id);
         target.setTable_id(table_id);
+        target.setPayment_collected(false);
         if (remark != null)
             target.setTable_remark(remark);
         Date date = new Date();

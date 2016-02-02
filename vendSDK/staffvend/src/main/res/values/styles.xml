@@ -6,16 +6,12 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
-
         <!-- For selection -->
         <item name="selectableItemBackground">@drawable/selector_item_light</item>
-       <!-- <item name="primaryTextSelector">@drawable/primary_text_selector_light</item>-->
-
-
+        <!-- <item name="primaryTextSelector">@drawable/primary_text_selector_light</item>-->
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -32,6 +28,7 @@
         <item name="android:paddingRight">@dimen/dialog_padding_horizontal</item>
         <item name="android:paddingTop">@dimen/dialog_padding_vertical</item>
     </style>
+
     <style name="animation_slide_from_right">
         <item name="android:windowEnterAnimation">@anim/fab_slide_in_from_right</item>
         <item name="android:windowExitAnimation">@anim/fab_slide_out_to_left</item>

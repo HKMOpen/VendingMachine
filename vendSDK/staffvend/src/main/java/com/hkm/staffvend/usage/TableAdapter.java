@@ -2,6 +2,7 @@ package com.hkm.staffvend.usage;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.Spannable;
@@ -22,10 +23,9 @@ import com.hkm.staffvend.event.faster.FastScroller;
 import com.hkmvend.sdk.storage.Bill.Bill;
 import com.hkmvend.sdk.storage.Bill.BillContainer;
 
-import java.util.ArrayList;
 import java.util.Locale;
 
-import co.lujun.androidtagview.TagContainerLayout;
+import co.hkm.soltag.TagContainerLayout;
 import eu.davidea.flexibleadapter.FlexibleAdapter;
 
 /**
@@ -40,7 +40,7 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
          * Delegate the click event to the listener and check if selection MULTI enabled.<br/>
          * If yes, call toggleActivation.
          *
-         * @param position  n+ position
+         * @param position n+ position
          * @return true if MULTI selection is enabled, false for SINGLE selection
          */
         boolean onListItemClick(int position);
@@ -67,8 +67,8 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
             mSelectAll = false;
     private BillContainer instance;
 
-    public TableAdapter(Object activity, BillContainer container) {
-        super(container.getAll());
+    public TableAdapter(Object activity, BillContainer container, Bundle extras) {
+        super(container.getByBundle(extras));
         instance = container;
         this.mContext = (Context) activity;
         this.mClickListener = (OnItemClickListener) activity;
@@ -256,7 +256,6 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
      * Must be the base class of extension for Adapter Class.
      */
     static class SimpleViewHolder extends RecyclerView.ViewHolder {
-
         //  ImageView mImageView;
         TextView mTitle;
         TextView mSubtitle;
@@ -264,7 +263,6 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
         TagContainerLayout mMenuContainer;
         RelativeLayout mArea;
         TableAdapter mAdapter;
-
         SimpleViewHolder(View view) {
             super(view);
         }

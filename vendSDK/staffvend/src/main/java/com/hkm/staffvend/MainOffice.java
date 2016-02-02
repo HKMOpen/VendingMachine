@@ -28,21 +28,12 @@ public class MainOffice extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.as_content_vend_frame);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
+       // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+       // setSupportActionBar(toolbar);
         fabbutton = (FloatingActionButton) findViewById(R.id.fab);
-
         normal_start(new staffmenu());
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_vend, menu);
-        return true;
-    }
 
     private void normal_start(Fragment location) {
         FragmentManager fm = getFragmentManager();
