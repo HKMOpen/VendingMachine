@@ -3,8 +3,10 @@ package com.hkm.staffvend.event;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 
-import com.hkm.staffvend.content.staff;
+import com.hkm.staffvend.SecScanTbe;
+import com.hkm.staffvend.content.staffmenu;
 import com.hkm.staffvend.content.submenu;
 import com.hkmvend.sdk.storage.Bill.Bill;
 import com.hkmvend.sdk.storage.Menu.MenuEntry;
@@ -71,26 +73,35 @@ public class BS {
 
     public static void onResultFromPrevious(int requestCode, int resultCode, Intent data, Fragment current) {
         if (requestCode == NEW_TABLE && resultCode == Activity.RESULT_OK) {
-            if (current instanceof staff) {
-                staff home = (staff) current;
+            if (current instanceof staffmenu) {
+                staffmenu home = (staffmenu) current;
                 home.refreshEngagedTable();
             }
         }
-
         if (requestCode == VIEW_UNPAID_TABLES && resultCode == Activity.RESULT_OK) {
-            if (current instanceof staff) {
-                staff home = (staff) current;
+            if (current instanceof staffmenu) {
+                staffmenu home = (staffmenu) current;
                 home.refreshEngagedTable();
             }
         }
-
         if (requestCode == VIEW_PAID_TABLES && resultCode == Activity.RESULT_OK) {
-            if (current instanceof staff) {
-                staff home = (staff) current;
+            if (current instanceof staffmenu) {
+                staffmenu home = (staffmenu) current;
                 home.refreshEngagedTable();
             }
         }
+        if (requestCode == IMPORT_RESTUARANT_MENU && resultCode == Activity.RESULT_OK) {
+            //   if (current instanceof staffmenu) {
+            //     staffmenu home = (staffmenu) current;
+            //     home.refreshEngagedTable();
+            //  }
+            String scanned_text = data.getExtras().getString(SecScanTbe.FIELD);
 
+            Snackbar
+                    .make(current.getView(), scanned_text, Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+
+        }
 
     }
 }

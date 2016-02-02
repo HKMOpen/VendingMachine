@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.hkm.staffvend.SecScanTbe;
 import com.hkm.staffvend.R;
 import com.hkm.staffvend.SecNewTable;
 import com.hkm.staffvend.SecBillCollection;
@@ -24,9 +25,9 @@ import com.hkmvend.sdk.storage.Bill.BillContainer;
 /**
  * Created by hesk on 26/1/16.
  */
-public class staff extends content_base implements DialogTextInput.OnEditItemListener {
+public class staffmenu extends content_base implements DialogTextInput.OnEditItemListener {
 
-    private Button signInStaff, checkTablesPaid, checkTablesUnpaid, newtable, setButton;
+    private Button signInStaff, checkTablesPaid, checkTablesUnpaid, newtable, setButton, importButton;
     private TextView current_table, current_status;
     private BillContainer container;
     private boolean order_ready;
@@ -68,9 +69,18 @@ public class staff extends content_base implements DialogTextInput.OnEditItemLis
         setButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TicketNumSetDialog.newInstance(staff.this).show(getFragmentManager(), TicketNumSetDialog.TAG);
+                TicketNumSetDialog.newInstance(staffmenu.this).show(getFragmentManager(), TicketNumSetDialog.TAG);
             }
         });
+
+        importButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), SecScanTbe.class);
+                getActivity().startActivityForResult(i, IMPORT_RESTUARANT_MENU);
+            }
+        });
+
         refreshEngagedTable();
     }
 
@@ -100,6 +110,7 @@ public class staff extends content_base implements DialogTextInput.OnEditItemLis
         checkTablesUnpaid = (Button) view.findViewById(R.id.checkTables);
         newtable = (Button) view.findViewById(R.id.newtable);
         setButton = (Button) view.findViewById(R.id.setlastesttioc);
+        importButton = (Button) view.findViewById(R.id.importmenu);
         current_table = (TextView) view.findViewById(R.id.current_table);
         current_status = (TextView) view.findViewById(R.id.current_status);
     }
@@ -114,4 +125,6 @@ public class staff extends content_base implements DialogTextInput.OnEditItemLis
         Log.d("ca;;", newTitle);
         container.setMaunalLastestBillNumber(Integer.parseInt(newTitle));
     }
+
+
 }

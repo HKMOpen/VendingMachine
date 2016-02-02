@@ -15,7 +15,7 @@ import android.view.View;
 
 import com.hkm.staffvend.content.dish_panel;
 import com.hkm.staffvend.content.mainmenu;
-import com.hkm.staffvend.content.staff;
+import com.hkm.staffvend.content.staffmenu;
 import com.hkm.staffvend.event.BS;
 import com.squareup.otto.Subscribe;
 
@@ -33,7 +33,7 @@ public class MainOffice extends AppCompatActivity {
 
         fabbutton = (FloatingActionButton) findViewById(R.id.fab);
 
-        normal_start(new staff());
+        normal_start(new staffmenu());
     }
 
 
@@ -47,12 +47,12 @@ public class MainOffice extends AppCompatActivity {
     private void normal_start(Fragment location) {
         FragmentManager fm = getFragmentManager();
         current = location;
-        if (current instanceof staff) {
+        if (current instanceof staffmenu) {
             fabbutton.setImageResource(R.drawable.ic_queue_24dp);
             fabbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    staff s = (staff) current;
+                    staffmenu s = (staffmenu) current;
                     if (s.getOrderReady()) {
                         normal_start(new mainmenu());
                     } else {
@@ -68,7 +68,7 @@ public class MainOffice extends AppCompatActivity {
             fabbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    normal_start(new staff());
+                    normal_start(new staffmenu());
                 }
             });
             fabbutton.setVisibility(View.VISIBLE);

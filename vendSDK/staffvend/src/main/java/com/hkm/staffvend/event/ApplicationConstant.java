@@ -14,6 +14,7 @@ public class ApplicationConstant {
             NEW_TABLE = 102,
             NEW_STAFF = 103,
             NEW_SWITCH_STAFF = 104,
+            IMPORT_RESTUARANT_MENU = 107,
             VIEW_PAID_TABLES = 105,
             VIEW_UNPAID_TABLES = 106;
 

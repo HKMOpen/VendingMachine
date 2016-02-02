@@ -5,12 +5,14 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
+import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.View;
@@ -254,6 +256,15 @@ public class Utils {
 
         //Start the animation
         animator.start();
+    }
+
+    public static void setFinish(Activity activity, String field, String content) {
+        Bundle b = new Bundle();
+        b.putString(field, content);
+        Intent resultIntent = new Intent();
+        resultIntent.putExtras(b);
+        activity.setResult(Activity.RESULT_OK, resultIntent);
+        activity.finish();
     }
 
 }
