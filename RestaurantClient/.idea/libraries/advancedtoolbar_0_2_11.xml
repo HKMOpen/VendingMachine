@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="advancedtoolbar-0.2.11">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/ToolBarLib/advancedtoolbar/0.2.11/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/ToolBarLib/advancedtoolbar/0.2.11/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

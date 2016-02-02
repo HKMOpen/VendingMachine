@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="companylogo" type="id" />
+    <item name="longcontainerscoller" type="id" />
+    <item name="longcontainer" type="id" />
+    <item name="longx_holder" type="id" />
+    <item name="longx_menuname" type="id" />
+    <item name="longx_itemimage" type="id" />
+</resources>

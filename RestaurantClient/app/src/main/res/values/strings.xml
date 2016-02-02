@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">GoGoSushi</string>
+    <string name="addstar">Add Star</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="descriptions">$359 for Quadcopter with 2mp Camera and LED Light! $79 for Spare Lithium Battery! Quadcopter comes with 2mp camera! 300m remote control distance! 4 speed levels! 360-degree roll-over at the touch of one button! Cool color LED light! LCD screen on remote control to display flight data! Complimentary 2G external memory card and card reader included! Lithium battery has 500mAh capacity! Delivery service available!
+ </string>
+
+    <string name="sample_title">
+        BFB網上遊戲福袋，4款! 至Hit 足球員網上遊戲，有機會抽得 7 星最強門神??斯拿斯，成為足球界王者
+    </string>
+
+    <string name="sample_coupon_url">
+      http://static3.beecrazy.hk/assets/deals/d72844ebfc8038b7c6aa8d468722f42a/deal_box.jpg?ts=1433003757
+    </string>
+    <string name="small_title">1 Year Warranty! LG G3 D855 32GB, 3 colours</string>
+    <string name="small_1">$2,580 for a LG G3 D855 32GB! Available in black, white and gold! With an excellent 5.5-inch Quad HD display, a superb laser-focusing camera, a superfast quad-core processor and practical pre-installed apps, this sleek and stylish LG G3 is a fantastic all round phone! 1 year warranty! (Valued at $5,998)</string>
+
+
+    <string name="new_tab">new</string>
+    <string name="outlets">outlets</string>
+    <string name="food">food</string>
+    <string name="beauty">beauty</string>
+    <string name="luxury">luxury</string>
+    <string name="home">home</string>
+    <string name="deco">deco</string>
+    <string name="fashion">fashion</string>
+    <string name="digital">digital</string>
+    <string name="travel">travel</string>
+    <string name="fun">fun</string>
+    <string name="health">health</string>
+</resources>

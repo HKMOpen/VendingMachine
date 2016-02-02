@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@id/longx_menuname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="0dp"
+        android:gravity="center_horizontal" />
+
+    <ImageView
+        android:id="@id/longx_itemimage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/longx_menuname"
+        android:layout_gravity="center_horizontal"
+        android:padding="10dp"
+        android:scaleType="centerInside" />
+</RelativeLayout>
