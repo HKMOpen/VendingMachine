@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@id/item_ul_table"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+
+    android:padding="5dp">
 
 
     <LinearLayout
@@ -12,17 +14,26 @@
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
         android:gravity="right"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <ImageButton
             android:id="@id/item_ul_set_current"
             android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_handsoff" />
+            android:layout_height="60dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/btn_yellowgreen_glossy"
+            android:src="@drawable/ic_check_box_24dp" />
+
+        <ImageButton
+            android:id="@id/item_ul_set_current"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/btn_yellowgreen_glossy"
+            android:src="@drawable/ic_check_24dp" />
+
     </LinearLayout>
 
     <RelativeLayout
-
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_toLeftOf="@id/item_ul_b_box">
@@ -31,6 +42,7 @@
             android:id="@id/item_ul_bill_no"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:singleLine="true"
             android:text="#9399029"
             android:textSize="15sp" />
@@ -44,12 +56,10 @@
             android:layout_margin="5dp"
             android:padding="10dp"
             app:container_background_color="@color/trans"
-            app:container_border_color="#33666666"
+            app:container_border_color="@color/transborder"
             app:container_border_radius="0dp"
             app:container_gravity="left"
             app:horizontal_interval="10dp"
-            app:tag_background_color="#00000000"
-            app:tag_border_color="#330000ff"
             app:tag_border_width="1dp"
             app:tag_clickable="true"
             app:tag_corner_radius="1dp"
@@ -65,6 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/item_ul_tag_container"
+            android:paddingLeft="10dp"
             android:singleLine="true"
             android:text="$Summary"
             android:textSize="30sp" />
