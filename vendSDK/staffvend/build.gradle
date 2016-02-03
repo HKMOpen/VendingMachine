@@ -39,6 +39,5 @@ dependencies {
     compile 'com.hkm.taglib:tag:1.2.0'
     // compile 'com.google.gdata:core:1.47.1'
     compile project(':vendingmachinesdk')
-    compile 'com.aetrion.flickr:flickrapi:1.1'
-
+   // compile 'com.flickr4java:flickr4java:2.15'
 }

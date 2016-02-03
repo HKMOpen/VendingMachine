@@ -9,8 +9,8 @@ import com.hkmvend.sdk.client.RestaurantPOS;
 /**
  * Created by hesk on 28/1/16.
  */
-public class TicketNumSetDialog extends DialogTextInput {
-    public static final String TAG = TicketNumSetDialog.class.getSimpleName();
+public class TickeD extends DialogTextInput {
+    public static final String TAG = TickeD.class.getSimpleName();
     public static final String ARG_ITEM = "item";
     public static final String ARG_ITEM_POSITION = "position";
     //private Bill mItem;
@@ -18,11 +18,11 @@ public class TicketNumSetDialog extends DialogTextInput {
     private boolean itemFound = false;
 
 
-    public TicketNumSetDialog() {
+    public TickeD() {
     }
 
-    public static TicketNumSetDialog newInstance(Fragment onactivityresultfragment) {
-        TicketNumSetDialog dialog = new TicketNumSetDialog();
+    public static TickeD newInstance(Fragment onactivityresultfragment) {
+        TickeD dialog = new TickeD();
         Bundle args = new Bundle();
         dialog.setArguments(args);
         dialog.setTargetFragment(onactivityresultfragment, 0);

@@ -7,12 +7,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import com.hkm.staffvend.MainOffice;
 import com.hkm.staffvend.R;
 import com.hkmvend.sdk.client.RestaurantPOS;
 import com.hkmvend.sdk.storage.Bill.BillContainer;
 import com.hkmvend.sdk.storage.Menu.EntryContainer;
+
+import co.hkm.soltag.TagContainerLayout;
+import co.hkm.soltag.TagView;
+import co.hkm.soltag.ext.LayouMode;
 
 
 /**
@@ -37,7 +40,9 @@ public class dish_panel extends content_base implements View.OnClickListener {
     EntryContainer instanceMenuEntry;
     ImageView single_imagle;
     String entry_name;
+    TagContainerLayout counts;
     int entry_id;
+    int dish_count;
 
     @Override
     protected void initGDATA() {
@@ -52,7 +57,22 @@ public class dish_panel extends content_base implements View.OnClickListener {
         if (!entry_name.equalsIgnoreCase("")) {
             display.setText(entry_name);
         }
+        dish_count = 1;
+        counts.setMode(LayouMode.SINGLE_CHOICE);
+        counts.setThemeOnActive(R.style.tagactive);
+        counts.setTheme(R.style.tagnormal);
+        counts.setOnTagClickListener(new TagView.OnTagClickListener() {
+            @Override
+            public void onTagClick(int position, String text) {
+                dish_count = position + 1;
+            }
 
+            @Override
+            public void onTagLongClick(int position, String text) {
+
+            }
+        });
+        counts.setTags(new String[]{"1", "2", "3", "4", "5", "6", "7"});
         hideLoad();
     }
 
@@ -69,6 +89,7 @@ public class dish_panel extends content_base implements View.OnClickListener {
         bCancel = (Button) view.findViewById(R.id.cancelthis);
         display = (TextView) view.findViewById(R.id.dish_name_display);
         single_imagle = (ImageView) view.findViewById(R.id.display_dish_image);
+        counts = (TagContainerLayout) view.findViewById(R.id.item_ul_tag_container);
     }
 
     /**
@@ -79,7 +100,12 @@ public class dish_panel extends content_base implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == bOrder) {
-            boolean status = instanceBillContainer.makeNewOrderEntry(entry_id);
+            boolean status = false;
+            if (dish_count > 0) {
+                for (int h = 0; h < dish_count; h++) {
+                    status = instanceBillContainer.makeNewOrderEntry(entry_id);
+                }
+            }
             if (status) {
                 StringBuilder sb = new StringBuilder();
                 sb.append(entry_name);
@@ -93,6 +119,14 @@ public class dish_panel extends content_base implements View.OnClickListener {
                 if (getActivity() instanceof MainOffice) {
                     ((MainOffice) getActivity()).backHome();
                 }
+            }else{
+                StringBuilder sb = new StringBuilder();
+                sb.append(entry_name);
+                sb.append(" not success.");
+                Snackbar
+                        .make(v, sb.toString(), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null)
+                        .show();
             }
         } else if (v == bSearchmore) {
 

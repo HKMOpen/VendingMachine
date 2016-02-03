@@ -196,6 +196,7 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
         target.setHeadcount(headcount);
         lastest_bill_id = (long) atomicInteger.getAndIncrement();
         target.setBill_number_code(lastest_bill_id);
+        saveInfo(CT_LAST_BILL_SERIAL_NUMBER, lastest_bill_id);
         target.setTable_id(table_id);
         target.setPayment_collected(false);
         if (remark != null)

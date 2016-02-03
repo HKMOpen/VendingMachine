@@ -16,7 +16,8 @@ import com.hkm.staffvend.SecBillCollection;
 import static com.hkm.staffvend.event.ApplicationConstant.*;
 
 import com.hkm.staffvend.event.dialog.DialogTextInput;
-import com.hkm.staffvend.event.dialog.TicketNumSetDialog;
+import com.hkm.staffvend.event.dialog.TickeD;
+import com.hkm.staffvend.event.dialog.TicketNumD;
 import com.hkmvend.sdk.client.RestaurantPOS;
 import com.hkmvend.sdk.storage.Bill.Bill;
 import com.hkmvend.sdk.storage.Bill.BillContainer;
@@ -69,7 +70,7 @@ public class staffmenu extends content_base implements DialogTextInput.OnEditIte
         setButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TicketNumSetDialog.newInstance(staffmenu.this).show(getFragmentManager(), TicketNumSetDialog.TAG);
+                TickeD.newInstance(staffmenu.this).show(getFragmentManager(), TicketNumD.TAG);
             }
         });
 

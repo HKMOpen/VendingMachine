@@ -27,6 +27,6 @@
     <color name="cont_border_active">#e700997f</color>
     <color name="cont_tag_background_color">#b1f1d5</color>
     <color name="cont_tag_background_color_active">#ac1affd9</color>
-    <color name="cont_text_color">#6b6b6b</color>
-    <color name="cont_text_color_active">#666666</color>
+    <color name="cont_text_color">#eceaea</color>
+    <color name="cont_text_color_active">#1a1a1a</color>
 </resources>

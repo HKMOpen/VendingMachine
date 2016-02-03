@@ -8,12 +8,12 @@ import com.hkmvend.sdk.storage.Bill.Bill;
 /**
  * Created by hesk on 27/1/16.
  */
-public class EditItemDialog extends DialogTextInput {
+public class TicketNumD extends DialogTextInput {
 
     public static final String ARG_ITEM = "item";
     public static final String ARG_ITEM_POSITION = "position";
 
-    public EditItemDialog() {
+    public TicketNumD() {
     }
 
     @Override
@@ -30,12 +30,12 @@ public class EditItemDialog extends DialogTextInput {
         return mItem.getBill_number_code() + "";
     }
 
-    public static EditItemDialog newInstance(long position) {
+    public static TicketNumD newInstance(long position) {
         return newInstance(position, null);
     }
 
-    public static EditItemDialog newInstance(long position, Fragment onactivityresultfragment) {
-        EditItemDialog dialog = new EditItemDialog();
+    public static TicketNumD newInstance(long position, Fragment onactivityresultfragment) {
+        TicketNumD dialog = new TicketNumD();
         Bundle args = new Bundle();
         // args.putSerializable(ARG_ITEM, item);
         args.putLong(ARG_ITEM_POSITION, position);
