@@ -26,6 +26,8 @@ import com.hkmvend.sdk.storage.Bill.BillContainer;
 import java.util.Locale;
 
 import co.hkm.soltag.TagContainerLayout;
+import co.hkm.soltag.TagView;
+import co.hkm.soltag.ext.LayouMode;
 import eu.davidea.flexibleadapter.FlexibleAdapter;
 
 /**
@@ -161,6 +163,20 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
                 }
             });
             holder.mMenuContainer.removeAllTags();
+            holder.mMenuContainer.setThemeOnActive(R.style.tagactive);
+            holder.mMenuContainer.setTheme(R.style.tagnormal);
+            holder.mMenuContainer.setMode(LayouMode.SINGLE_CHOICE);
+            holder.mMenuContainer.setOnTagClickListener(new TagView.OnTagClickListener() {
+                @Override
+                public void onTagClick(int position, String text) {
+
+                }
+
+                @Override
+                public void onTagLongClick(int position, String text) {
+
+                }
+            });
             holder.mMenuContainer.setTags(BillContainer.getOrderedItemsChinese(item));
             //IMPORTANT: Example View finishes here!!
             return;
@@ -263,6 +279,7 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
         TagContainerLayout mMenuContainer;
         RelativeLayout mArea;
         TableAdapter mAdapter;
+
         SimpleViewHolder(View view) {
             super(view);
         }

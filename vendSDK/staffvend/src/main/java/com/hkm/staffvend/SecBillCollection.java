@@ -95,7 +95,6 @@ public class SecBillCollection extends AppCompatActivity implements
     /**
      * FAB
      */
-    private FloatingActionButton mFab;
     private int intent_function;
     private BillContainer instance;
 
@@ -132,34 +131,7 @@ public class SecBillCollection extends AppCompatActivity implements
         // fastScroller.setViewsToUse(R.layout.fast_scroller, R.id.fast_scroller_bubble, R.id.fast_scroller_handle);
 
         //FAB
-        mFab = (FloatingActionButton) findViewById(R.id.fab);
-        mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                destroyActionModeIfNeeded();
 
-               /* for (int i = 0; i <= mAdapter.getItemCount(); i++) {
-                    Item item = DatabaseService.newExampleItem(i);
-
-                    if (!DatabaseService.getInstance().getListById(null).contains(item)) {
-                        DatabaseService.getInstance().addItem(i, item);//This is the original list
-                        //TODO: Use userLearnedSelection from settings
-                        if (!DatabaseService.userLearnedSelection)
-                            i++;//Fixing exampleAdapter for new position :-)
-                        mAdapter.addItem(i, item);//Adapter's list is a copy, to animate the item you must call addItem on the new position
-                        Log.d(TAG, "Added New " + item.getTitle());
-
-                        Toast.makeText(MainActivity.this, "Added New " + item.getTitle(), Toast.LENGTH_SHORT).show();
-                        mRecyclerView.smoothScrollToPosition(i);
-
-                        //EmptyView
-                        updateEmptyView();
-
-                        break;
-                    }
-                }*/
-            }
-        });
 
         //Update EmptyView (by default EmptyView is visible)
         updateEmptyView();
@@ -271,7 +243,7 @@ public class SecBillCollection extends AppCompatActivity implements
             mAdapter.updateDataSet();
         }
 
-        if (mAdapter.hasSearchText()) {
+     /*   if (mAdapter.hasSearchText()) {
             //mFab.setVisibility(View.GONE);
             ViewCompat.animate(mFab)
                     .scaleX(0f)
@@ -288,7 +260,7 @@ public class SecBillCollection extends AppCompatActivity implements
                     .setDuration(100)
                     .start();
         }
-
+*/
         return true;
     }
 

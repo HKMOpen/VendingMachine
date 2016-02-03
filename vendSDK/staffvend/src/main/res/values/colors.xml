@@ -6,10 +6,14 @@
 
 
     <!-- Light Theme -->
-    <color name="colorPrimary_light">#673AB7</color><!-- Deep Purple 500 -->
-    <color name="colorPrimaryDark_light">#512DA8</color><!-- Deep Purple 700 -->
-    <color name="colorAccent_light">#FF4081</color><!-- Pink A200 -->
-    <color name="colorAccentDark_light">#c51162</color><!-- Pink A700: for statusBar in actionMode -->
+    <color name="colorPrimary_light">#673AB7</color>
+    <!-- Deep Purple 500 -->
+    <color name="colorPrimaryDark_light">#512DA8</color>
+    <!-- Deep Purple 700 -->
+    <color name="colorAccent_light">#FF4081</color>
+    <!-- Pink A200 -->
+    <color name="colorAccentDark_light">#c51162</color>
+    <!-- Pink A700: for statusBar in actionMode -->
     <color name="colorPrimaryText_light">#de000000</color>
 
     <!-- Common colors -->
@@ -18,5 +22,10 @@
 
     <color name="trans">#abcccccc</color>
 
-
+    <color name="cont_border">#3668ff</color>
+    <color name="cont_border_active">#e700997f</color>
+    <color name="cont_tag_background_color">#b1f1d5</color>
+    <color name="cont_tag_background_color_active">#ac1affd9</color>
+    <color name="cont_text_color">#6b6b6b</color>
+    <color name="cont_text_color_active">#666666</color>
 </resources>
