@@ -121,7 +121,7 @@ public class SecPayment extends AppCompatActivity implements
         intent_function = h;
         target_bill = instance.findBillById(bill_code);
         transaction_id.setText(target_bill.getBill_number_code() + "");
-        people_count.setText(target_bill.getHeadcount());
+        people_count.setText(target_bill.getHeadcount() + "");
         orders.setTags(BillContainer.getOrderedItemsChinese(target_bill));
 
         StringBuilder sb = new StringBuilder();
