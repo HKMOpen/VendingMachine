@@ -307,11 +307,21 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
     }
 
 
-    public void update(Bill contact, Realm realm) {
-        //do update stuff
-        // Email email = realm.copyToRealm(new Email());
-        //  contact.getEmails().add(email);
+    public void updateHeadCount(Bill target, int people) {
+        Realm realm = Realm.getInstance(conf);
+        realm.beginTransaction();
+        target.setHeadcount(people);
+        realm.commitTransaction();
+    }
 
-
+    public void settlePayment(Bill target, float collected_amount) {
+        Realm realm = Realm.getInstance(conf);
+        realm.beginTransaction();
+        target.setPayment_collected(true);
+        Date t = new Date();
+        Timestamp timestamp_now = new Timestamp(t.getTime());
+        target.setPay_time(timestamp_now.toString());
+        target.setConsolidated_payment(collected_amount);
+        realm.commitTransaction();
     }
 }

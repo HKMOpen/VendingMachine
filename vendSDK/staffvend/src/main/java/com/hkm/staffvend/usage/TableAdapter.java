@@ -1,6 +1,7 @@
 package com.hkm.staffvend.usage;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hkm.staffvend.R;
+import com.hkm.staffvend.SecPayment;
 import com.hkm.staffvend.event.BS;
 import com.hkm.staffvend.event.Utils;
 import com.hkm.staffvend.event.faster.FastScroller;
@@ -29,6 +31,10 @@ import co.hkm.soltag.TagContainerLayout;
 import co.hkm.soltag.TagView;
 import co.hkm.soltag.ext.LayouMode;
 import eu.davidea.flexibleadapter.FlexibleAdapter;
+
+import static com.hkm.staffvend.event.ApplicationConstant.INTENT_BILL_ID;
+import static com.hkm.staffvend.event.ApplicationConstant.INTENT_TABLE_FUNCTION;
+import static com.hkm.staffvend.event.ApplicationConstant.MAKE_PAYMENT;
 
 /**
  * Created by hesk on 27/1/16.
@@ -178,6 +184,19 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
                 }
             });
             holder.mMenuContainer.setTags(BillContainer.getOrderedItemsChinese(item));
+
+            holder.mPayment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent in = new Intent(mContext, SecPayment.class);
+                    Bundle b = new Bundle();
+                    b.putLong(INTENT_BILL_ID, item.getBill_number_code());
+                    b.putInt(INTENT_TABLE_FUNCTION, MAKE_PAYMENT);
+                    in.putExtras(b);
+                    mContext.startActivity(in);
+                }
+            });
+
             //IMPORTANT: Example View finishes here!!
             return;
         }
@@ -275,7 +294,7 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
         //  ImageView mImageView;
         TextView mTitle;
         TextView mSubtitle;
-        ImageButton mDismissIcon, mSetCurrent;
+        ImageButton mDismissIcon, mSetCurrent, mPayment;
         TagContainerLayout mMenuContainer;
         RelativeLayout mArea;
         TableAdapter mAdapter;
@@ -292,6 +311,7 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
             mMenuContainer = (TagContainerLayout) view.findViewById(R.id.item_ul_tag_container);
             mArea = (RelativeLayout) view.findViewById(R.id.item_ul_table);
             mSetCurrent = (ImageButton) view.findViewById(R.id.item_ul_set_current);
+            mPayment = (ImageButton) view.findViewById(R.id.item_ul_collection);
         }
 
         public void setCurrent(final Runnable run) {
@@ -302,6 +322,7 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
                 }
             });
         }
+
     }
 
     private void userLearnedSelection() {

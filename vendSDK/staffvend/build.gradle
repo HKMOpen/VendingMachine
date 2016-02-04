@@ -36,7 +36,7 @@ dependencies {
    // compile 'com.github.kenglxn.QRGen:javase:2.1.0'
     compile 'me.dm7.barcodescanner:zxing:1.8.4'
     compile 'eu.davidea:flexible-adapter:4.2.0'
-    compile 'com.hkm.taglib:tag:1.2.0'
+    compile 'com.hkm.taglib:tag:1.2.6'
     // compile 'com.google.gdata:core:1.47.1'
     compile project(':vendingmachinesdk')
    // compile 'com.flickr4java:flickr4java:2.15'

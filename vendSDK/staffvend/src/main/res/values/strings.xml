@@ -8,6 +8,7 @@
     <string name="action_selected_one">one</string>
     <string name="action_selected_many">many</string>
     <string name="action_down_order">new order of this dish</string>
+    <string name="action_set_bill_num">Please setup your bill number.</string>
     <string name="action_search_similar">search history</string>
     <string name="dialog_edit_title">Edit</string>
     <string name="dialog_edit_title_hint">Add your search in here</string>
@@ -17,6 +18,9 @@
     <string name="action_search">no edit</string>
     <string name="no_items">there is no items</string>
     <string name="note_no_message">Warnings! There is no messages containing from this scan.</string>
+    <string name="label_table_num">Table Name / Number.</string>
+    <string name="label_remark">Customer Remark.</string>
+    <string name="label_head_count">Head Count</string>
 
     <string name="CANCEL">CANCEL</string>
     <string name="OK">OK</string>

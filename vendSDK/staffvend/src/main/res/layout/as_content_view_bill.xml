@@ -17,65 +17,121 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            app:contentInsetEnd="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetStart="0dp"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/table_id"
-                    android:layout_width="150dp"
-                    android:layout_height="50dp"
-                    android:editable="false"
-                    android:inputType="textNoSuggestions"
-                    android:singleLine="true" />
-
-                <ImageButton
-                    android:id="@+id/add"
+                <TextView
+                    android:id="@+id/transaction_id"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_add_24dp" />
+                    android:gravity="center_vertical|left"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:text="XXXX"
+                    android:textSize="28sp" />
 
-                <EditText
-                    android:id="@+id/people_count"
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"
-                    android:inputType="number"
-                    android:singleLine="true" />
-
-                <ImageButton
-                    android:id="@+id/remove"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_remove_24dp" />
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <ImageButton
+                        android:id="@+id/add_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_add_24dp" />
+
+                    <TextView
+                        android:id="@+id/people_count"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:singleLine="true"
+                        android:text="99"
+                        android:textSize="30sp" />
+
+                    <ImageButton
+                        android:id="@+id/remove_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_remove_24dp" />
+                </LinearLayout>
+
+            </RelativeLayout>
 
 
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
-        android:id="@+id/fragment"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:padding="10dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-
-        <TextView
+        <LinearLayout
+            android:id="@+id/fragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="New Entry" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/entry"
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/field_remark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="REMARK: XXX"
+                android:textSize="@dimen/font_remark" />
+
+            <co.hkm.soltag.TagContainerLayout
+                android:id="@id/item_ul_tag_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:elevation="3dp"
+                android:padding="10dp"
+                app:container_background_color="@color/woodboard_dark"
+                app:container_border_color="@color/transborder"
+                app:container_border_radius="0dp"
+                app:container_gravity="left"
+                app:horizontal_interval="10dp"
+                app:tag_border_width="1dp"
+                app:tag_clickable="true"
+                app:tag_corner_radius="1dp"
+                app:tag_horizontal_padding="15dp"
+                app:tag_max_length="18"
+                app:tag_text_direction="rtl"
+                app:tag_text_size="14sp"
+                app:tag_vertical_padding="20dp"
+                app:vertical_interval="10dp"
+                tools:ignore="UnusedAttribute" />
+
+            <TextView
+                android:id="@+id/grant_total"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/font_grant_total" />
+
+            <TextView
+                android:id="@+id/service_charge"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/font_service_charge" />
+
+            <TextView
+                android:id="@+id/average"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/font_average_charge" />
+
+        </LinearLayout>
+    </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

@@ -47,7 +47,7 @@ public class ImageDisMos extends MosAdapter<MenuEntry, ImageDisMos.Frame> {
 
 
         binder.text.setText(sb.toString());
-        //  binder.image.setImageResource(R.mipmap.ic_launcher);
+        //  binder.image.setImageResource(R.mipmap.ic_launcher_jj);
 
         binder.image.setOnClickListener(new View.OnClickListener() {
             @Override

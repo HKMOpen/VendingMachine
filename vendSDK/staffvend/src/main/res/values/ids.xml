@@ -15,6 +15,7 @@
     <item name="item_ul_dismiss" type="id" />
     <item name="item_ul_b_box" type="id" />
     <item name="item_ul_set_current" type="id" />
+    <item name="item_ul_collection" type="id" />
 
     <item name="dialog_text_edit" type="id" />
 

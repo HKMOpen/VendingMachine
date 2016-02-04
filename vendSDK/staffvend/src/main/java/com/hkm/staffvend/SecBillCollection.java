@@ -129,10 +129,7 @@ public class SecBillCollection extends AppCompatActivity implements
         // FastScroller fastScroller = (FastScroller) findViewById(R.id.fast_scroller);
         //  fastScroller.setRecyclerView(mRecyclerView);
         // fastScroller.setViewsToUse(R.layout.fast_scroller, R.id.fast_scroller_bubble, R.id.fast_scroller_handle);
-
         //FAB
-
-
         //Update EmptyView (by default EmptyView is visible)
         updateEmptyView();
 

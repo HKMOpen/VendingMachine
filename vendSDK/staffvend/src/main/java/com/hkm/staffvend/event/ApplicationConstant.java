@@ -7,6 +7,7 @@ public class ApplicationConstant {
     public static final String DATE_TIME = "dd MMM yyyy HH:mm:ss z";
 
     public static final String INTENT_TABLE_FUNCTION = "ifunction";
+    public static final String INTENT_BILL_ID = "transaction_id";
     public static final String INTENT_TABLE_FILTER = "extrefilter";
 
     //new intent code
@@ -14,9 +15,10 @@ public class ApplicationConstant {
             NEW_TABLE = 102,
             NEW_STAFF = 103,
             NEW_SWITCH_STAFF = 104,
-            IMPORT_RESTUARANT_MENU = 107,
             VIEW_PAID_TABLES = 105,
-            VIEW_UNPAID_TABLES = 106;
+            VIEW_UNPAID_TABLES = 106,
+            IMPORT_RESTUARANT_MENU = 107,
+            MAKE_PAYMENT = 108;
 
     //View table function code
     public static final int

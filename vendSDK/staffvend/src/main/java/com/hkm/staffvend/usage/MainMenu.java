@@ -51,7 +51,7 @@ public class MainMenu extends MosAdapter<MainMenuItem, MainMenu.Frame> {
     @Override
     protected void bindData(final MainMenuItem menuEntry, int position, MainMenu.Frame binder) {
         binder.text.setText(menuEntry.getName());
-        //binder.image.setImageResource(R.mipmap.ic_launcher);
+        //binder.image.setImageResource(R.mipmap.ic_launcher_jj);
         binder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

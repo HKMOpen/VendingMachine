@@ -18,6 +18,19 @@
     <dimen name="icon_touchable_component_mini">40dp</dimen>
     <dimen name="butterbar_height">3dp</dimen>
     <dimen name="button_padding_vertical">30dp</dimen>
+    <dimen name="padding_button_sq">25dp</dimen>
+    <dimen name="padding_button_sq_single_ver">20dp</dimen>
 
+
+    <dimen name="font_head_count">30sp</dimen>
+    <dimen name="font_major">30sp</dimen>
+    <dimen name="font_major_sub">26sp</dimen>
+    <dimen name="font_major_sub_sub">23sp</dimen>
+
+
+    <dimen name="font_grant_total">@dimen/font_major</dimen>
+    <dimen name="font_service_charge">@dimen/font_major_sub</dimen>
+    <dimen name="font_average_charge">@dimen/font_major_sub</dimen>
+    <dimen name="font_remark">@dimen/font_major_sub_sub</dimen>
 
 </resources>

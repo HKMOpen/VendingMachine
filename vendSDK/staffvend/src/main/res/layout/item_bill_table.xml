@@ -25,7 +25,7 @@
             android:src="@drawable/ic_check_box_24dp" />
 
         <ImageButton
-            android:id="@id/item_ul_set_current"
+            android:id="@id/item_ul_collection"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:background="@drawable/btn_yellowgreen_glossy"
@@ -55,7 +55,7 @@
             android:layout_below="@id/item_ul_bill_no"
             android:layout_margin="5dp"
             android:padding="10dp"
-            app:container_background_color="@color/trans"
+            app:container_background_color="@color/woodboard"
             app:container_border_color="@color/transborder"
             app:container_border_radius="0dp"
             app:container_gravity="left"

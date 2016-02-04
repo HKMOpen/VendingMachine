@@ -19,8 +19,10 @@
     <!-- Common colors -->
     <color name="list_choice_normal_bg_light">#ffff</color>
     <color name="list_choice_pressed_bg_light">#fccc</color>
+    <color name="divider">#a7a7a7</color>
 
-    <color name="trans">#fbe7cc91</color>
+    <color name="woodboard">#fbdfc58d</color>
+    <color name="woodboard_dark">#fb938466</color>
     <color name="transborder">#fb9c8450</color>
 
     <color name="cont_border">#3668ff</color>
