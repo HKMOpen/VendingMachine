@@ -9,9 +9,9 @@
     <string name="action_selected_many">many</string>
     <string name="action_down_order">new order of this dish</string>
     <string name="action_search_similar">search history</string>
-    <string name="dialog_edit_title">edit</string>
-    <string name="dialog_edit_title_hint">add your search in here</string>
-    <string name="dialog_edit_number_hint">enter your number in here</string>
+    <string name="dialog_edit_title">Edit</string>
+    <string name="dialog_edit_title_hint">Add your search in here</string>
+    <string name="dialog_edit_number_hint">Enter your number in here</string>
     <string name="text_edit_title">edit</string>
     <string name="err_no_edit">no edit</string>
     <string name="action_search">no edit</string>
