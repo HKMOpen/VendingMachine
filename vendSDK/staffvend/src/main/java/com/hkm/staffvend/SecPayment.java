@@ -120,11 +120,16 @@ public class SecPayment extends AppCompatActivity implements
         if (h == -1 || bill_code == -1L) return;
         intent_function = h;
         target_bill = instance.findBillById(bill_code);
-        transaction_id.setText(target_bill.getBill_number_code() + "");
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("#");
+        sb.append(target_bill.getBill_number_code());
+        transaction_id.setText(sb.toString());
+
         people_count.setText(target_bill.getHeadcount() + "");
         orders.setTags(BillContainer.getOrderedItemsChinese(target_bill));
 
-        StringBuilder sb = new StringBuilder();
+        sb = new StringBuilder();
         sb.append("Remark");
         sb.append(": ");
         sb.append(target_bill.getTable_remark());

@@ -34,7 +34,7 @@ public class TickeD extends DialogTextInput {
     protected String getDefaultFieldDisplay(Bundle bundle) {
         //mItem = (Bill) bundle.getSerializable(ARG_ITEM);
         final long mLBN = RestaurantPOS.getInstance(getActivity().getApplication()).getBillContainer().getLastestBillNumber();
-        setFoundData(mLBN == -1);
+        setFoundData(mLBN > -1);
         final String field_display = isDataFound() ? "" : mLBN + "";
         return field_display;
     }

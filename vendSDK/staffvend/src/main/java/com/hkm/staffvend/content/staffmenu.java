@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.hkm.staffvend.SecAbout;
 import com.hkm.staffvend.SecScanTbe;
 import com.hkm.staffvend.R;
 import com.hkm.staffvend.SecNewTable;
@@ -28,7 +29,7 @@ import com.hkmvend.sdk.storage.Bill.BillContainer;
  */
 public class staffmenu extends content_base implements DialogTextInput.OnEditItemListener {
 
-    private Button signInStaff, checkTablesPaid, checkTablesUnpaid, newtable, setButton, importButton;
+    private Button signInStaff, aboutButton, checkTablesPaid, checkTablesUnpaid, newtable, setButton, importButton;
     private TextView current_table, current_status;
     private BillContainer container;
     private boolean order_ready;
@@ -81,6 +82,13 @@ public class staffmenu extends content_base implements DialogTextInput.OnEditIte
                 getActivity().startActivityForResult(i, IMPORT_RESTUARANT_MENU);
             }
         });
+        aboutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), SecAbout.class);
+                getActivity().startActivity(i);
+            }
+        });
 
         refreshEngagedTable();
     }
@@ -112,8 +120,10 @@ public class staffmenu extends content_base implements DialogTextInput.OnEditIte
         newtable = (Button) view.findViewById(R.id.newtable);
         setButton = (Button) view.findViewById(R.id.setlastesttioc);
         importButton = (Button) view.findViewById(R.id.importmenu);
+        aboutButton = (Button) view.findViewById(R.id.about);
         current_table = (TextView) view.findViewById(R.id.current_table);
         current_status = (TextView) view.findViewById(R.id.current_status);
+
     }
 
     @LayoutRes

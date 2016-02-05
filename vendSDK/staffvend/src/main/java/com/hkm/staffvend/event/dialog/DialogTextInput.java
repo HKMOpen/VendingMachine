@@ -153,15 +153,17 @@ public abstract class DialogTextInput extends DialogFragment {
     private void updateOkButtonState(AlertDialog dialog, EditText editText) {
         Button buttonOK = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
         if (editText == null || (editText.getText().toString().trim()).length() == 0) {
+            data_is_existed = false;
+            if (editText != null) {
+                editText.setError(getActivity().getString(R.string.err_no_edit));
+            }
             buttonOK.setEnabled(false);
             return;
-        }
-        if (data_is_existed) {
-            buttonOK.setEnabled(true);
         } else {
-            editText.setError(getActivity().getString(R.string.err_no_edit));
-            buttonOK.setEnabled(false);
+            data_is_existed = true;
+            buttonOK.setEnabled(true);
         }
+
 
         return;
     }

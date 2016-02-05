@@ -24,4 +24,5 @@
 
     <string name="CANCEL">CANCEL</string>
     <string name="OK">OK</string>
+    <string name="nothing"></string>
 </resources>

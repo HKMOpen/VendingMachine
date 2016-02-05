@@ -8,8 +8,8 @@ android {
         applicationId "com.hkm.staffvend"
         minSdkVersion 17
         targetSdkVersion 23
-        versionCode 10
-        versionName "1.1.5"
+        versionCode 12
+        versionName "1.2.0"
     }
     buildTypes {
         release {

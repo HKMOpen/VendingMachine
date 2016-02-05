@@ -21,12 +21,10 @@
     <dimen name="padding_button_sq">25dp</dimen>
     <dimen name="padding_button_sq_single_ver">20dp</dimen>
 
-
     <dimen name="font_head_count">30sp</dimen>
-    <dimen name="font_major">30sp</dimen>
+    <dimen name="font_major">35sp</dimen>
     <dimen name="font_major_sub">26sp</dimen>
     <dimen name="font_major_sub_sub">23sp</dimen>
-
 
     <dimen name="font_grant_total">@dimen/font_major</dimen>
     <dimen name="font_service_charge">@dimen/font_major_sub</dimen>

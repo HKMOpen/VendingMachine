@@ -22,29 +22,6 @@ public class mainmenu extends content_base {
     }
 
 
-    RestaurantPOS.DataConfigCB callback = new RestaurantPOS.DataConfigCB() {
-        @Override
-        public void success(final List<MenuEntry> list) {
-           /* ErrorMessage.alert("successfully found items " + list.size(), getChildFragmentManager(), new Runnable() {
-                @Override
-                public void run() {
-                    startMainMenu(list);
-                }
-            });*/
-            startMainMenu(list);
-        }
-
-        @Override
-        public void failure(String error_cause) {
-            ErrorMessage.alert(error_cause, getChildFragmentManager(), new Runnable() {
-                @Override
-                public void run() {
-                    initGDATA();
-                }
-            });
-        }
-    };
-
     private void startMainMenu(List<MenuEntry> allentries) {
         Iterator<MenuEntry> e = allentries.iterator();
         List<Integer> names = new ArrayList<>();
@@ -68,8 +45,8 @@ public class mainmenu extends content_base {
         });
         mAdapater.setData(main);
         mMosaicLayout.addPattern(pattern1);
-        mMosaicLayout.addPattern(pattern2);
-        mMosaicLayout.chooseRandomPattern(true);
+        // mMosaicLayout.addPattern(pattern2);
+        //  mMosaicLayout.chooseRandomPattern(true);
         mMosaicLayout.setAdapter(mAdapater);
         hideLoad();
     }
@@ -77,17 +54,7 @@ public class mainmenu extends content_base {
     @Override
     protected void initGDATA() {
         RestaurantPOS c = RestaurantPOS.getInstance(getActivity().getApplication());
-        try {
-            if (c.getContainer().getItemsCount() > 0) {
-                startMainMenu(c.getContainer().getAllRecords());
-            } else {
-                c.setCB(callback);
-                c.setDatabaseId(Constant.SHEETSU_DOC_ID);
-                c.runType();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        startMainMenu(c.getContainer().getAllRecords());
     }
 
 

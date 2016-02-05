@@ -57,6 +57,13 @@
                 android:padding="10dp"
                 android:text="SignOut/In" />
 
+            <Button
+                android:id="@+id/about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="About" />
+
         </LinearLayout>
     </ScrollView>
 
@@ -109,8 +116,9 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
                 android:singleLine="false"
-                android:text="current status"
+                android:text="Current status"
                 android:textColor="@color/list_choice_normal_bg_light" />
+
 
         </LinearLayout>
     </RelativeLayout>

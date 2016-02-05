@@ -117,17 +117,20 @@
             <TextView
                 android:id="@+id/grant_total"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/font_grant_total" />
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/font_grant_total" />
 
             <TextView
                 android:id="@+id/service_charge"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/font_service_charge" />
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/font_service_charge" />
 
             <TextView
                 android:id="@+id/average"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/font_average_charge" />
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/font_average_charge" />
 
         </LinearLayout>
     </RelativeLayout>
