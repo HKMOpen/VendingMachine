@@ -1,10 +1,10 @@
 package com.hkm.staffvend.content;
 
-import com.hkm.layout.Dialog.ErrorMessage;
+import android.support.annotation.Nullable;
+
 import com.hkm.staffvend.event.BS;
 import com.hkm.staffvend.usage.MainMenu;
 import com.hkm.staffvend.usage.MainMenuItem;
-import com.hkmvend.sdk.Constant;
 import com.hkmvend.sdk.client.RestaurantPOS;
 import com.hkmvend.sdk.storage.Menu.MenuEntry;
 
@@ -22,7 +22,8 @@ public class mainmenu extends content_base {
     }
 
 
-    private void startMainMenu(List<MenuEntry> allentries) {
+    private void startMainMenu(@Nullable List<MenuEntry> allentries) {
+        if (allentries == null) return;
         Iterator<MenuEntry> e = allentries.iterator();
         List<Integer> names = new ArrayList<>();
         List<MainMenuItem> main = new ArrayList<>();
@@ -44,7 +45,7 @@ public class mainmenu extends content_base {
             }
         });
         mAdapater.setData(main);
-        mMosaicLayout.addPattern(pattern1);
+        mMosaicLayout.addPattern(pattern2);
         // mMosaicLayout.addPattern(pattern2);
         //  mMosaicLayout.chooseRandomPattern(true);
         mMosaicLayout.setAdapter(mAdapater);
