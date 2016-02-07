@@ -98,7 +98,7 @@ public class MainOffice extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        BS.onResultFromPrevious(requestCode, resultCode, data, current);
+        BS.onResultFromPrevious(requestCode, resultCode, data, current, this);
     }
 
     @Override

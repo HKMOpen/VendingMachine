@@ -1,6 +1,6 @@
 package com.hkm.staffvend.usage;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -19,7 +19,6 @@ import android.widget.TextView;
 
 import com.hkm.staffvend.R;
 import com.hkm.staffvend.SecPayment;
-import com.hkm.staffvend.event.BS;
 import com.hkm.staffvend.event.Utils;
 import com.hkm.staffvend.event.faster.FastScroller;
 import com.hkmvend.sdk.storage.Bill.Bill;
@@ -35,6 +34,7 @@ import eu.davidea.flexibleadapter.FlexibleAdapter;
 import static com.hkm.staffvend.event.ApplicationConstant.INTENT_BILL_ID;
 import static com.hkm.staffvend.event.ApplicationConstant.INTENT_TABLE_FUNCTION;
 import static com.hkm.staffvend.event.ApplicationConstant.MAKE_PAYMENT;
+import static com.hkm.staffvend.event.ApplicationConstant.RESULT_NEW_ORDER;
 
 /**
  * Created by hesk on 27/1/16.
@@ -61,7 +61,7 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
         void onListItemLongClick(int position);
     }
 
-    private Context mContext;
+    private Activity mContext;
     private static final int
             EXAMPLE_VIEW_TYPE = 0,
             ROW_VIEW_TYPE = 1;
@@ -78,7 +78,7 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
     public TableAdapter(Object activity, BillContainer container, Bundle extras) {
         super(container.getByBundle(extras));
         instance = container;
-        this.mContext = (Context) activity;
+        this.mContext = (Activity) activity;
         this.mClickListener = (OnItemClickListener) activity;
         //   addUserLearnedSelection();
     }
@@ -152,12 +152,16 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
     @Override
     public void onBindViewHolder(SimpleViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder for position " + position);
-        final Bill item = getItem(position);
-        String bill_number = item.getBill_number_code() + "";
-        String subtotal = BillContainer.getProjectedTotal(item) + "";
+
         //holder.mImageView.setImageResource(R.drawable.ic_account_circle_white_24dp);
         //NOTE: ViewType Must be checked ALSO here to bind the correct view
         if (getItemViewType(position) == ROW_VIEW_TYPE) {
+
+            final Bill item = getItem(position);
+            String bill_number = item.getBill_number_code() + "";
+            String subtotal = BillContainer.getProjectedTotal(item) + "";
+
+
             holder.itemView.setActivated(true);
             holder.mTitle.setSelected(true); //For marquee
             holder.mTitle.setText(Html.fromHtml("#" + bill_number));
@@ -165,7 +169,14 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
             holder.setCurrent(new Runnable() {
                 @Override
                 public void run() {
-                    BS.setCurrentBillEngage(item);
+                    // BS.setCurrentBillEngage(item);
+                    Intent in = new Intent();
+                    Bundle b = new Bundle();
+                    b.putLong(INTENT_BILL_ID, item.getBill_number_code());
+                    in.putExtras(b);
+                    mContext.setResult(RESULT_NEW_ORDER);
+                    mContext.setIntent(in);
+                    mContext.finish();
                 }
             });
             holder.mMenuContainer.removeAllTags();
@@ -231,11 +242,11 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
         //In case of searchText matches with Title or with an Item's field
         // this will be highlighted
         if (hasSearchText()) {
-            setHighlightText(holder.mTitle, bill_number, mSearchText);
-            setHighlightText(holder.mSubtitle, subtotal, mSearchText);
+            //      setHighlightText(holder.mTitle, bill_number, mSearchText);
+            //      setHighlightText(holder.mSubtitle, subtotal, mSearchText);
         } else {
-            holder.mTitle.setText(bill_number);
-            holder.mSubtitle.setText(subtotal);
+            //      holder.mTitle.setText(bill_number);
+            //      holder.mSubtitle.setText(subtotal);
         }
     }
 
@@ -294,7 +305,7 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
         //  ImageView mImageView;
         TextView mTitle;
         TextView mSubtitle;
-        ImageButton mDismissIcon, mSetCurrent, mPayment;
+        ImageButton mDismissIcon, mSetCurrent, mNewOrder, mPayment;
         TagContainerLayout mMenuContainer;
         RelativeLayout mArea;
         TableAdapter mAdapter;
@@ -310,12 +321,12 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
             mSubtitle = (TextView) view.findViewById(R.id.item_ul_bottom_display);
             mMenuContainer = (TagContainerLayout) view.findViewById(R.id.item_ul_tag_container);
             mArea = (RelativeLayout) view.findViewById(R.id.item_ul_table);
-            mSetCurrent = (ImageButton) view.findViewById(R.id.item_ul_set_current);
+            mNewOrder = (ImageButton) view.findViewById(R.id.item_ul_make_new_order);
             mPayment = (ImageButton) view.findViewById(R.id.item_ul_collection);
         }
 
         public void setCurrent(final Runnable run) {
-            mSetCurrent.setOnClickListener(new View.OnClickListener() {
+            mNewOrder.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     run.run();

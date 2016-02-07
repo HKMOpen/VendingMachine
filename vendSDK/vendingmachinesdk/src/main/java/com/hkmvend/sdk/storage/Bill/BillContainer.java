@@ -219,7 +219,7 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
      */
     @Override
     public Bill findBillById(long code) {
-        return getQuery().findFirst();
+        return getQuery().equalTo(Bill.Field_bill_number_code_long, code).findFirst();
     }
 
     @Override
@@ -230,7 +230,7 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
 
     @Override
     public Bill findBillByTable(String table_id) {
-        Bill copies = getQuery().equalTo("table_id", table_id).findFirst();
+        Bill copies = getQuery().equalTo(Bill.Field_table_id, table_id).findFirst();
         return copies;
 
     }

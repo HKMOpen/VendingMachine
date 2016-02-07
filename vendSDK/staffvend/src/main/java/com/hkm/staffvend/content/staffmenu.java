@@ -123,7 +123,6 @@ public class staffmenu extends content_base implements DialogTextInput.OnEditIte
         aboutButton = (Button) view.findViewById(R.id.about);
         current_table = (TextView) view.findViewById(R.id.current_table);
         current_status = (TextView) view.findViewById(R.id.current_status);
-
     }
 
     @LayoutRes

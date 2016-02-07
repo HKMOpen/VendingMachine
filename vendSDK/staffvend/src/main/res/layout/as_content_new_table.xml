@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.hkmvend.apiclitest.vend">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <include layout="@layout/toolbar_new_order" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:id="@+id/fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top"
+                android:text="@string/label_head_count" />
+
+            <co.hkm.soltag.TagContainerLayout
+                android:id="@id/item_ul_tag_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:padding="10dp"
+                app:container_background_color="@color/list_choice_normal_bg_light"
+                app:container_border_color="@color/divider"
+                app:container_border_radius="0dp"
+                app:container_gravity="left"
+                app:horizontal_interval="10dp"
+                app:tag_border_width="1dp"
+                app:tag_clickable="true"
+                app:tag_corner_radius="1dp"
+                app:tag_horizontal_padding="@dimen/padding_button_sq"
+                app:tag_max_length="2"
+                app:tag_text_direction="rtl"
+                app:tag_text_size="@dimen/font_head_count"
+                app:tag_vertical_padding="@dimen/padding_button_sq_single_ver"
+                app:vertical_interval="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_table_num" />
+
+            <EditText
+                android:id="@+id/table_id"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="textNoSuggestions"
+                android:singleLine="true" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top"
+                android:text="@string/label_remark" />
+
+            <EditText
+                android:id="@+id/table_remark"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

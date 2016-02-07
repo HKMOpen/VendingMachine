@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 
+import com.hkm.staffvend.MainOffice;
 import com.hkm.staffvend.SecScanTbe;
 import com.hkm.staffvend.content.staffmenu;
 import com.hkm.staffvend.content.submenu;
@@ -16,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.hkm.staffvend.event.ApplicationConstant.*;
-
 /**
  * Created by hesk on 26/1/16.
  */
@@ -61,6 +61,10 @@ public class BS {
         getInstance().post(fn);
     }
 
+    public static void start_new_order_menu(Bill bill_ticket) {
+
+    }
+
     public static void jump_main_2_sub(@MenuEntry.EntryTypes int typeId) {
         submenu sub = submenu.newInstanceCate(typeId);
         getInstance().post(sub);
@@ -71,19 +75,31 @@ public class BS {
         getInstance().post(sub);
     }
 
-    public static void onResultFromPrevious(int requestCode, int resultCode, Intent data, Fragment current) {
-        if (requestCode == NEW_TABLE && resultCode == Activity.RESULT_OK) {
+    public static void onResultFromPrevious(int requestCode, int resultCode, Intent data, Fragment current, MainOffice direct) {
+        if (requestCode == NEW_TABLE && resultCode == RESULT_NEW_ORDER) {
             if (current instanceof staffmenu) {
                 staffmenu home = (staffmenu) current;
                 home.refreshEngagedTable();
+                direct.backHome();
             }
         }
-        if (requestCode == VIEW_UNPAID_TABLES && resultCode == Activity.RESULT_OK) {
-            if (current instanceof staffmenu) {
-                staffmenu home = (staffmenu) current;
-                home.refreshEngagedTable();
+        if (requestCode == VIEW_UNPAID_TABLES) {
+            if (resultCode == RESULT_NEW_ORDER) {
+                if (current instanceof staffmenu) {
+                    staffmenu home = (staffmenu) current;
+                    home.refreshEngagedTable();
+                    direct.backHome();
+                }
+            }
+            if (resultCode == Activity.RESULT_OK) {
+                if (current instanceof staffmenu) {
+                    staffmenu home = (staffmenu) current;
+                    home.refreshEngagedTable();
+                }
             }
         }
+
+
         if (requestCode == VIEW_PAID_TABLES && resultCode == Activity.RESULT_OK) {
             if (current instanceof staffmenu) {
                 staffmenu home = (staffmenu) current;

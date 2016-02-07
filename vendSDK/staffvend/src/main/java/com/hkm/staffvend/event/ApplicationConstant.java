@@ -18,12 +18,14 @@ public class ApplicationConstant {
             VIEW_PAID_TABLES = 105,
             VIEW_UNPAID_TABLES = 106,
             IMPORT_RESTUARANT_MENU = 107,
-            MAKE_PAYMENT = 108;
+            MAKE_PAYMENT = 108,
+            NEW_ORDER = 109;
 
     //View table function code
     public static final int
             FUNC_VIEW_ONLY = 0,
             FUNC_EDIT = 1,
+            RESULT_NEW_ORDER = 300,
             FUNC_SELECT_TABLE = 2,
             FUNC_CLOSE_BILL = 3;
 

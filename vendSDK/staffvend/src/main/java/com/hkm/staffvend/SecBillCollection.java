@@ -526,7 +526,7 @@ public class SecBillCollection extends AppCompatActivity implements
      * Delegate the click event to the listener and check if selection MULTI enabled.<br/>
      * If yes, call toggleActivation.
      *
-     * @param position
+     * @param position position for starting up
      * @return true if MULTI selection is enabled, false for SINGLE selection
      */
     @Override
@@ -537,7 +537,7 @@ public class SecBillCollection extends AppCompatActivity implements
     /**
      * This always calls toggleActivation after listener event is consumed.
      *
-     * @param position
+     * @param position position for starting up
      */
     @Override
     public void onListItemLongClick(int position) {

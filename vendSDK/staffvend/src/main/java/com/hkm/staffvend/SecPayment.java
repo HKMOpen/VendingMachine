@@ -123,7 +123,7 @@ public class SecPayment extends AppCompatActivity implements
 
         StringBuilder sb = new StringBuilder();
         sb.append("#");
-        sb.append(target_bill.getBill_number_code());
+        sb.append(bill_code);
         transaction_id.setText(sb.toString());
 
         people_count.setText(target_bill.getHeadcount() + "");

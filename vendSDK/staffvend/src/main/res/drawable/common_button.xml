@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--disable-->
+    <item
+        android:state_enabled="false"
+        android:drawable="@drawable/btn_black_glossy" />
+
+    <!--press-->
+    <item
+        android:state_pressed="true"
+        android:state_enabled="true"
+        android:drawable="@drawable/btn_white_glossy" />
+
+    <!--focus-->
+    <item
+        android:state_focused="true"
+        android:state_enabled="true"
+        android:drawable="@drawable/btn_army_glossy" />
+
+    <!--enabled-->
+    <item
+        android:state_enabled="true"
+        android:drawable="@drawable/btn_yellowgreen_glossy" />
+</selector>

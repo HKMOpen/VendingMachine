@@ -14,10 +14,16 @@
     <item name="item_ul_bottom_display" type="id" />
     <item name="item_ul_dismiss" type="id" />
     <item name="item_ul_b_box" type="id" />
+
     <item name="item_ul_set_current" type="id" />
+    <item name="item_ul_make_new_order" type="id" />
     <item name="item_ul_collection" type="id" />
 
     <item name="dialog_text_edit" type="id" />
 
-
+    <item name="actionbar_item_transaction_id" type="id"/>
+    <item name="actionbar_add_count" type="id"/>
+    <item name="actionbar_remove_count" type="id"/>
+    <item name="actionbar_confirm" type="id"/>
+    <item name="actionbar_number_count" type="id"/>
 </resources>
