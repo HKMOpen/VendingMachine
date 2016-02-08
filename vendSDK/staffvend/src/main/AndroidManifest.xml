@@ -41,9 +41,9 @@
         <activity
             android:name=".SecPayment"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
+    <!--    <activity
             android:name=".SecScanTbe"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" />-->
         <activity
             android:name=".SecAbout"
             android:label="@string/nothing"

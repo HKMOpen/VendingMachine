@@ -19,7 +19,8 @@ import co.hkm.soltag.TagContainerLayout;
 import co.hkm.soltag.TagView;
 import co.hkm.soltag.ext.LayouMode;
 
-import static com.hkm.staffvend.event.ApplicationConstant.*;
+import static com.hkm.staffvend.event.ApplicationConstant.RESULT_NEW_ORDER;
+
 /**
  * Created by hesk on 26/1/16.
  */
@@ -51,7 +52,7 @@ public class SecNewTable extends AppCompatActivity implements TagView.OnTagClick
             });
         }
 
-        table_id = (EditText) findViewById(R.id.table_id);
+       // table_id = (EditText) findViewById(R.id.table_id);
         people_count = (TextView) findViewById(R.id.actionbar_number_count);
         bill_id = (TextView) findViewById(R.id.actionbar_item_transaction_id);
         bill_id.setText("#" + set_bill_transaction_num);
@@ -90,6 +91,29 @@ public class SecNewTable extends AppCompatActivity implements TagView.OnTagClick
         tc.setTheme(R.style.tagnormal);
         tc.setOnTagClickListener(this);
         tc.setTags(new String[]{"1", "2", "3", "4", "5", "6", "7", "8"});
+        TagContainerLayout table = (TagContainerLayout) findViewById(R.id.item_ul_table_container);
+        table.setMode(LayouMode.SINGLE_CHOICE);
+        table.setThemeOnActive(R.style.tagactive);
+        table.setTheme(R.style.tagnormal);
+        table.setOnTagClickListener(this);
+        tc.setTags(new String[]{
+                "T-01",
+                "T-02",
+                "T-03",
+                "T-04",
+                "T-05",
+                "T-06",
+                "T-07",
+                "T-08",
+                "T-09",
+                "T-10",
+                "T-11",
+                "T-12",
+                "T-13",
+                "T-14",
+                "T-15",
+                "T-16"
+        });
 
     }
 

@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.support.design.widget.Snackbar;
 
 import com.hkm.staffvend.MainOffice;
-import com.hkm.staffvend.SecScanTbe;
+import com.hkm.staffvend.R;
 import com.hkm.staffvend.content.staffmenu;
 import com.hkm.staffvend.content.submenu;
 import com.hkmvend.sdk.storage.Bill.Bill;
@@ -15,6 +15,9 @@ import com.squareup.otto.Bus;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import me.sudar.zxingorient.Barcode;
+import me.sudar.zxingorient.ZxingOrient;
 
 import static com.hkm.staffvend.event.ApplicationConstant.*;
 /**
@@ -111,13 +114,25 @@ public class BS {
             //     staffmenu home = (staffmenu) current;
             //     home.refreshEngagedTable();
             //  }
-            String scanned_text = data.getExtras().getString(SecScanTbe.FIELD);
-
+         // String scanned_text = data.getExtras().getString(SecScanTbe.FIELD);
+            String scanned_text  = "";
             Snackbar
                     .make(current.getView(), scanned_text, Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
 
         }
+
+    }
+
+    public static  void  start_scanning(Activity here){
+
+        ZxingOrient integrator = new ZxingOrient(here);
+        integrator.setIcon(R.drawable.ic_crop_free_24dp)   // Sets the custom icon
+                .setToolbarColor("#AAc51162")       // Sets Tool bar Color
+                .setInfoBoxColor("#AAc51162")       // Sets Info box color
+                .setInfo("Scan a QR code Image.")   // Sets info message in the info box
+                .initiateScan(Barcode.QR_CODE);
+
 
     }
 }

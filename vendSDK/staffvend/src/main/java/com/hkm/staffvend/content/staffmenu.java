@@ -8,20 +8,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.hkm.staffvend.SecAbout;
-import com.hkm.staffvend.SecScanTbe;
 import com.hkm.staffvend.R;
-import com.hkm.staffvend.SecNewTable;
+import com.hkm.staffvend.SecAbout;
 import com.hkm.staffvend.SecBillCollection;
-
-import static com.hkm.staffvend.event.ApplicationConstant.*;
-
+import com.hkm.staffvend.SecNewTable;
+import com.hkm.staffvend.event.BS;
 import com.hkm.staffvend.event.dialog.DialogTextInput;
 import com.hkm.staffvend.event.dialog.TickeD;
 import com.hkm.staffvend.event.dialog.TicketNumD;
 import com.hkmvend.sdk.client.RestaurantPOS;
 import com.hkmvend.sdk.storage.Bill.Bill;
 import com.hkmvend.sdk.storage.Bill.BillContainer;
+
+import static com.hkm.staffvend.event.ApplicationConstant.FUNC_VIEW_ONLY;
+import static com.hkm.staffvend.event.ApplicationConstant.INTENT_TABLE_FILTER;
+import static com.hkm.staffvend.event.ApplicationConstant.INTENT_TABLE_FUNCTION;
+import static com.hkm.staffvend.event.ApplicationConstant.NEW_TABLE;
+import static com.hkm.staffvend.event.ApplicationConstant.VIEW_PAID_TABLES;
+import static com.hkm.staffvend.event.ApplicationConstant.VIEW_UNPAID_TABLES;
 
 
 /**
@@ -78,8 +82,9 @@ public class staffmenu extends content_base implements DialogTextInput.OnEditIte
         importButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), SecScanTbe.class);
-                getActivity().startActivityForResult(i, IMPORT_RESTUARANT_MENU);
+               /* Intent i = new Intent(getActivity(), SecScanTbe.class);
+                getActivity().startActivityForResult(i, IMPORT_RESTUARANT_MENU);*/
+                BS.start_scanning(getActivity());
             }
         });
         aboutButton.setOnClickListener(new View.OnClickListener() {

@@ -11,6 +11,7 @@
     <item name="item_ul_bill_no" type="id" />
     <item name="item_ul_table" type="id" />
     <item name="item_ul_tag_container" type="id" />
+    <item name="item_ul_table_container" type="id" />
     <item name="item_ul_bottom_display" type="id" />
     <item name="item_ul_dismiss" type="id" />
     <item name="item_ul_b_box" type="id" />
