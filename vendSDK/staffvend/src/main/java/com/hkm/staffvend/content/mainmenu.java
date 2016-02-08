@@ -1,6 +1,7 @@
 package com.hkm.staffvend.content;
 
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.hkm.staffvend.event.BS;
 import com.hkm.staffvend.usage.MainMenu;
@@ -45,6 +46,7 @@ public class mainmenu extends content_base {
             }
         });
         mAdapater.setData(main);
+        mTopButton.setVisibility(View.GONE);
         mMosaicLayout.addPattern(pattern2);
         // mMosaicLayout.addPattern(pattern2);
         //  mMosaicLayout.chooseRandomPattern(true);

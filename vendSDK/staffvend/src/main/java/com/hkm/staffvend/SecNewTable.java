@@ -15,6 +15,9 @@ import com.hkmvend.sdk.client.RestaurantPOS;
 import com.hkmvend.sdk.storage.Bill.Bill;
 import com.hkmvend.sdk.storage.Bill.BillContainer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import co.hkm.soltag.TagContainerLayout;
 import co.hkm.soltag.TagView;
 import co.hkm.soltag.ext.LayouMode;
@@ -24,11 +27,12 @@ import static com.hkm.staffvend.event.ApplicationConstant.RESULT_NEW_ORDER;
 /**
  * Created by hesk on 26/1/16.
  */
-public class SecNewTable extends AppCompatActivity implements TagView.OnTagClickListener {
+public class SecNewTable extends AppCompatActivity {
     private EditText table_id, table_remark;
     private ImageButton add_button, remove_button, confirm;
     private TextView people_count, bill_id;
     private BillContainer bc;
+    private String table_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +43,6 @@ public class SecNewTable extends AppCompatActivity implements TagView.OnTagClick
         bc = pos.getBillContainer();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         long set_bill_transaction_num = bc.getLastestBillNumber();
         if (set_bill_transaction_num < 0) {
@@ -52,7 +55,7 @@ public class SecNewTable extends AppCompatActivity implements TagView.OnTagClick
             });
         }
 
-       // table_id = (EditText) findViewById(R.id.table_id);
+        // table_id = (EditText) findViewById(R.id.table_id);
         people_count = (TextView) findViewById(R.id.actionbar_number_count);
         bill_id = (TextView) findViewById(R.id.actionbar_item_transaction_id);
         bill_id.setText("#" + set_bill_transaction_num);
@@ -89,14 +92,55 @@ public class SecNewTable extends AppCompatActivity implements TagView.OnTagClick
         tc.setMode(LayouMode.SINGLE_CHOICE);
         tc.setThemeOnActive(R.style.tagactive);
         tc.setTheme(R.style.tagnormal);
-        tc.setOnTagClickListener(this);
+        tc.setOnTagClickListener(new TagView.OnTagClickListener() {
+            @Override
+            public void onTagClick(int position, String text) {
+                people_count.setText(text);
+            }
+
+            @Override
+            public void onTagLongClick(int position, String text) {
+
+            }
+        });
         tc.setTags(new String[]{"1", "2", "3", "4", "5", "6", "7", "8"});
         TagContainerLayout table = (TagContainerLayout) findViewById(R.id.item_ul_table_container);
         table.setMode(LayouMode.SINGLE_CHOICE);
         table.setThemeOnActive(R.style.tagactive);
-        table.setTheme(R.style.tagnormal);
-        table.setOnTagClickListener(this);
-        tc.setTags(new String[]{
+        table.setTheme(R.style.tagnormal_table);
+        table.setOnTagClickListener(new TagView.OnTagClickListener() {
+            @Override
+            public void onTagClick(int position, String text) {
+                table_name = text;
+            }
+
+            @Override
+            public void onTagLongClick(int position, String text) {
+
+            }
+        });
+        table.setPreselectedTags(generatePreselection(), R.style.tagactive_pre);
+        table.setTags(genTables());
+    }
+
+    private int[] generatePreselection() {
+        String[] l = genTables();
+        List<Integer> h = new ArrayList<>();
+        for (int i = 0; i < l.length; i++) {
+            String qu = l[i];
+            if (bc.findBillByTableUnpaid(qu) != null) {
+                h.add(i);
+            }
+        }
+        int[] y = new int[h.size()];
+        for (int i = 0; i < h.size(); i++) {
+            y[i] = h.get(i);
+        }
+        return y;
+    }
+
+    private String[] genTables() {
+        return new String[]{
                 "T-01",
                 "T-02",
                 "T-03",
@@ -113,13 +157,12 @@ public class SecNewTable extends AppCompatActivity implements TagView.OnTagClick
                 "T-14",
                 "T-15",
                 "T-16"
-        });
-
+        };
     }
 
     private void confirm_new_table() {
         StringBuilder sb = new StringBuilder();
-        if (table_id.getText().toString().isEmpty()) {
+        if (table_name==null) {
             sb.append("invalidate table id");
         }
         if (people_count.getText().toString().isEmpty() || Integer.parseInt(people_count.getText().toString()) == 0) {
@@ -135,7 +178,7 @@ public class SecNewTable extends AppCompatActivity implements TagView.OnTagClick
         } else {
             Bill sucess = bc.newBill(
                     Integer.parseInt(people_count.getText().toString()),
-                    table_id.getText().toString(),
+                    table_name,
                     ""
                     //   table_remark.getText().toString()
             );
@@ -168,13 +211,5 @@ public class SecNewTable extends AppCompatActivity implements TagView.OnTagClick
         super.onBackPressed();
     }
 
-    @Override
-    public void onTagClick(int position, String text) {
-        people_count.setText(text);
-    }
 
-    @Override
-    public void onTagLongClick(int position, String text) {
-
-    }
 }

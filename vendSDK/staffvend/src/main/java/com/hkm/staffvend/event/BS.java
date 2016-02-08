@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 
 import com.hkm.staffvend.MainOffice;
 import com.hkm.staffvend.R;
+import com.hkm.staffvend.content.mainmenu;
 import com.hkm.staffvend.content.staffmenu;
 import com.hkm.staffvend.content.submenu;
 import com.hkmvend.sdk.storage.Bill.Bill;
@@ -19,7 +20,13 @@ import java.util.List;
 import me.sudar.zxingorient.Barcode;
 import me.sudar.zxingorient.ZxingOrient;
 
-import static com.hkm.staffvend.event.ApplicationConstant.*;
+import static com.hkm.staffvend.event.ApplicationConstant.BS_SET_CURRENT;
+import static com.hkm.staffvend.event.ApplicationConstant.IMPORT_RESTUARANT_MENU;
+import static com.hkm.staffvend.event.ApplicationConstant.NEW_TABLE;
+import static com.hkm.staffvend.event.ApplicationConstant.RESULT_NEW_ORDER;
+import static com.hkm.staffvend.event.ApplicationConstant.VIEW_PAID_TABLES;
+import static com.hkm.staffvend.event.ApplicationConstant.VIEW_UNPAID_TABLES;
+
 /**
  * Created by hesk on 26/1/16.
  */
@@ -68,6 +75,11 @@ public class BS {
 
     }
 
+    public static void jump_sub_2_main() {
+        mainmenu sub = new mainmenu();
+        getInstance().post(sub);
+    }
+
     public static void jump_main_2_sub(@MenuEntry.EntryTypes int typeId) {
         submenu sub = submenu.newInstanceCate(typeId);
         getInstance().post(sub);
@@ -114,8 +126,8 @@ public class BS {
             //     staffmenu home = (staffmenu) current;
             //     home.refreshEngagedTable();
             //  }
-         // String scanned_text = data.getExtras().getString(SecScanTbe.FIELD);
-            String scanned_text  = "";
+            // String scanned_text = data.getExtras().getString(SecScanTbe.FIELD);
+            String scanned_text = "";
             Snackbar
                     .make(current.getView(), scanned_text, Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
@@ -124,7 +136,7 @@ public class BS {
 
     }
 
-    public static  void  start_scanning(Activity here){
+    public static void start_scanning(Activity here) {
 
         ZxingOrient integrator = new ZxingOrient(here);
         integrator.setIcon(R.drawable.ic_crop_free_24dp)   // Sets the custom icon

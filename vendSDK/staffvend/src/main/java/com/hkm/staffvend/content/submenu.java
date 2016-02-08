@@ -1,7 +1,9 @@
 package com.hkm.staffvend.content;
 
 import android.os.Bundle;
+import android.view.View;
 
+import com.hkm.staffvend.event.BS;
 import com.hkm.staffvend.usage.ImageDisMos;
 import com.hkmvend.sdk.client.RestaurantPOS;
 import com.hkmvend.sdk.storage.Menu.EntryContainer;
@@ -30,6 +32,14 @@ public class submenu extends content_base {
         mMosaicLayout.addPattern(pattern2);
         mMosaicLayout.chooseRandomPattern(true);
         mMosaicLayout.setAdapter(mAdapater);
+        mTopButton.setVisibility(View.VISIBLE);
+        mTopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              //  BS.jump_sub_2_main();
+                getActivity().onBackPressed();
+            }
+        });
         hideLoad();
     }
 

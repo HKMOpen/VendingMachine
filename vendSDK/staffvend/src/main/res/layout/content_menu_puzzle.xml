@@ -5,7 +5,14 @@
     tools:context="com.hkmvend.apiclitest.vendFragment"
     tools:showIn="@layout/as_content_vend_frame">
 
+    <Button
+        android:id="@+id/main_button"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:text="main menu" />
+
     <com.hkm.staffvend.mosaic.MosaicLayout
+        android:layout_below="@id/main_button"
         android:id="@id/vend_mosaic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

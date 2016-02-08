@@ -232,8 +232,15 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
     public Bill findBillByTable(String table_id) {
         Bill copies = getQuery().equalTo(Bill.Field_table_id, table_id).findFirst();
         return copies;
-
     }
+
+    public Bill findBillByTableUnpaid(String table_id) {
+        Bill copies = getQuery()
+                .equalTo(Bill.Field_table_id, table_id)
+                .equalTo(Bill.Field_isBillCompleted, false).findFirst();
+        return copies;
+    }
+
 
     @Override
     public List<Bill> findBillByTimeRange(long timebefore, long timeafter) {

@@ -6,6 +6,7 @@ import android.support.annotation.LayoutRes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.hkm.staffvend.R;
@@ -40,6 +41,7 @@ public abstract class content_base extends Fragment {
 
     protected void bind(View view) {
         mMosaicLayout = (MosaicLayout) view.findViewById(R.id.vend_mosaic);
+        mTopButton = (Button) view.findViewById(R.id.main_button);
         bindProgressBar(view);
     }
 
@@ -51,6 +53,7 @@ public abstract class content_base extends Fragment {
 
     protected ProgressBar mProgress;
     protected MosaicLayout mMosaicLayout;
+    protected Button mTopButton;
 
     public static final BLOCK_PATTERN pattern1[] = {
             BLOCK_PATTERN.SMALL, BLOCK_PATTERN.SMALL, BLOCK_PATTERN.SMALL, BLOCK_PATTERN.SMALL,

@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -40,9 +40,21 @@
         <item name="ptc_tag_text_color">@color/cont_text_color_active</item>
     </style>
 
+    <style name="tagnormal.table" parent="tagnormal">
+        <item name="ptc_tag_border_color">@color/woodboard</item>
+        <item name="ptc_tag_background_color">@color/woodboard_dark</item>
+        <item name="ptc_tag_text_color">@color/cont_text_color_active</item>
+    </style>
+
     <style name="tagactive">
         <item name="ptc_tag_border_color">@color/cont_border_active</item>
         <item name="ptc_tag_background_color">@color/cont_tag_background_color_active</item>
+        <item name="ptc_tag_text_color">@color/cont_text_color_active</item>
+    </style>
+
+    <style name="tagactive.pre" parent="tagactive">
+        <item name="ptc_tag_border_color">@color/colorAccent_light</item>
+        <item name="ptc_tag_background_color">@color/cont_tag_background_color_active2</item>
         <item name="ptc_tag_text_color">@color/cont_text_color_active</item>
     </style>
 
