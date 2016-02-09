@@ -16,9 +16,9 @@
 
         <activity
             android:name=".SetupDash"
-            tools:ignore="InnerclassSeparator"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,9 +41,9 @@
         <activity
             android:name=".SecPayment"
             android:theme="@style/AppTheme.NoActionBar" />
-    <!--    <activity
-            android:name=".SecScanTbe"
-            android:theme="@style/AppTheme.NoActionBar" />-->
+        <activity
+            android:name=".SecSettings"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SecAbout"
             android:label="@string/nothing"

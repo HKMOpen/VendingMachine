@@ -6,6 +6,7 @@ package com.hkmvend.sdk;
 public class Constant {
     public static final long ONE_DAY = 8640000;
     public static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
+    public static final String DATE_FORMAT_v3 = "yyyy-MM-dd HH:mm:ss";
 
     private static final String TAG = "BaseDriveActivity";
     /**

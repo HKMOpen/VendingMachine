@@ -19,6 +19,7 @@ dependencies {
     compile 'me.sudar:zxing-orient:2.0.0@aar'
     compile 'eu.davidea:flexible-adapter:4.2.0'
     compile 'com.hkm.taglib:tag:1.3.0'
+  //  compile 'com.samwolfand.oneprefs:one-prefs:1.0'
     // compile 'com.google.gdata:core:1.47.1'
     compile project(':vendingmachinesdk')
    // compile 'com.flickr4java:flickr4java:2.15'

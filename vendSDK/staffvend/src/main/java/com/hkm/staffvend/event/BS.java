@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import com.hkm.staffvend.MainOffice;
 import com.hkm.staffvend.R;
 import com.hkm.staffvend.content.mainmenu;
+import com.hkm.staffvend.content.settings;
 import com.hkm.staffvend.content.staffmenu;
 import com.hkm.staffvend.content.submenu;
 import com.hkmvend.sdk.storage.Bill.Bill;
@@ -77,6 +78,11 @@ public class BS {
 
     public static void jump_sub_2_main() {
         mainmenu sub = new mainmenu();
+        getInstance().post(sub);
+    }
+
+    public static void toSettings() {
+        settings sub = new settings();
         getInstance().post(sub);
     }
 

@@ -1,4 +1,4 @@
-package com.hkm.staffvend.usage;
+package com.hkm.staffvend.Adap;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -39,7 +39,7 @@ import static com.hkm.staffvend.event.ApplicationConstant.RESULT_NEW_ORDER;
 /**
  * Created by hesk on 27/1/16.
  */
-public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder, Bill> implements FastScroller.BubbleTextGetter {
+public class TableAdapter extends FlexibleAdapter<ItemBeforePaid, Bill> implements FastScroller.BubbleTextGetter {
 
     private static final String TAG = TableAdapter.class.getSimpleName();
 
@@ -131,41 +131,45 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
     }
 
     @Override
-    public SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ItemBeforePaid onCreateViewHolder(ViewGroup parent, int viewType) {
         Log.d(TAG, "onCreateViewHolder for viewType " + viewType);
         if (mInflater == null) {
             mInflater = LayoutInflater.from(parent.getContext());
         }
         switch (viewType) {
            /* case EXAMPLE_VIEW_TYPE:
-                return new SimpleViewHolder(
+                return new ItemBeforePaid(
                         mInflater.inflate(R.layout.recycler_uls_row, parent, false),
                      this);*/
 
             default:
-                return new SimpleViewHolder(
-                        mInflater.inflate(R.layout.item_bill_table, parent, false),
+                return new ItemBeforePaid(
+                        mInflater.inflate(R.layout.item_bill_preview, parent, false),
                         this);
         }
     }
 
     @Override
-    public void onBindViewHolder(SimpleViewHolder holder, final int position) {
+    public void onBindViewHolder(ItemBeforePaid holder, final int position) {
         Log.d(TAG, "onBindViewHolder for position " + position);
 
         //holder.mImageView.setImageResource(R.drawable.ic_account_circle_white_24dp);
         //NOTE: ViewType Must be checked ALSO here to bind the correct view
         if (getItemViewType(position) == ROW_VIEW_TYPE) {
-
             final Bill item = getItem(position);
             String bill_number = item.getBill_number_code() + "";
             String subtotal = BillContainer.getProjectedTotal(item) + "";
-
-
             holder.itemView.setActivated(true);
-            holder.mTitle.setSelected(true); //For marquee
-            holder.mTitle.setText(Html.fromHtml("#" + bill_number));
+            holder.mTitle.setSelected(true);//For marquee
+            StringBuilder st = new StringBuilder();
+            st.append(item.getTable_id());
+            st.append(" ");
+            st.append("#");
+            st.append(bill_number);
+            Spannable spanText = Spannable.Factory.getInstance().newSpannable(st.toString());
+            holder.mTitle.setText(spanText);
             holder.mSubtitle.setText(Html.fromHtml("$" + subtotal));
+            holder.mTime.setText(item.getPay_time());
             holder.setCurrent(new Runnable() {
                 @Override
                 public void run() {
@@ -195,7 +199,6 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
                 }
             });
             holder.mMenuContainer.setTags(BillContainer.getOrderedItemsChinese(item));
-
             holder.mPayment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -297,45 +300,6 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
         return valueText != null && valueText.toLowerCase().contains(constraint);
     }
 
-    /**
-     * Used for UserLearnsSelection.
-     * Must be the base class of extension for Adapter Class.
-     */
-    static class SimpleViewHolder extends RecyclerView.ViewHolder {
-        //  ImageView mImageView;
-        TextView mTitle;
-        TextView mSubtitle;
-        ImageButton mDismissIcon, mSetCurrent, mNewOrder, mPayment;
-        TagContainerLayout mMenuContainer;
-        RelativeLayout mArea;
-        TableAdapter mAdapter;
-
-        SimpleViewHolder(View view) {
-            super(view);
-        }
-
-        SimpleViewHolder(View view, TableAdapter adapter) {
-            super(view);
-            mAdapter = adapter;
-            mTitle = (TextView) view.findViewById(R.id.item_ul_bill_no);
-            mSubtitle = (TextView) view.findViewById(R.id.item_ul_bottom_display);
-            mMenuContainer = (TagContainerLayout) view.findViewById(R.id.item_ul_tag_container);
-            mArea = (RelativeLayout) view.findViewById(R.id.item_ul_table);
-            mNewOrder = (ImageButton) view.findViewById(R.id.item_ul_make_new_order);
-            mPayment = (ImageButton) view.findViewById(R.id.item_ul_collection);
-        }
-
-        public void setCurrent(final Runnable run) {
-            mNewOrder.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    run.run();
-                }
-            });
-        }
-
-    }
-
     private void userLearnedSelection() {
         //TODO: Save the boolean into Settings!
         //   DatabaseService.userLearnedSelection = true;
@@ -343,78 +307,6 @@ public class TableAdapter extends FlexibleAdapter<TableAdapter.SimpleViewHolder,
         // notifyItemRemoved(0);
     }
 
-    /**
-     * Provide a reference to the views for each data item.
-     * Complex data labels may need more than one view per item, and
-     * you provide access to all the views for a data item in a view holder.
-     */
-    static final class ViewHolder extends SimpleViewHolder implements View.OnClickListener,
-            View.OnLongClickListener {
-
-        ViewHolder(View view, final TableAdapter adapter) {
-            super(view);
-            this.mAdapter = adapter;
-            this.mTitle = (TextView) view.findViewById(R.id.item_ul_bill_no);
-            this.mSubtitle = (TextView) view.findViewById(R.id.item_ul_bottom_display);
-          /*  this.mImageView = (ImageView) view.findViewById(R.id.image);
-            this.mImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mAdapter.mClickListener.onListItemLongClick(getAdapterPosition());
-                    toggleActivation();
-                }
-            });
-
-            this.itemView.setOnClickListener(this);
-            this.itemView.setOnLongClickListener(this);*/
-        }
-
-        /**
-         * Perform animation and selection on the current ItemView.
-         * <br/><br/>
-         * <b>IMPORTANT NOTE!</b> <i>setActivated</i> changes the selection color of the item
-         * background if you added<i>android:background="?attr/selectableItemBackground"</i>
-         * on the row layout AND in the style.xml.
-         * <br/><br/>
-         * This must be called after the listener consumed the event in order to add the
-         * item number in the selection list.<br/>
-         * Adapter must have a reference to its instance to check selection state.
-         * <br/><br/>
-         * If you do this, it's not necessary to invalidate the row (with notifyItemChanged): In this way
-         * <i>onBindViewHolder</i> is NOT called on selection and custom animations on objects are NOT interrupted,
-         * so you can SEE the animation in the Item and have the selection smooth with ripple.
-         */
-        private void toggleActivation() {
-            itemView.setActivated(mAdapter.isSelected(getAdapterPosition()));
-            //This "if-else" is just an example
-            if (itemView.isActivated()) {
-                //     mImageView.setBackgroundDrawable(mAdapter.mContext.getResources().getDrawable(R.drawable.image_round_selected));
-            } else {
-                //  mImageView.setBackgroundDrawable(mAdapter.mContext.getResources().getDrawable(R.drawable.image_round_normal));
-            }
-            //Example of custom Animation inside the ItemView
-            //flip(mImageView, itemView.isActivated());
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void onClick(View view) {
-            if (mAdapter.mClickListener.onListItemClick(getAdapterPosition()))
-                toggleActivation();
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public boolean onLongClick(View view) {
-            mAdapter.mClickListener.onListItemLongClick(getAdapterPosition());
-            toggleActivation();
-            return true;
-        }
-    }
 
     @Override
     public String toString() {

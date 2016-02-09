@@ -33,7 +33,7 @@ import static com.hkm.staffvend.event.ApplicationConstant.VIEW_UNPAID_TABLES;
  */
 public class staffmenu extends content_base implements DialogTextInput.OnEditItemListener {
 
-    private Button signInStaff, aboutButton, checkTablesPaid, checkTablesUnpaid, newtable, setButton, importButton;
+    private Button signInStaff, aboutButton, mSettings, checkTablesPaid, checkTablesUnpaid, newtable, setButton, importButton;
     private TextView current_table, current_status;
     private BillContainer container;
     private boolean order_ready;
@@ -72,6 +72,13 @@ public class staffmenu extends content_base implements DialogTextInput.OnEditIte
                 getActivity().startActivityForResult(i, VIEW_UNPAID_TABLES);
             }
         });
+        mSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BS.toSettings();
+            }
+        });
+     /*
         setButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,8 +89,8 @@ public class staffmenu extends content_base implements DialogTextInput.OnEditIte
         importButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* Intent i = new Intent(getActivity(), SecScanTbe.class);
-                getActivity().startActivityForResult(i, IMPORT_RESTUARANT_MENU);*/
+               *//* Intent i = new Intent(getActivity(), SecScanTbe.class);
+                getActivity().startActivityForResult(i, IMPORT_RESTUARANT_MENU);*//*
                 BS.start_scanning(getActivity());
             }
         });
@@ -94,7 +101,7 @@ public class staffmenu extends content_base implements DialogTextInput.OnEditIte
                 getActivity().startActivity(i);
             }
         });
-
+*/
         refreshEngagedTable();
     }
 
@@ -119,13 +126,17 @@ public class staffmenu extends content_base implements DialogTextInput.OnEditIte
     }
 
     protected void bind(View view) {
-        signInStaff = (Button) view.findViewById(R.id.signoutin);
+
         checkTablesPaid = (Button) view.findViewById(R.id.checkcompletetable);
         checkTablesUnpaid = (Button) view.findViewById(R.id.checkTables);
         newtable = (Button) view.findViewById(R.id.newtable);
-        setButton = (Button) view.findViewById(R.id.setlastesttioc);
+    //    aboutButton = (Button) view.findViewById(R.id.about);
+        mSettings = (Button)view.findViewById(R.id.settings);
+      /*  setButton = (Button) view.findViewById(R.id.setlastesttioc);
+        signInStaff = (Button) view.findViewById(R.id.signoutin);
         importButton = (Button) view.findViewById(R.id.importmenu);
         aboutButton = (Button) view.findViewById(R.id.about);
+        */
         current_table = (TextView) view.findViewById(R.id.current_table);
         current_status = (TextView) view.findViewById(R.id.current_status);
     }

@@ -26,7 +26,7 @@ import static com.hkm.staffvend.event.ApplicationConstant.INTENT_TABLE_FUNCTION;
 public class SecPayment extends AppCompatActivity implements
         TagView.OnTagClickListener {
     private TextView transaction_id, people_count, table_remark, grant, service, average;
-    private ImageButton add_button, remove_button;
+    private ImageButton add_button, remove_button, print_slip;
     private FloatingActionButton fabbutton;
     private TagContainerLayout orders;
     private BillContainer instance;
@@ -61,6 +61,7 @@ public class SecPayment extends AppCompatActivity implements
         setSupportActionBar(toolbar);
         fabbutton = (FloatingActionButton) findViewById(R.id.fab);
         add_button = (ImageButton) findViewById(R.id.add_count);
+        print_slip = (ImageButton) findViewById(R.id.print_slip);
         remove_button = (ImageButton) findViewById(R.id.remove_count);
         transaction_id = (TextView) findViewById(R.id.transaction_id);
         people_count = (TextView) findViewById(R.id.people_count);
@@ -122,6 +123,9 @@ public class SecPayment extends AppCompatActivity implements
         target_bill = instance.findBillById(bill_code);
 
         StringBuilder sb = new StringBuilder();
+
+        sb.append(target_bill.getTable_id());
+        sb.append(" ");
         sb.append("#");
         sb.append(bill_code);
         transaction_id.setText(sb.toString());

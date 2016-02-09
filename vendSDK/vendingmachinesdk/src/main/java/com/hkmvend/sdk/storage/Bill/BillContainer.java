@@ -4,14 +4,17 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.format.DateFormat;
 import android.util.Log;
 
+import com.hkmvend.sdk.Constant;
 import com.hkmvend.sdk.storage.ApplicationBase;
 import com.hkmvend.sdk.storage.Menu.EntryContainer;
 import com.hkmvend.sdk.storage.Menu.MenuEntry;
 import com.hkmvend.sdk.storage.RealmPolicy;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -201,10 +204,13 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
         target.setPayment_collected(false);
         if (remark != null)
             target.setTable_remark(remark);
-        Date date = new Date();
-        Timestamp now = new Timestamp(date.getTime());
-        // begintransaction.setDate(now.toString());
-        target.setStart_time(now.toString());
+
+        Date t = new Date();
+        Timestamp timestamp_now = new Timestamp(t.getTime());
+        SimpleDateFormat dateFormat = new SimpleDateFormat(Constant.DATE_FORMAT_v3);
+        String currentTimeStamp = dateFormat.format(timestamp_now); // Find todays date
+        target.setStart_time(currentTimeStamp);
+
         realm.commitTransaction();
         setFocusOnBill(target);
         return target;
@@ -327,7 +333,9 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
         target.setPayment_collected(true);
         Date t = new Date();
         Timestamp timestamp_now = new Timestamp(t.getTime());
-        target.setPay_time(timestamp_now.toString());
+        SimpleDateFormat dateFormat = new SimpleDateFormat(Constant.DATE_FORMAT_v3);
+        String currentTimeStamp = dateFormat.format(timestamp_now); // Find todays date
+        target.setPay_time(currentTimeStamp);
         target.setConsolidated_payment(collected_amount);
         realm.commitTransaction();
     }
