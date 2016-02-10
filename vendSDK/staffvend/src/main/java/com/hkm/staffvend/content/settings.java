@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.view.ViewGroup;
 import com.hkm.staffvend.R;
 import com.hkm.staffvend.SecAbout;
 import com.hkm.staffvend.event.BS;
+import com.hkm.staffvend.event.dialog.DialogTextInput;
 import com.hkm.staffvend.event.dialog.TickeD;
 import com.hkm.staffvend.event.dialog.TicketNumD;
 import com.hkmvend.sdk.client.RestaurantPOS;
@@ -26,7 +28,7 @@ import com.hkmvend.sdk.storage.Bill.BillContainer;
 /**
  * Created by hesk on 12/1/16.
  */
-public class settings extends PreferenceFragment {
+public class settings extends PreferenceFragment   implements DialogTextInput.OnEditItemListener{
     private ListPreference mListPreference;
     private BillContainer client;
 
@@ -121,5 +123,10 @@ public class settings extends PreferenceFragment {
         //   EBus.getInstance().post(new RenderTrigger());
     }
 
+    @Override
+    public void onFieldModified(long position, String newTitle) {
+        Log.d("ca;;", newTitle);
+        client.setMaunalLastestBillNumber(Integer.parseInt(newTitle));
+    }
 
 }

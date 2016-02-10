@@ -31,7 +31,7 @@ import static com.hkm.staffvend.event.ApplicationConstant.VIEW_UNPAID_TABLES;
 /**
  * Created by hesk on 26/1/16.
  */
-public class staffmenu extends content_base implements DialogTextInput.OnEditItemListener {
+public class staffmenu extends content_base {
 
     private Button signInStaff, aboutButton, mSettings, checkTablesPaid, checkTablesUnpaid, newtable, setButton, importButton;
     private TextView current_table, current_status;
@@ -146,11 +146,6 @@ public class staffmenu extends content_base implements DialogTextInput.OnEditIte
         return R.layout.content_main_office;
     }
 
-    @Override
-    public void onFieldModified(long position, String newTitle) {
-        Log.d("ca;;", newTitle);
-        container.setMaunalLastestBillNumber(Integer.parseInt(newTitle));
-    }
-
+  
 
 }
