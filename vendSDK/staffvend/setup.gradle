@@ -7,8 +7,8 @@ android {
         applicationId "com.hkm.staffvend"
         minSdkVersion 17
         targetSdkVersion 23
-        versionCode 18
-        versionName "1.2.8"
+        versionCode 19
+        versionName "1.2.9"
     }
     buildTypes {
         release {

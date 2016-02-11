@@ -169,7 +169,9 @@ public class TableAdapter extends FlexibleAdapter<ItemBeforePaid, Bill> implemen
             Spannable spanText = Spannable.Factory.getInstance().newSpannable(st.toString());
             holder.mTitle.setText(spanText);
             holder.mSubtitle.setText(Html.fromHtml("$" + subtotal));
-            holder.mTime.setText(item.getPay_time());
+            if (item.getPay_time() != null) {
+                holder.mTime.setText(item.getPay_time());
+            }
             holder.setCurrent(new Runnable() {
                 @Override
                 public void run() {
