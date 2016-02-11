@@ -1,4 +1,4 @@
-package com.hkm.staffvend.mosaic;
+package com.hkm.staffvend.compon.mosaic;
 
 /**
  * Created by zJJ on 1/23/2016.

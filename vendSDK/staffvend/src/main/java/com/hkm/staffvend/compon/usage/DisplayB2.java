@@ -1,21 +1,20 @@
-package com.hkm.staffvend.usage;
+package com.hkm.staffvend.compon.usage;
 
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hkm.staffvend.R;
 import com.hkm.staffvend.event.BS;
-import com.hkm.staffvend.mosaic.MosAdapter;
+import com.hkm.staffvend.compon.mosaic.MosAdapter;
 import com.hkmvend.sdk.storage.Menu.MenuEntry;
 
 /**
  * Created by zJJ on 1/25/2016.
  */
-public class ImageDisMos extends MosAdapter<MenuEntry, ImageDisMos.Frame> {
-    public ImageDisMos(Context context) {
+public class DisplayB2 extends MosAdapter<MenuEntry, DisplayB2.Frame> {
+    public DisplayB2(Context context) {
         super(context);
     }
 
@@ -24,18 +23,18 @@ public class ImageDisMos extends MosAdapter<MenuEntry, ImageDisMos.Frame> {
         private TextView text;
 
         public Frame(View view) {
-            image = (ImageButton) view.findViewById(R.id.image);
-            text = (TextView) view.findViewById(R.id.lylib_main_bottom_tab_text);
+            image = (ImageButton) view.findViewById(R.id.item_button_bg);
+            text = (TextView) view.findViewById(R.id.item_button_tex1);
         }
     }
 
     @Override
     protected int layoutId() {
-        return R.layout.item_mos_row;
+        return R.layout.item_sub_v1;
     }
 
     @Override
-    protected void bindData(final MenuEntry menuEntry, int position, ImageDisMos.Frame binder) {
+    protected void bindData(final MenuEntry menuEntry, int position, DisplayB2.Frame binder) {
         StringBuilder sb = new StringBuilder();
         sb.append(menuEntry.getEntry_name_chinese());
         sb.append("\n");

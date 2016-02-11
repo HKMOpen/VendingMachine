@@ -1,4 +1,4 @@
-package com.hkm.staffvend;
+package com.hkm.staffvend.ui;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.hkm.staffvend.R;
 import com.hkm.staffvend.content.dish_panel;
 import com.hkm.staffvend.content.mainmenu;
 import com.hkm.staffvend.content.staffmenu;

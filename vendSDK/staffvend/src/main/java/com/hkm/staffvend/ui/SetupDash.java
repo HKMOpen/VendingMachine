@@ -1,21 +1,17 @@
-package com.hkm.staffvend;
+package com.hkm.staffvend.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
 
 import com.hkm.layout.Dialog.ErrorMessage;
+import com.hkm.staffvend.R;
 import com.hkmvend.sdk.Constant;
 import com.hkmvend.sdk.client.RestaurantPOS;
 import com.hkmvend.sdk.storage.Menu.MenuEntry;
 
 import java.util.List;
-
-import static com.hkm.staffvend.event.ApplicationConstant.INTENT_BILL_ID;
-import static com.hkm.staffvend.event.ApplicationConstant.INTENT_TABLE_FUNCTION;
-import static com.hkm.staffvend.event.ApplicationConstant.MAKE_PAYMENT;
 
 /**
  * Created by hesk on 5/2/16.

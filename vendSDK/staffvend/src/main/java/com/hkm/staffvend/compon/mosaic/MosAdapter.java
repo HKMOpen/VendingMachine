@@ -1,4 +1,4 @@
-package com.hkm.staffvend.mosaic;
+package com.hkm.staffvend.compon.mosaic;
 
 import android.content.Context;
 import android.support.annotation.LayoutRes;
@@ -19,7 +19,7 @@ public abstract class MosAdapter<DATA, BIND> extends ArrayAdapter<Object> {
     private List<DATA> values;
 
     public MosAdapter(Context context) {
-        super(context, R.layout.item_mos_row);
+        super(context, R.layout.item_sub_v1);
         this.context = context;
     }
 

@@ -17,7 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.hkm.staffvend.R;
-import com.hkm.staffvend.SecAbout;
+import com.hkm.staffvend.ui.SecAbout;
 import com.hkm.staffvend.event.BS;
 import com.hkm.staffvend.event.dialog.DialogTextInput;
 import com.hkm.staffvend.event.dialog.TickeD;

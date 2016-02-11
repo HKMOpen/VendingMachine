@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".SetupDash"
+            android:name=".ui.SetupDash"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="InnerclassSeparator">
@@ -26,26 +26,26 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainOffice"
+            android:name=".ui.MainOffice"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
 
         <activity
-            android:name=".SecNewTable"
+            android:name=".ui.SecNewTable"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SecBillCollection"
+            android:name=".ui.SecBillCollection"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SecPayment"
+            android:name=".ui.SecPayment"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SecSettings"
+            android:name=".ui.SecSettings"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SecAbout"
+            android:name=".ui.SecAbout"
             android:label="@string/nothing"
             android:theme="@style/AppTheme" />
     </application>

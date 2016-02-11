@@ -1,4 +1,4 @@
-package com.hkm.staffvend.mosaic;
+package com.hkm.staffvend.compon.mosaic;
 
 import android.app.Activity;
 import android.content.Context;

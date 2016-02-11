@@ -1,4 +1,4 @@
-package com.hkm.staffvend.mosaic;
+package com.hkm.staffvend.compon.mosaic;
 
 import android.content.Context;
 import android.widget.LinearLayout;

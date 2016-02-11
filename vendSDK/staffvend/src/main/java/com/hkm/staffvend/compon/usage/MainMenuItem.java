@@ -1,4 +1,4 @@
-package com.hkm.staffvend.usage;
+package com.hkm.staffvend.compon.usage;
 
 import com.hkmvend.sdk.storage.Menu.MenuEntry;
 

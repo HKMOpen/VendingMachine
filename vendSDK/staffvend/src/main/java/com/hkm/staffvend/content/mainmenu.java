@@ -4,8 +4,8 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.hkm.staffvend.event.BS;
-import com.hkm.staffvend.usage.MainMenu;
-import com.hkm.staffvend.usage.MainMenuItem;
+import com.hkm.staffvend.compon.usage.DisplayB1;
+import com.hkm.staffvend.compon.usage.MainMenuItem;
 import com.hkmvend.sdk.client.RestaurantPOS;
 import com.hkmvend.sdk.storage.Menu.MenuEntry;
 
@@ -38,8 +38,8 @@ public class mainmenu extends content_base {
             }
         }
 
-        MainMenu mAdapater = new MainMenu(getActivity());
-        mAdapater.setCB(new MainMenu.clickButton() {
+        DisplayB1 mAdapater = new DisplayB1(getActivity());
+        mAdapater.setCB(new DisplayB1.clickButton() {
             @Override
             public void lclipko(int id) {
                 BS.jump_main_2_sub(id);

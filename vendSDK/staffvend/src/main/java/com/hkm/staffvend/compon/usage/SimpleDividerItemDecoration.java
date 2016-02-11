@@ -1,4 +1,4 @@
-package com.hkm.staffvend.usage;
+package com.hkm.staffvend.compon.usage;
 
 import android.content.Context;
 import android.content.res.TypedArray;

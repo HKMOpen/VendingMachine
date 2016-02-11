@@ -1,4 +1,4 @@
-package com.hkm.staffvend.Adap;
+package com.hkm.staffvend.compon.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

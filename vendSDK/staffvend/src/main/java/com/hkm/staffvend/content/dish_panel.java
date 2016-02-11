@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hkm.staffvend.MainOffice;
+import com.hkm.staffvend.ui.MainOffice;
 import com.hkm.staffvend.R;
 import com.hkmvend.sdk.client.RestaurantPOS;
 import com.hkmvend.sdk.storage.Bill.BillContainer;

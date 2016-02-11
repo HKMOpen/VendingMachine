@@ -2,7 +2,6 @@ package com.hkm.staffvend.event.dialog;
 
 import android.annotation.SuppressLint;
 import android.app.DialogFragment;
-import android.app.Fragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,8 +17,7 @@ import android.widget.EditText;
 
 import com.hkm.staffvend.R;
 import com.hkm.staffvend.event.Utils;
-import com.hkm.staffvend.usage.SimpleTextWatcher;
-import com.hkmvend.sdk.client.RestaurantPOS;
+import com.hkm.staffvend.compon.usage.SimpleTextWatcher;
 
 /**
  * Created by hesk on 28/1/16.

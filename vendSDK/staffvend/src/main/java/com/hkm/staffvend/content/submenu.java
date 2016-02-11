@@ -3,8 +3,7 @@ package com.hkm.staffvend.content;
 import android.os.Bundle;
 import android.view.View;
 
-import com.hkm.staffvend.event.BS;
-import com.hkm.staffvend.usage.ImageDisMos;
+import com.hkm.staffvend.compon.usage.DisplayB2;
 import com.hkmvend.sdk.client.RestaurantPOS;
 import com.hkmvend.sdk.storage.Menu.EntryContainer;
 import com.hkmvend.sdk.storage.Menu.MenuEntry;
@@ -26,7 +25,7 @@ public class submenu extends content_base {
 
 
     private void continoueAfterSync(List<MenuEntry> list) {
-        ImageDisMos mAdapater = new ImageDisMos(getActivity());
+        DisplayB2 mAdapater = new DisplayB2(getActivity());
         mAdapater.setData(list);
         mMosaicLayout.addPattern(pattern1);
         mMosaicLayout.addPattern(pattern2);

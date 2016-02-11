@@ -1,11 +1,10 @@
-package com.hkm.staffvend.Adap;
+package com.hkm.staffvend.compon.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
-import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.style.ForegroundColorSpan;
@@ -14,12 +13,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hkm.staffvend.R;
-import com.hkm.staffvend.SecPayment;
+import com.hkm.staffvend.ui.SecPayment;
 import com.hkm.staffvend.event.Utils;
 import com.hkm.staffvend.event.faster.FastScroller;
 import com.hkmvend.sdk.storage.Bill.Bill;
@@ -27,7 +24,6 @@ import com.hkmvend.sdk.storage.Bill.BillContainer;
 
 import java.util.Locale;
 
-import co.hkm.soltag.TagContainerLayout;
 import co.hkm.soltag.TagView;
 import co.hkm.soltag.ext.LayouMode;
 import eu.davidea.flexibleadapter.FlexibleAdapter;
@@ -244,7 +240,7 @@ public class TableAdapter extends FlexibleAdapter<ItemBeforePaid, Bill> implemen
             // holder.mArea.setBackgroundResource(R.drawable.image_round_selected);
         } else {
             //     holder.mArea.setBackgroundResource(R.drawable.image_round_normal);
-            holder.mArea.setBackgroundResource(R.drawable.selector_item_light);
+            holder.mArea.setBackgroundResource(R.drawable.item_b_whi);
         }
 
         //In case of searchText matches with Title or with an Item's field

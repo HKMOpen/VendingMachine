@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.format.DateFormat;
 import android.util.Log;
 
 import com.hkmvend.sdk.Constant;
@@ -45,7 +44,7 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
     private static BillContainer instance;
     private Context context;
     private Application application_context;
-    private AtomicInteger atomicInteger = new AtomicInteger(100000);
+    private AtomicInteger atomicInteger;
 
 
     public static BillContainer getInstnce(Application c) {
@@ -80,6 +79,7 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
         current_engage_table_id = loadRef(CTABLEID);
         current_bill_id = loadRefL(CTABLELONGID);
         lastest_bill_id = loadRefL(CT_LAST_BILL_SERIAL_NUMBER, -1);
+        atomicInteger = new AtomicInteger((int) lastest_bill_id);
         if (hasTableFocused()) {
             engaged = findBillByTable(current_engage_table_id);
         }
@@ -277,6 +277,18 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
             total += entry.getPrice();
         }
         return total;
+    }
+
+    public float getConsolidatedTotal() {
+        List<Bill> items = getPaidBills();
+        Iterator<Bill> it = items.iterator();
+        float sum=0f;
+        while (it.hasNext()) {
+            Bill b = it.next();
+            sum += b.getConsolidated_payment();
+        }
+        //  getQuery().equalTo(Bill.Field_payment_made, true).findAll();
+        return sum;
     }
 
     public boolean makeNewOrderEntry(int entry_id) {

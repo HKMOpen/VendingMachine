@@ -10,9 +10,9 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.hkm.staffvend.R;
-import com.hkm.staffvend.mosaic.MosaicLayout;
+import com.hkm.staffvend.compon.mosaic.MosaicLayout;
 
-import static com.hkm.staffvend.mosaic.BlockPattern.BLOCK_PATTERN;
+import static com.hkm.staffvend.compon.mosaic.BlockPattern.BLOCK_PATTERN;
 
 /**
  * Created by hesk on 26/1/16.

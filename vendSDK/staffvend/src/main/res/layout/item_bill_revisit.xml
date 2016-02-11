@@ -21,14 +21,14 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/common_button"
+            android:background="@drawable/item_b_lime"
             android:src="@drawable/ic_payment_64" />
 
         <ImageButton
             android:id="@id/item_ul_make_new_order"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:background="@drawable/common_button"
+            android:background="@drawable/item_b_lime"
             android:src="@drawable/ic_order_now64" />
 
     </LinearLayout>

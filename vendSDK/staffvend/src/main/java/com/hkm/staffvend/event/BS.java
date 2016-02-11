@@ -5,7 +5,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 
-import com.hkm.staffvend.MainOffice;
+import com.hkm.staffvend.ui.MainOffice;
 import com.hkm.staffvend.R;
 import com.hkm.staffvend.content.mainmenu;
 import com.hkm.staffvend.content.settings;

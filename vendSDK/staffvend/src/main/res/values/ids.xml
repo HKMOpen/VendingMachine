@@ -7,7 +7,6 @@
     <item name="action_about" type="id" />
     <item name="action_search" type="id" />
 
-
     <item name="item_ul_bill_no" type="id" />
     <item name="item_ul_table" type="id" />
     <item name="item_ul_tag_container" type="id" />
@@ -20,6 +19,13 @@
     <item name="item_ul_set_current" type="id" />
     <item name="item_ul_make_new_order" type="id" />
     <item name="item_ul_collection" type="id" />
+
+    <item name="axj_ul_rv" type="id" />
+    <item name="report_display" type="id" />
+
+    <item name="item_button_tex1" type="id" />
+    <item name="item_button_tex2" type="id" />
+    <item name="item_button_bg" type="id" />
 
     <item name="dialog_text_edit" type="id" />
 

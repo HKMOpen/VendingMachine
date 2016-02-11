@@ -42,7 +42,7 @@
                     android:id="@id/actionbar_add_count"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/common_button"
+                    android:background="@drawable/item_b_lime"
                     android:src="@drawable/ic_add_24dp" />
 
                 <TextView
@@ -58,7 +58,7 @@
                     android:id="@id/actionbar_remove_count"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/common_button"
+                    android:background="@drawable/item_b_lime"
                     android:src="@drawable/ic_remove_24dp" />
 
             </LinearLayout>
@@ -69,7 +69,7 @@
             android:layout_width="80dp"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:background="@drawable/common_button"
+            android:background="@drawable/item_b_lime"
             android:src="@drawable/ic_check_24dp" />
     </RelativeLayout>
 

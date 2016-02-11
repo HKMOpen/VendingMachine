@@ -1,4 +1,4 @@
-package com.hkm.staffvend;
+package com.hkm.staffvend.ui;
 
 import android.app.Activity;
 import android.app.SearchManager;
@@ -27,11 +27,12 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.hkm.staffvend.R;
 import com.hkm.staffvend.event.ApplicationConstant;
 import com.hkm.staffvend.event.BS;
 import com.hkm.staffvend.event.Utils;
-import com.hkm.staffvend.usage.SimpleDividerItemDecoration;
-import com.hkm.staffvend.Adap.TableAdapter;
+import com.hkm.staffvend.compon.usage.SimpleDividerItemDecoration;
+import com.hkm.staffvend.compon.adapter.TableAdapter;
 import com.hkmvend.sdk.client.RestaurantPOS;
 import com.hkmvend.sdk.storage.Bill.Bill;
 import com.hkmvend.sdk.storage.Bill.BillContainer;

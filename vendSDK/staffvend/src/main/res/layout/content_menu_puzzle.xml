@@ -11,7 +11,7 @@
         android:layout_height="200dp"
         android:text="main menu" />
 
-    <com.hkm.staffvend.mosaic.MosaicLayout
+    <com.hkm.staffvend.compon.mosaic.MosaicLayout
         android:layout_below="@id/main_button"
         android:id="@id/vend_mosaic"
         android:layout_width="match_parent"

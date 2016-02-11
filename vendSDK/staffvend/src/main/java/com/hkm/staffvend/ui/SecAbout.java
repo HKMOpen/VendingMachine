@@ -1,8 +1,11 @@
-package com.hkm.staffvend;
+package com.hkm.staffvend.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+
+import com.hkm.staffvend.BuildConfig;
+import com.hkm.staffvend.R;
 
 /**
  * Created by hesk on 5/2/16.

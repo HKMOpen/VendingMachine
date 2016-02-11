@@ -1,4 +1,4 @@
-package com.hkm.staffvend.mosaic;
+package com.hkm.staffvend.compon.mosaic;
 
 import java.util.ArrayList;
 import java.util.Arrays;

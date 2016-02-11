@@ -1,4 +1,4 @@
-package com.hkm.staffvend;
+package com.hkm.staffvend.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.hkm.staffvend.R;
 import com.hkm.videosdkui.application.Dialog.ErrorMessage;
 import com.hkmvend.sdk.client.RestaurantPOS;
 import com.hkmvend.sdk.storage.Bill.Bill;

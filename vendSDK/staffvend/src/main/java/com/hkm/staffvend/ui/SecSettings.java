@@ -1,4 +1,4 @@
-package com.hkm.staffvend;
+package com.hkm.staffvend.ui;
 
 import android.support.v7.app.AppCompatActivity;
 
