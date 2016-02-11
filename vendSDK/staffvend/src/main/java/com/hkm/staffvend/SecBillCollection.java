@@ -114,7 +114,13 @@ public class SecBillCollection extends AppCompatActivity implements
         Log.d(TAG, "onCreate");
         if (!loadIntentArguements()) return;
         //Adapter & RecyclerView
-        mAdapter = new TableAdapter(this, instance, getIntent().getExtras());
+        Bundle data = getIntent().getExtras();
+
+
+        String[] config = data.getStringArray(ApplicationConstant.INTENT_TABLE_FILTER);
+        int r = config[1].equalsIgnoreCase("paid") ? R.layout.item_bill_revisit : R.layout.item_bill_preview;
+
+        mAdapter = new TableAdapter(this, instance, getIntent().getExtras(), r);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setAdapter(mAdapter);

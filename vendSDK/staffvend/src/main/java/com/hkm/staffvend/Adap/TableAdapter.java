@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.Spannable;
@@ -61,6 +62,7 @@ public class TableAdapter extends FlexibleAdapter<ItemBeforePaid, Bill> implemen
         void onListItemLongClick(int position);
     }
 
+    private int layout_res;
     private Activity mContext;
     private static final int
             EXAMPLE_VIEW_TYPE = 0,
@@ -75,11 +77,12 @@ public class TableAdapter extends FlexibleAdapter<ItemBeforePaid, Bill> implemen
             mSelectAll = false;
     private BillContainer instance;
 
-    public TableAdapter(Object activity, BillContainer container, Bundle extras) {
+    public TableAdapter(Object activity, BillContainer container, Bundle extras, @LayoutRes final int item_layout) {
         super(container.getByBundle(extras));
         instance = container;
         this.mContext = (Activity) activity;
         this.mClickListener = (OnItemClickListener) activity;
+        layout_res = item_layout;
         //   addUserLearnedSelection();
     }
 
@@ -144,7 +147,7 @@ public class TableAdapter extends FlexibleAdapter<ItemBeforePaid, Bill> implemen
 
             default:
                 return new ItemBeforePaid(
-                        mInflater.inflate(R.layout.item_bill_preview, parent, false),
+                        mInflater.inflate(layout_res, parent, false),
                         this);
         }
     }
@@ -169,7 +172,7 @@ public class TableAdapter extends FlexibleAdapter<ItemBeforePaid, Bill> implemen
             Spannable spanText = Spannable.Factory.getInstance().newSpannable(st.toString());
             holder.mTitle.setText(spanText);
             holder.mSubtitle.setText(Html.fromHtml("$" + subtotal));
-            if (item.getPay_time() != null) {
+            if (item.getPay_time() != null && holder.mTime != null) {
                 holder.mTime.setText(item.getPay_time());
             }
             holder.setCurrent(new Runnable() {
