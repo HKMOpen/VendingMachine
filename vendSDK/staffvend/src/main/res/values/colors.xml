@@ -32,4 +32,5 @@
     <color name="cont_tag_background_color_active2">#d80fa68d</color>
     <color name="cont_text_color">#eceaea</color>
     <color name="cont_text_color_active">#1a1a1a</color>
+    <color name="color_trim_frame">#fdcb7f</color>
 </resources>

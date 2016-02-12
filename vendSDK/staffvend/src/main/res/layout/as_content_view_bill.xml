@@ -10,8 +10,94 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
-        <include layout="@layout/toolbar_payment" />
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_banner"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/color_trim_frame"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="parallax">
+
+                <LinearLayout
+                    android:id="@+id/top_frame_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fitsSystemWindows="true"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp" />
+
+                    <TextView
+                        android:id="@+id/grant_total"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/font_grant_total" />
+
+                    <TextView
+                        android:id="@+id/service_charge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/font_service_charge" />
+
+                    <TextView
+                        android:id="@+id/average"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/font_average_charge" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/top_frame_ll"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/print_slip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_print_24dp" />
+
+                    <ImageButton
+                        android:id="@+id/add_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_add_24dp" />
+
+                    <TextView
+                        android:id="@+id/people_count"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:singleLine="true"
+                        android:text="99"
+                        android:textSize="30sp" />
+
+                    <ImageButton
+                        android:id="@+id/remove_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_remove_24dp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <include layout="@layout/toolbar_payment" />
+        </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
     <RelativeLayout
@@ -55,23 +141,6 @@
                 app:vertical_interval="10dp"
                 tools:ignore="UnusedAttribute" />
 
-            <TextView
-                android:id="@+id/grant_total"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/font_grant_total" />
-
-            <TextView
-                android:id="@+id/service_charge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/font_service_charge" />
-
-            <TextView
-                android:id="@+id/average"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/font_average_charge" />
 
         </LinearLayout>
     </RelativeLayout>

@@ -122,7 +122,7 @@ public class SecBillCollection extends AppCompatActivity implements
         String[] config = data.getStringArray(ApplicationConstant.INTENT_TABLE_FILTER);
         int r = config[1].equalsIgnoreCase("paid") ? R.layout.item_bill_revisit : R.layout.item_bill_preview;
 
-        mAdapter = new TableAdapter(this, instance, getIntent().getExtras(), r);
+        mAdapter = new TableAdapter(this, instance, r);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setAdapter(mAdapter);
@@ -137,7 +137,6 @@ public class SecBillCollection extends AppCompatActivity implements
         // fastScroller.setViewsToUse(R.layout.fast_scroller, R.id.fast_scroller_bubble, R.id.fast_scroller_handle);
         //FAB
         //Update EmptyView (by default EmptyView is visible)
-        updateEmptyView();
 
         //SwipeToRefresh
         initializeSwipeToRefresh();
@@ -154,6 +153,8 @@ public class SecBillCollection extends AppCompatActivity implements
             if (savedInstanceState.containsKey(STATE_ACTIVATED_POSITION))
                 setSelection(savedInstanceState.getInt(STATE_ACTIVATED_POSITION));
         }
+        mAdapter.loadList(instance.getByBundle(data));
+        updateEmptyView();
     }
 
     private void initializeSwipeToRefresh() {
@@ -167,8 +168,9 @@ public class SecBillCollection extends AppCompatActivity implements
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mAdapter.updateDataSet();
+                //  mAdapter.updateDataSet();
 //				mAdapter.updateDataSetAsync("example parameter for List1");
+                refresh();
                 mSwipeRefreshLayout.setEnabled(false);
                 mSwipeHandler.sendEmptyMessageDelayed(0, 2000L);
             }
@@ -293,8 +295,7 @@ public class SecBillCollection extends AppCompatActivity implements
 
     /**
      * Handling RecyclerView when empty.
-     * <br/><br/>
-     * <b>Note:</b> The order how the 3 Views (RecyclerView, EmptyView, FastScroller)
+     * Note: The order how the 3 Views (RecyclerView, EmptyView, FastScroller)
      * are placed in the Layout is important!
      */
     private void updateEmptyView() {
@@ -550,6 +551,14 @@ public class SecBillCollection extends AppCompatActivity implements
 
     }
 
+    private void refresh() {
+        if (mAdapter != null) {
+            mAdapter.removeAll();
+            mAdapter.loadList(instance.getByBundle(getIntent().getExtras()));
+            updateEmptyView();
+        }
+    }
+
     @Subscribe
     public void evt(BS.BillFnc ev) {
         if (ev.function_bs == BS_SET_CURRENT) {
@@ -558,9 +567,7 @@ public class SecBillCollection extends AppCompatActivity implements
             finish();
         }
         if (ev.function_bs == BS_REFRESH_LIST) {
-            if (mAdapter != null) {
-                mAdapter.updateDataSet();
-            }
+            refresh();
         }
     }
 

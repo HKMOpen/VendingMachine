@@ -34,8 +34,10 @@ public class Bill extends RealmObject implements Serializable {
     private String table_id;
     private String table_remark;
     private boolean payment_collected;
+    private float consolidated_payment;
+    private boolean isBillCompleted;
     private int headcount;
-    
+
     public boolean isPayment_collected() {
         return payment_collected;
     }
@@ -52,8 +54,6 @@ public class Bill extends RealmObject implements Serializable {
         this.isBillCompleted = isBillCompleted;
     }
 
-    private float consolidated_payment;
-    private boolean isBillCompleted;
 
     public Bill() {
     }

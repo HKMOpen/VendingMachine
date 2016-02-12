@@ -242,8 +242,14 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
 
     public Bill findBillByTableUnpaid(String table_id) {
         Bill copies = getQuery()
+
                 .equalTo(Bill.Field_table_id, table_id)
-                .equalTo(Bill.Field_isBillCompleted, false).findFirst();
+                .equalTo(Bill.Field_payment_made, false)
+
+                .findFirst();
+        if (copies != null)
+            Log.d("rQ", copies.toString());
+
         return copies;
     }
 

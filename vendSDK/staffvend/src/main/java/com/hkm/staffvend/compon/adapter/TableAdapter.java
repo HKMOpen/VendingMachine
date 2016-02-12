@@ -22,6 +22,9 @@ import com.hkm.staffvend.event.faster.FastScroller;
 import com.hkmvend.sdk.storage.Bill.Bill;
 import com.hkmvend.sdk.storage.Bill.BillContainer;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 
 import co.hkm.soltag.TagView;
@@ -73,8 +76,8 @@ public class TableAdapter extends FlexibleAdapter<ItemBeforePaid, Bill> implemen
             mSelectAll = false;
     private BillContainer instance;
 
-    public TableAdapter(Object activity, BillContainer container, Bundle extras, @LayoutRes final int item_layout) {
-        super(container.getByBundle(extras));
+    public TableAdapter(Object activity, BillContainer container, @LayoutRes final int item_layout) {
+        super(new ArrayList<Bill>());
         instance = container;
         this.mContext = (Activity) activity;
         this.mClickListener = (OnItemClickListener) activity;
@@ -90,6 +93,22 @@ public class TableAdapter extends FlexibleAdapter<ItemBeforePaid, Bill> implemen
             //    item.setTitle(mContext.getString(R.string.uls_title));
             //    item.setSubtitle(mContext.getString(R.string.uls_subtitle));
             //   this.mItems.set(0, item);
+        }
+    }
+
+    public void loadList(List<Bill> ls) {
+        Iterator<Bill> it = ls.iterator();
+        while (it.hasNext()) {
+            Bill bv = it.next();
+            addItem(0, bv);
+        }
+        notifyDataSetChanged();
+    }
+
+    public final void removeAll() {
+        final int e = mItems.size();
+        for (int i = 0; i < e; i++) {
+            removeItem(i);
         }
     }
 
