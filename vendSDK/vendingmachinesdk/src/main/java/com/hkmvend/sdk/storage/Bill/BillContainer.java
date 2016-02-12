@@ -44,7 +44,7 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
     private static BillContainer instance;
     private Context context;
     private Application application_context;
-    private AtomicInteger atomicInteger;
+    // private AtomicInteger atomicInteger;
 
 
     public static BillContainer getInstnce(Application c) {
@@ -78,8 +78,8 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
     protected void init() {
         current_engage_table_id = loadRef(CTABLEID);
         current_bill_id = loadRefL(CTABLELONGID);
-        lastest_bill_id = loadRefL(CT_LAST_BILL_SERIAL_NUMBER, -1);
-        atomicInteger = new AtomicInteger((int) lastest_bill_id);
+        lastest_bill_id = loadRefL(CT_LAST_BILL_SERIAL_NUMBER, -10);
+        // atomicInteger = new AtomicInteger((int) lastest_bill_id);
         if (hasTableFocused()) {
             engaged = findBillByTable(current_engage_table_id);
         }
@@ -197,7 +197,7 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
         realm.beginTransaction();
         Bill target = realm.createObject(Bill.class);
         target.setHeadcount(headcount);
-        lastest_bill_id = (long) atomicInteger.getAndIncrement();
+        lastest_bill_id = lastest_bill_id + 1L;
         target.setBill_number_code(lastest_bill_id);
         saveInfo(CT_LAST_BILL_SERIAL_NUMBER, lastest_bill_id);
         target.setTable_id(table_id);
@@ -264,8 +264,8 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
     }
 
     public void setMaunalLastestBillNumber(int id) {
-        atomicInteger = new AtomicInteger(id);
-        lastest_bill_id = id;
+        //   atomicInteger = new AtomicInteger(id);
+        lastest_bill_id = (long) id;
         saveInfo(CT_LAST_BILL_SERIAL_NUMBER, lastest_bill_id);
     }
 
@@ -282,7 +282,7 @@ public class BillContainer extends ApplicationBase implements ibillcontainer {
     public float getConsolidatedTotal() {
         List<Bill> items = getPaidBills();
         Iterator<Bill> it = items.iterator();
-        float sum=0f;
+        float sum = 0f;
         while (it.hasNext()) {
             Bill b = it.next();
             sum += b.getConsolidated_payment();

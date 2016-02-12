@@ -168,10 +168,12 @@ public class TableAdapter extends FlexibleAdapter<ItemBeforePaid, Bill> implemen
             Spannable spanText = Spannable.Factory.getInstance().newSpannable(st.toString());
             holder.mTitle.setText(spanText);
             holder.mSubtitle.setText(Html.fromHtml("$" + subtotal));
+
             if (item.getPay_time() != null && holder.mTime != null) {
                 holder.mTime.setText(item.getPay_time());
             }
-            holder.setCurrent(new Runnable() {
+
+            holder.newOrderFn(new Runnable() {
                 @Override
                 public void run() {
                     // BS.setCurrentBillEngage(item);
@@ -184,11 +186,8 @@ public class TableAdapter extends FlexibleAdapter<ItemBeforePaid, Bill> implemen
                     mContext.finish();
                 }
             });
-            holder.mMenuContainer.removeAllTags();
-            holder.mMenuContainer.setThemeOnActive(R.style.tagactive);
-            holder.mMenuContainer.setTheme(R.style.tagnormal);
-            holder.mMenuContainer.setMode(LayouMode.SINGLE_CHOICE);
-            holder.mMenuContainer.setOnTagClickListener(new TagView.OnTagClickListener() {
+
+            holder.setTagClick(new TagView.OnTagClickListener() {
                 @Override
                 public void onTagClick(int position, String text) {
 
@@ -199,7 +198,9 @@ public class TableAdapter extends FlexibleAdapter<ItemBeforePaid, Bill> implemen
 
                 }
             });
-            holder.mMenuContainer.setTags(BillContainer.getOrderedItemsChinese(item));
+
+            holder.displayEntries(BillContainer.getOrderedItemsChinese(item));
+
             holder.mPayment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -208,7 +209,7 @@ public class TableAdapter extends FlexibleAdapter<ItemBeforePaid, Bill> implemen
                     b.putLong(INTENT_BILL_ID, item.getBill_number_code());
                     b.putInt(INTENT_TABLE_FUNCTION, MAKE_PAYMENT);
                     in.putExtras(b);
-                    mContext.startActivity(in);
+                    mContext.startActivityForResult(in, MAKE_PAYMENT);
                 }
             });
 

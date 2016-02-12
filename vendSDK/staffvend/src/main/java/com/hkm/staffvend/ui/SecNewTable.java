@@ -23,7 +23,7 @@ import co.hkm.soltag.TagContainerLayout;
 import co.hkm.soltag.TagView;
 import co.hkm.soltag.ext.LayouMode;
 
-import static com.hkm.staffvend.event.ApplicationConstant.RESULT_NEW_ORDER;
+import static com.hkm.staffvend.event.ApplicationConstant.*;
 
 /**
  * Created by hesk on 26/1/16.
@@ -45,7 +45,7 @@ public class SecNewTable extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        long set_bill_transaction_num = bc.getLastestBillNumber();
+        long set_bill_transaction_num = bc.getLastestBillNumber() + 1;
         if (set_bill_transaction_num < 0) {
             ErrorMessage.alert(getString(R.string.action_set_bill_num), getFragmentManager(), new Runnable() {
                 @Override
@@ -163,7 +163,7 @@ public class SecNewTable extends AppCompatActivity {
 
     private void confirm_new_table() {
         StringBuilder sb = new StringBuilder();
-        if (table_name==null) {
+        if (table_name == null) {
             sb.append("invalidate table id");
         }
         if (people_count.getText().toString().isEmpty() || Integer.parseInt(people_count.getText().toString()) == 0) {

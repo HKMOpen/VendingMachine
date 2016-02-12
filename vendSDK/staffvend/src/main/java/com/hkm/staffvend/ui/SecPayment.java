@@ -18,9 +18,7 @@ import co.hkm.soltag.TagContainerLayout;
 import co.hkm.soltag.TagView;
 import co.hkm.soltag.ext.LayouMode;
 
-import static com.hkm.staffvend.event.ApplicationConstant.INTENT_BILL_ID;
-import static com.hkm.staffvend.event.ApplicationConstant.INTENT_TABLE_FUNCTION;
-
+import static com.hkm.staffvend.event.ApplicationConstant.*;
 /**
  * Created by zJJ on 2/5/2016.
  */
@@ -108,7 +106,7 @@ public class SecPayment extends AppCompatActivity implements
                             .make(view, sb.toString(), Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                     instance.settlePayment(target_bill, bgrant);
-                    setResult(RESULT_OK);
+                    setResult(RESULT_PAYMENT_DONE);
                     finish();
                 }
             }

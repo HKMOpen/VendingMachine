@@ -16,6 +16,7 @@ import android.view.View;
 import com.hkm.staffvend.R;
 import com.hkm.staffvend.content.dish_panel;
 import com.hkm.staffvend.content.mainmenu;
+import com.hkm.staffvend.content.settings;
 import com.hkm.staffvend.content.staffmenu;
 import com.hkm.staffvend.event.BS;
 import com.squareup.otto.Subscribe;
@@ -29,8 +30,8 @@ public class MainOffice extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.as_content_vend_frame);
-       // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-       // setSupportActionBar(toolbar);
+        // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        // setSupportActionBar(toolbar);
         fabbutton = (FloatingActionButton) findViewById(R.id.fab);
         normal_start(new staffmenu());
     }
@@ -137,7 +138,11 @@ public class MainOffice extends AppCompatActivity {
     public void onBackPressed() {
         if (backEnabled) {
             backEnabled = false;
-            backHome();
+            if (current instanceof settings) {
+                normal_start(new staffmenu());
+            } else {
+                backHome();
+            }
         } else {
             //super.onBackPressed();
         }

@@ -26,10 +26,12 @@ public class ApplicationConstant {
             FUNC_VIEW_ONLY = 0,
             FUNC_EDIT = 1,
             RESULT_NEW_ORDER = 300,
+            RESULT_PAYMENT_DONE = 301,
             FUNC_SELECT_TABLE = 2,
             FUNC_CLOSE_BILL = 3;
 
     public static final int
+            BS_REFRESH_LIST = 11,
             BS_SET_CURRENT = 9,
             BS_SET_REMOVE = 10;
 }

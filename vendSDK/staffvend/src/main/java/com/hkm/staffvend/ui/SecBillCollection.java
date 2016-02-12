@@ -3,6 +3,7 @@ package com.hkm.staffvend.ui;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -41,7 +42,7 @@ import com.squareup.otto.Subscribe;
 
 import eu.davidea.flexibleadapter.FlexibleAdapter;
 
-import static com.hkm.staffvend.event.ApplicationConstant.INTENT_TABLE_FUNCTION;
+import static com.hkm.staffvend.event.ApplicationConstant.*;
 
 /**
  * Created by hesk on 27/1/16.
@@ -551,10 +552,15 @@ public class SecBillCollection extends AppCompatActivity implements
 
     @Subscribe
     public void evt(BS.BillFnc ev) {
-        if (ev.function_bs == ApplicationConstant.BS_SET_CURRENT) {
+        if (ev.function_bs == BS_SET_CURRENT) {
             instance.setFocusOnBill(ev.embed);
             setResult(Activity.RESULT_OK);
             finish();
+        }
+        if (ev.function_bs == BS_REFRESH_LIST) {
+            if (mAdapter != null) {
+                mAdapter.updateDataSet();
+            }
         }
     }
 
@@ -568,5 +574,12 @@ public class SecBillCollection extends AppCompatActivity implements
     public void onStop() {
         super.onStop();
         BS.getInstance().unregister(this);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        BS.onResultFromPrevious(requestCode, resultCode, data, null, null);
     }
 }

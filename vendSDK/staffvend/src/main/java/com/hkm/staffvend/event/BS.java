@@ -3,6 +3,7 @@ package com.hkm.staffvend.event;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 
 import com.hkm.staffvend.ui.MainOffice;
@@ -21,10 +22,13 @@ import java.util.List;
 import me.sudar.zxingorient.Barcode;
 import me.sudar.zxingorient.ZxingOrient;
 
+import static com.hkm.staffvend.event.ApplicationConstant.BS_REFRESH_LIST;
 import static com.hkm.staffvend.event.ApplicationConstant.BS_SET_CURRENT;
 import static com.hkm.staffvend.event.ApplicationConstant.IMPORT_RESTUARANT_MENU;
+import static com.hkm.staffvend.event.ApplicationConstant.MAKE_PAYMENT;
 import static com.hkm.staffvend.event.ApplicationConstant.NEW_TABLE;
 import static com.hkm.staffvend.event.ApplicationConstant.RESULT_NEW_ORDER;
+import static com.hkm.staffvend.event.ApplicationConstant.RESULT_PAYMENT_DONE;
 import static com.hkm.staffvend.event.ApplicationConstant.VIEW_PAID_TABLES;
 import static com.hkm.staffvend.event.ApplicationConstant.VIEW_UNPAID_TABLES;
 
@@ -43,6 +47,10 @@ public class BS {
         public BillFnc(int func, Bill point) {
             function_bs = func;
             embed = point;
+        }
+
+        public BillFnc(int fctn) {
+            function_bs = fctn;
         }
 
     }
@@ -67,8 +75,13 @@ public class BS {
 
     }
 
-    public static void setCurrentBillEngage(Bill mBill) {
+    private static void setCurrentBillEngage(Bill mBill) {
         BillFnc fn = new BS.BillFnc(BS_SET_CURRENT, mBill);
+        getInstance().post(fn);
+    }
+
+    private static void actionRefreshList() {
+        BillFnc fn = new BS.BillFnc(BS_REFRESH_LIST);
         getInstance().post(fn);
     }
 
@@ -96,7 +109,11 @@ public class BS {
         getInstance().post(sub);
     }
 
-    public static void onResultFromPrevious(int requestCode, int resultCode, Intent data, Fragment current, MainOffice direct) {
+    public static void onResultFromPrevious(int requestCode, int resultCode, Intent data, @Nullable Fragment current, @Nullable MainOffice direct) {
+        if (requestCode == MAKE_PAYMENT && resultCode == RESULT_PAYMENT_DONE) {
+
+        }
+        if (current == null || direct == null) return;
         if (requestCode == NEW_TABLE && resultCode == RESULT_NEW_ORDER) {
             if (current instanceof staffmenu) {
                 staffmenu home = (staffmenu) current;
@@ -119,7 +136,6 @@ public class BS {
                 }
             }
         }
-
 
         if (requestCode == VIEW_PAID_TABLES && resultCode == Activity.RESULT_OK) {
             if (current instanceof staffmenu) {
