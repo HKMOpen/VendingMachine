@@ -19,9 +19,9 @@ import android.view.ViewGroup;
 import com.hkm.staffvend.R;
 import com.hkm.staffvend.ui.SecAbout;
 import com.hkm.staffvend.event.BS;
-import com.hkm.staffvend.event.dialog.DialogTextInput;
-import com.hkm.staffvend.event.dialog.TickeD;
-import com.hkm.staffvend.event.dialog.TicketNumD;
+import com.hkm.staffvend.dialog.DialogTextInput;
+import com.hkm.staffvend.dialog.TickeD;
+import com.hkm.staffvend.dialog.TicketNumD;
 import com.hkmvend.sdk.client.RestaurantPOS;
 import com.hkmvend.sdk.storage.Bill.BillContainer;
 

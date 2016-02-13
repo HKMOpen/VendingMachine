@@ -10,6 +10,7 @@
     <string name="action_down_order">new order of this dish</string>
     <string name="action_set_bill_num">Please setup your bill number.</string>
     <string name="action_search_similar">search history</string>
+    <string name="dialog_select_table">Select a Table</string>
     <string name="dialog_edit_title">Edit</string>
     <string name="dialog_edit_title_hint">Add your search in here</string>
     <string name="dialog_edit_number_hint">Enter your number in here</string>

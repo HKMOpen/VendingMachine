@@ -47,7 +47,7 @@ ext {
     videoNetworkSDK = '0.1.5'
     ftKit = '0.4.1'
     uidebug = '0.1.0'
-    collection_ui = '0.1.6'
+    collection_ui = '0.2.0'
 
 
     precompile_file_name = 'dllocker-publishing_package-release'

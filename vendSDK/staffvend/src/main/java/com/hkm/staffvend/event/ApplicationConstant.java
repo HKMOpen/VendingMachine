@@ -1,5 +1,10 @@
 package com.hkm.staffvend.event;
 
+import com.hkmvend.sdk.storage.Bill.BillContainer;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by hesk on 28/1/16.
  */
@@ -34,4 +39,54 @@ public class ApplicationConstant {
             BS_REFRESH_LIST = 11,
             BS_SET_CURRENT = 9,
             BS_SET_REMOVE = 10;
+
+
+    public static String[] getTables() {
+        return generateDefaultTables();
+    }
+
+    private static String[] generateDefaultTables() {
+        return new String[]{
+                "T-01",
+                "T-02",
+                "T-03",
+                "T-04",
+                "T-05",
+                "T-06",
+                "T-07",
+                "T-08",
+                "T-09",
+                "T-10",
+                "T-11",
+                "T-12",
+                "T-13",
+                "T-14",
+                "T-15",
+                "T-16"
+        };
+    }
+
+    public static boolean inPreselectionScope(int h, int[] scope) {
+        for (int i = 0; i < scope.length; i++) {
+            int qu = scope[i];
+            if (h == qu) return true;
+        }
+        return false;
+    }
+
+    public static int[] generatePreselection(BillContainer bc) {
+        String[] l = ApplicationConstant.getTables();
+        List<Integer> h = new ArrayList<>();
+        for (int i = 0; i < l.length; i++) {
+            String qu = l[i];
+            if (bc.findBillByTableUnpaid(qu) != null) {
+                h.add(i);
+            }
+        }
+        int[] y = new int[h.size()];
+        for (int i = 0; i < h.size(); i++) {
+            y[i] = h.get(i);
+        }
+        return y;
+    }
 }

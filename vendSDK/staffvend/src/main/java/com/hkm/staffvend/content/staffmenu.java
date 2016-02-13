@@ -8,9 +8,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.hkm.staffvend.R;
+import com.hkm.staffvend.dialog.tableDialog;
+import com.hkm.staffvend.event.BS;
 import com.hkm.staffvend.ui.SecBillCollection;
 import com.hkm.staffvend.ui.SecNewTable;
-import com.hkm.staffvend.event.BS;
 import com.hkmvend.sdk.client.RestaurantPOS;
 import com.hkmvend.sdk.storage.Bill.Bill;
 import com.hkmvend.sdk.storage.Bill.BillContainer;
@@ -59,12 +60,7 @@ public class staffmenu extends content_base {
         checkTablesUnpaid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle b = new Bundle();
-                b.putInt(INTENT_TABLE_FUNCTION, FUNC_VIEW_ONLY);
-                b.putStringArray(INTENT_TABLE_FILTER, new String[]{Bill.Field_pay_time, "unpaid"});
-                Intent i = new Intent(getActivity(), SecBillCollection.class);
-                i.putExtras(b);
-                getActivity().startActivityForResult(i, VIEW_UNPAID_TABLES);
+                tableDialog.newInstance(staffmenu.this).show(getFragmentManager(), "table_selection");
             }
         });
         mSettings.setOnClickListener(new View.OnClickListener() {
@@ -125,8 +121,8 @@ public class staffmenu extends content_base {
         checkTablesPaid = (Button) view.findViewById(R.id.checkcompletetable);
         checkTablesUnpaid = (Button) view.findViewById(R.id.checkTables);
         newtable = (Button) view.findViewById(R.id.newtable);
-    //    aboutButton = (Button) view.findViewById(R.id.about);
-        mSettings = (Button)view.findViewById(R.id.settings);
+        //    aboutButton = (Button) view.findViewById(R.id.about);
+        mSettings = (Button) view.findViewById(R.id.settings);
       /*  setButton = (Button) view.findViewById(R.id.setlastesttioc);
         signInStaff = (Button) view.findViewById(R.id.signoutin);
         importButton = (Button) view.findViewById(R.id.importmenu);
@@ -141,6 +137,5 @@ public class staffmenu extends content_base {
         return R.layout.content_main_office;
     }
 
-  
 
 }

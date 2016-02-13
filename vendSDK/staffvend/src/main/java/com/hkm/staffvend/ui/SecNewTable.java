@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.hkm.staffvend.R;
+import com.hkm.staffvend.event.ApplicationConstant;
 import com.hkm.videosdkui.application.Dialog.ErrorMessage;
 import com.hkmvend.sdk.client.RestaurantPOS;
 import com.hkmvend.sdk.storage.Bill.Bill;
@@ -120,46 +121,12 @@ public class SecNewTable extends AppCompatActivity {
 
             }
         });
-        table.setPreselectedTags(generatePreselection(), R.style.tagactive_pre);
-        table.setTags(genTables());
+        table.setPreselectedTags(ApplicationConstant.generatePreselection(bc), R.style.tagactive_pre);
+        table.setTags(ApplicationConstant.getTables());
     }
 
-    private int[] generatePreselection() {
-        String[] l = genTables();
-        List<Integer> h = new ArrayList<>();
-        for (int i = 0; i < l.length; i++) {
-            String qu = l[i];
-            if (bc.findBillByTableUnpaid(qu) != null) {
-                h.add(i);
-            }
-        }
-        int[] y = new int[h.size()];
-        for (int i = 0; i < h.size(); i++) {
-            y[i] = h.get(i);
-        }
-        return y;
-    }
 
-    private String[] genTables() {
-        return new String[]{
-                "T-01",
-                "T-02",
-                "T-03",
-                "T-04",
-                "T-05",
-                "T-06",
-                "T-07",
-                "T-08",
-                "T-09",
-                "T-10",
-                "T-11",
-                "T-12",
-                "T-13",
-                "T-14",
-                "T-15",
-                "T-16"
-        };
-    }
+
 
     private void confirm_new_table() {
         StringBuilder sb = new StringBuilder();

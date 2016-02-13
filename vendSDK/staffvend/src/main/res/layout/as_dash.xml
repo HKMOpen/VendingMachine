@@ -6,9 +6,9 @@
     android:orientation="vertical">
 
     <ImageView
-
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:src="@drawable/receiptee" />
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_about_sanji" />
 </RelativeLayout>
